@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>软件精选 - 优质软件推荐</title>
+    <title>电脑呢小百科软件精选 - 优质软件推荐</title>
     <style>
         * {
             margin: 0;
@@ -528,15 +528,31 @@
             border-color: rgba(255,255,255,0.3);
         }
 
+        /* 底部简洁设计 */
         footer {
             text-align: center;
-            padding: 60px 0;
-            color: #6e6e73;
-            font-size: 13px;
+            padding: 50px 20px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            background: #000000;
         }
 
-        .footer-links {
-            margin-bottom: 20px;
+        /* 版权信息优雅卡片设计 */
+        .copyright-info {
+            display: inline-block;
+            background: rgba(44, 44, 46, 0.8);
+            color: #ffffff;
+            padding: 16px 24px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.15);
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.5;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            letter-spacing: 0.3px;
         }
 
         .footer-link {
@@ -685,8 +701,8 @@
 <body>
     <div class="container">
         <header>
-            <div class="logo">软件精选</div>
-            <div class="tagline">发现优质软件，提升工作效率</div>
+            <div class="logo">电脑小百科-软件精选 </div>
+            <div class="tagline">绿色安全/无捆绑/ 提升工作效率</div>
 
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="搜索软件...">
@@ -699,12 +715,7 @@
         <div class="software-grid" id="softwareGrid"></div>
 
         <footer>
-            <div class="footer-links">
-                <a href="#" class="footer-link">关于我们</a>
-                <a href="#" class="footer-link">使用条款</a>
-                <a href="#" class="footer-link">隐私政策</a>
-            </div>
-            <p>© 2025 软件精选. 所有权利 reserved.</p>
+            <p class="copyright-info">© 2026 @电脑小百科 （抖音/B站/小红书）软件精选 · All Rights Reserved</p>
         </footer>
     </div>
 
@@ -784,9 +795,13 @@
                 return;
             }
 
-            container.innerHTML = filteredData.map((software, index) => `
+            container.innerHTML = filteredData.map((software) => {
+                // 在原始数组中查找该软件的全局序号
+                const globalIndex = softwareData.findIndex(s => s.id === software.id);
+
+                return `
                 <div class="software-card" onclick="showDetail('${software.id}')">
-                    <div class="software-number">${index + 1}</div>
+                    <div class="software-number">${globalIndex + 1}</div>
                     <div class="card-header">
                         <div class="app-icon">${software.icon || '📦'}</div>
                         <div class="app-info">
@@ -798,17 +813,13 @@
                     <div class="download-buttons">
                         ${Object.keys(software.downloadLinks || {}).length > 0 ?
                             `<button class="download-btn primary-btn" onclick="event.stopPropagation(); showDetail('${software.id}')">
-                                下载
+                                立即下载
                             </button>` : ''
-                        }
-                        ${software.officialUrl ?
-                            `<a href="${software.officialUrl}" target="_blank" class="download-btn secondary-btn" onclick="event.stopPropagation()">
-                                官网
-                            </a>` : ''
                         }
                     </div>
                 </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         // 分类筛选
@@ -840,23 +851,9 @@
             const downloadsContainer = document.getElementById('modalDownloads');
             let html = '';
 
-            // 官方下载
-            if (software.officialUrl) {
-                html += `
-                    <div class="download-section">
-                        <div class="section-title">官方下载</div>
-                        <div class="download-card">
-                            <a href="${software.officialUrl}" target="_blank" class="download-link">
-                                访问官方网站
-                            </a>
-                        </div>
-                    </div>
-                `;
-            }
-
-            // 网盘下载
+            // 立即下载
             if (software.downloadLinks && Object.keys(software.downloadLinks).length > 0) {
-                html += '<div class="download-section"><div class="section-title">网盘下载</div>';
+                html += '<div class="download-section"><div class="section-title">立即下载</div>';
 
                 const platformNames = {
                     'baidu': '百度网盘',
@@ -872,7 +869,7 @@
                         <div class="download-card">
                             <div class="platform-name">${platformNames[platform] || platform}</div>
                             <a href="${info.url}" target="_blank" class="download-link">
-                                下载
+                                点击下载
                             </a>
                             ${info.code ? `
                                 <div class="access-code">
