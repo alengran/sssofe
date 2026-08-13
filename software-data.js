@@ -130,5 +130,63 @@ const softwareData = [
         icon: "🎬",
         officialUrl: "https://obsproject.com/",
         downloadLinks: {}
-    }
+    },
+     {
+        id: "11",
+        name: "11LibreOffice",
+        category: "办公软件",
+        description: "完全免费开源的办公套件，兼容MS Office格式，包含Writer, Calc等。",
+        icon: "📝",
+        officialUrl: "https://www.libreoffice.org/download/",
+        downloadLinks: {
+            quark: {
+                url: "https://pan.quark.cn/s/xyz",
+                code: "1234"
+         }
+        }
+    },
+
+  {
+        id: "1786585872040",
+        name: "久伴笔记",
+        category: "办公软件",
+        description: "一款完全免费绿色的 本地Markdown笔记软件",
+        icon: "📦",
+        
+        downloadLinks: {
+            baidu: {
+                url: "https://pan.baidu.com/s/1sCtktzWBPsyzo82IFP5_Ag?pwd=stef",
+                code: "stef"
+            }
+        }
+    },
+
+ {
+        id: "1786586204947xu8lzz7hs",
+        name: "333",
+        category: "开发工具",
+        description: "代码编辑器",
+        icon: "",
+        
+        downloadLinks: {}
+    },
+    {
+        id: "1786586757743qig8xlvhy",
+        name: "VSCode222244798",
+        category: "开发工具",
+        description: "代码编辑器",
+        icon: "💻",
+        officialUrl: "https://code.visualstudio.com",
+        downloadLinks: {}
+    },
+    {
+        id: "1786586757743ta20zj3wd",
+        name: "VSCode2222",
+        category: "开发工具",
+        description: "代码编辑器",
+        icon: "💻",
+        officialUrl: "https://code.visualstudio.com",
+        downloadLinks: {}
+    },
+
 ];
