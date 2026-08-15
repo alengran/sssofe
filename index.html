@@ -937,8 +937,17 @@
 
         // 显示详情
         function showDetail(softwareId) {
-            const software = allSoftwareData.find(s => s.id === softwareId);
-            if (!software) return;
+            // 确保数据已加载
+            if (!allSoftwareData || allSoftwareData.length === 0) {
+                console.error('数据未加载，无法显示详情');
+                return;
+            }
+
+            const software = allSoftwareData.find(s => s.id == softwareId);
+            if (!software) {
+                console.error('未找到软件，ID:', softwareId);
+                return;
+            }
 
             document.getElementById('modalIcon').textContent = software.icon || '📦';
             document.getElementById('modalTitle').textContent = software.name;
@@ -987,8 +996,21 @@
             }
 
             downloadsContainer.innerHTML = html;
-            document.getElementById('detailModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
+
+            // 确保弹窗正确显示（Edge浏览器兼容性修复）
+            const modal = document.getElementById('detailModal');
+            if (modal) {
+                modal.style.display = 'flex';
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+
+                // 强制重绘，确保样式生效
+                setTimeout(() => {
+                    modal.offsetHeight;
+                }, 10);
+            } else {
+                console.error('未找到弹窗元素');
+            }
         }
 
         // 关闭弹窗
