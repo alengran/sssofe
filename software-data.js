@@ -474,19 +474,35 @@ class SoftwareDataManager {
         this.currentPage = 1;
         this.loadedData = [];
         this.isLoading = false;
+        this.processedData = null; // 内存级缓存
     }
 
     // 异步加载数据（带缓存）
     // 快速加载数据，优化性能
     async loadData() {
-        // 直接返回处理后的数据，移除缓存检查以提升首次加载速度
+        // 检查内存缓存
+        if (this.processedData) {
+            return this.processedData;
+        }
+
+        // 检查localStorage缓存
+        const cached = this.getCachedData();
+        if (cached) {
+            this.processedData = cached;
+            return cached;
+        }
+
+        // 处理数据
         const data = softwareData.map(item => ({
             ...item,
             index: item.id
         }));
 
-        // 异步缓存，不阻塞主流程
-        setTimeout(() => this.setCachedData(data), 0);
+        // 内存缓存
+        this.processedData = data;
+
+        // 同步缓存到localStorage
+        this.setCachedData(data);
 
         return data;
     }
