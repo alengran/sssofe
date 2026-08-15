@@ -542,13 +542,13 @@ class SoftwareDataManager {
     // 搜索功能
     async search(query) {
         const allData = await this.loadData();
-        const term = query.toLowerCase();
+        const term = query.toLowerCase().trim();
 
         return allData.filter(item =>
             item.name.toLowerCase().includes(term) ||
             item.description.toLowerCase().includes(term) ||
             item.category.toLowerCase().includes(term) ||
-            item.id.toString() === query
+            item.id.toString() === term
         );
     }
 
