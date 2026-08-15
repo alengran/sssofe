@@ -447,21 +447,18 @@ class SoftwareDataManager {
     }
 
     // 异步加载数据（带缓存）
+    // 快速加载数据，优化性能
     async loadData() {
-        // 检查缓存
-        const cached = this.getCachedData();
-        if (cached) {
-            console.log('使用缓存数据');
-            return cached;
-        }
-
-        // 直接返回数据，序号即为id
+        // 直接返回处理后的数据，移除缓存检查以提升首次加载速度
         const data = softwareData.map(item => ({
             ...item,
             index: item.id
         }));
-        this.setCachedData(data);
-        return Promise.resolve(data);
+
+        // 异步缓存，不阻塞主流程
+        setTimeout(() => this.setCachedData(data), 0);
+
+        return data;
     }
 
     // 分页加载数据

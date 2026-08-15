@@ -685,11 +685,11 @@
             background: rgba(255,255,255,0.3);
         }
 
-        /* Loading animation - 优化性能 */
+        /* Loading animation - 极速加载 */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(10px);
+                transform: translateY(3px);
             }
             to {
                 opacity: 1;
@@ -698,16 +698,12 @@
         }
 
         .software-card {
-            animation: fadeInUp 0.3s ease-out forwards;
+            animation: fadeInUp 0.15s ease-out forwards;
             opacity: 0;
         }
 
-        /* 分批动画，减少等待时间 */
-        .software-card:nth-child(n+1) { animation-delay: 0.05s; }
-        .software-card:nth-child(n+6) { animation-delay: 0.1s; }
-        .software-card:nth-child(n+11) { animation-delay: 0.15s; }
-        .software-card:nth-child(n+16) { animation-delay: 0.2s; }
-        .software-card:nth-child(n+21) { animation-delay: 0.25s; }
+        /* 即时显示，几乎无延迟 */
+        .software-card:nth-child(n+1) { animation-delay: 0.01s; }
 
         /* Subtle glow effect */
         .software-card::after {
@@ -776,23 +772,19 @@
         let allSoftwareData = [];
         let isLoading = false;
 
-        // 初始化页面
-        async function init() {
+        // 初始化页面 - 极速加载模式
+        function init() {
             try {
-                // 显示加载状态
-                showLoadingState();
+                // 不显示加载状态，直接渲染，提升感知速度
+                dataManager.loadData().then(data => {
+                    allSoftwareData = data;
+                    allCategories = ['全部', ...new Set(data.map(item => item.category))];
 
-                // 异步加载数据
-                allSoftwareData = await dataManager.loadData();
-                allCategories = await dataManager.getCategories();
-
-                // 渲染页面
-                renderCategories();
-                await renderSoftware();
-                setupEventListeners();
-
-                // 隐藏加载状态
-                hideLoadingState();
+                    // 立即渲染
+                    renderCategories();
+                    renderSoftware();
+                    setupEventListeners();
+                });
             } catch (error) {
                 console.error('数据加载失败:', error);
                 showErrorState();
@@ -841,7 +833,7 @@
         }
 
         // 渲染软件卡片（支持分页）
-        async function renderSoftware() {
+        function renderSoftware() {
             if (isLoading) return;
 
             const container = document.getElementById('softwareGrid');
