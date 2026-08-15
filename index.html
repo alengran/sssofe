@@ -852,7 +852,8 @@
                 const term = searchTerm.toLowerCase();
                 filteredData = filteredData.filter(s =>
                     s.name.toLowerCase().includes(term) ||
-                    s.description.toLowerCase().includes(term)
+                    s.description.toLowerCase().includes(term) ||
+                    s.id.toString() === term
                 );
             }
 
