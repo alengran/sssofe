@@ -11,7 +11,7 @@
 const softwareData = [
     // 笔记软件
     {
-        id: "generated_001",
+        id: 1,
         name: "久伴笔记",
         category: "办公软件",
         description: "免费绿色Markdown笔记软件",
@@ -26,7 +26,7 @@ const softwareData = [
 
     // 系统工具
     {
-        id: "generated_002",
+        id: 2,
         name: "微软运行库合集",
         category: "系统工具",
         description: "必备运行环境组件集合",
@@ -40,7 +40,7 @@ const softwareData = [
     },
 
     {
-        id: "generated_003",
+        id: 3,
         name: "DirectX修复工具",
         category: "系统工具",
         description: "DirectX组件修复工具",
@@ -54,7 +54,7 @@ const softwareData = [
     },
 
     {
-        id: "generated_004",
+        id: 4,
         name: "Geek卸载工具",
         category: "系统工具",
         description: "强力软件卸载清理工具",
@@ -68,7 +68,7 @@ const softwareData = [
     },
 
     {
-        id: "generated_005",
+        id: 5,
         name: "微PE工具箱",
         category: "系统工具",
         description: "Windows系统维护工具箱",
@@ -82,7 +82,7 @@ const softwareData = [
     },
 
     {
-        id: "generated_006",
+        id: 6,
         name: "Win10更新禁用工具",
         category: "系统工具",
         description: "禁用Windows10系统更新",
@@ -97,7 +97,7 @@ const softwareData = [
 
     // 硬件检测
     {
-        id: "generated_007",
+        id: 7,
         name: "CrystalDiskInfo",
         category: "硬件检测",
         description: "硬盘健康状态检测工具",
@@ -111,7 +111,7 @@ const softwareData = [
     },
 
     {
-        id: "generated_008",
+        id: 8,
         name: "AS SSD Benchmark",
         category: "硬件检测",
         description: "SSD性能测试工具",
@@ -126,7 +126,7 @@ const softwareData = [
 
     // 安全工具
     {
-        id: "generated_009",
+        id: 9,
         name: "麦克菲卸载工具",
         category: "安全工具",
         description: "彻底卸载杀毒软件工具",
@@ -141,7 +141,7 @@ const softwareData = [
 
     // 备用链接 - 麦克菲卸载工具版本2
     {
-        id: "generated_009b",
+        id: 10,
         name: "麦克菲卸载工具V2",
         category: "安全工具",
         description: "麦克菲卸载工具备用版本",
@@ -156,7 +156,7 @@ const softwareData = [
 
     // 显卡工具
     {
-        id: "generated_010",
+        id: 11,
         name: "MSI Afterburner",
         category: "硬件工具",
         description: "显卡超频监控软件",
@@ -171,7 +171,7 @@ const softwareData = [
 
     // 下载工具
     {
-        id: "generated_011",
+        id: 12,
         name: "NDM下载器",
         category: "网络工具",
         description: "高速网络下载工具",
@@ -185,7 +185,7 @@ const softwareData = [
     },
 
     {
-        id: "generated_012",
+        id: 13,
         name: "NeatDM下载器",
         category: "网络工具",
         description: "简洁高效下载管理器",
@@ -200,7 +200,7 @@ const softwareData = [
 
     // 磁盘工具
     {
-        id: "generated_013",
+        id: 14,
         name: "WizTree",
         category: "系统工具",
         description: "快速磁盘空间分析工具",
@@ -215,7 +215,7 @@ const softwareData = [
 
     // 操作系统
     {
-        id: "generated_014",
+        id: 15,
         name: "Windows 10 专业版",
         category: "操作系统",
         description: "Win10专业版22H2，适合办公和开发环境",
@@ -229,7 +229,7 @@ const softwareData = [
     },
 
     {
-        id: "generated_015",
+        id: 16,
         name: "Windows 10 家庭版",
         category: "操作系统",
         description: "Win10家庭版22H2，适合日常使用",
@@ -243,7 +243,7 @@ const softwareData = [
     },
 
     {
-        id: "generated_016",
+        id: 17,
         name: "Windows 11 专业版",
         category: "操作系统",
         description: "Win11专业版25H2，最新专业系统",
@@ -257,7 +257,7 @@ const softwareData = [
     },
 
     {
-        id: "generated_017",
+        id: 18,
         name: "Windows 11 家庭版",
         category: "操作系统",
         description: "Win11家庭版25H2，最新家庭系统",
@@ -272,7 +272,7 @@ const softwareData = [
 
     // 新增软件
     {
-        id: "generated_018",
+        id: 19,
         name: "Intel RST VMD驱动",
         category: "系统工具",
         description: "一键安装注入Intel RST VMD快速存储驱动",
@@ -286,7 +286,7 @@ const softwareData = [
     },
 
     {
-        id: "generated_019",
+        id: 20,
         name: "向日葵远程控制",
         category: "网络工具",
         description: "远程控制软件，支持多平台远程访问",
@@ -300,7 +300,7 @@ const softwareData = [
     },
 
     {
-        id: "generated_020",
+        id: 21,
         name: "驱动总裁",
         category: "系统工具",
         description: "硬件驱动安装和更新工具",
@@ -314,7 +314,7 @@ const softwareData = [
     },
 
     {
-        id: "generated_021",
+        id: 22,
         name: "Windows系统安装工具",
         category: "系统工具",
         description: "微软官方Windows系统安装媒体创建工具",
@@ -328,7 +328,7 @@ const softwareData = [
     },
 
     {
-        id: "generated_022",
+        id: 23,
         name: "Geek卸载工具新版",
         category: "系统工具",
         description: "强力软件卸载清理工具，新版本",
@@ -342,7 +342,7 @@ const softwareData = [
     },
 
     {
-        id: "generated_023",
+        id: 24,
         name: "DiskGenius分区工具",
         category: "系统工具",
         description: "专业磁盘分区管理和数据恢复工具",
@@ -357,7 +357,7 @@ const softwareData = [
 
     // 最新补充软件
     {
-        id: "generated_024",
+        id: 25,
         name: "FirPE工具箱",
         category: "系统工具",
         description: "FirPE-V2.1.1，专业Windows PE维护工具箱",
@@ -371,7 +371,7 @@ const softwareData = [
     },
 
     {
-        id: "generated_025",
+        id: 26,
         name: "极客狗装机大师",
         category: "系统工具",
         description: "一键装机软件，支持多种系统安装",
@@ -385,7 +385,7 @@ const softwareData = [
     },
 
     {
-        id: "generated_026",
+        id: 27,
         name: "MemTest64内存检测",
         category: "硬件检测",
         description: "专业内存条检测软件，检测内存故障",
@@ -400,7 +400,7 @@ const softwareData = [
 
     // 最后一款补充软件
     {
-        id: "generated_027",
+        id: 28,
         name: "Watt Toolkit Steam++",
         category: "网络工具",
         description: "Steam平台加速工具，支持Steam、Epic等游戏平台",
@@ -455,10 +455,10 @@ class SoftwareDataManager {
             return cached;
         }
 
-        // 直接返回数据，为每个软件添加固定序号
-        const data = softwareData.map((item, index) => ({
+        // 直接返回数据，序号即为id
+        const data = softwareData.map(item => ({
             ...item,
-            index: index + 1
+            index: item.id
         }));
         this.setCachedData(data);
         return Promise.resolve(data);

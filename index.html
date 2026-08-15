@@ -562,45 +562,51 @@
             }
 
             .software-card {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 16px;
-                padding: 16px;
+                flex-direction: row;
+                align-items: center;
+                gap: 12px;
+                padding: 12px 16px;
             }
 
             .software-number {
-                min-width: 40px;
-                height: 40px;
-                font-size: 16px;
+                min-width: 32px;
+                height: 32px;
+                font-size: 14px;
             }
 
             .card-header {
-                margin-bottom: 8px;
+                margin-bottom: 4px;
             }
 
             .app-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-                margin-right: 12px;
+                width: 36px;
+                height: 36px;
+                font-size: 18px;
+                margin-right: 10px;
             }
 
             .app-name {
-                font-size: 16px;
+                font-size: 15px;
             }
 
             .app-description {
-                font-size: 14px;
-                -webkit-line-clamp: 3;
+                font-size: 13px;
+                -webkit-line-clamp: 2;
+                margin-bottom: 0;
+            }
+
+            .card-content {
+                flex: 1;
+                min-width: 0;
             }
 
             .download-buttons {
-                width: 100%;
+                width: auto;
             }
 
             .download-btn {
-                flex: 1;
-                justify-content: center;
+                padding: 8px 12px;
+                font-size: 13px;
             }
 
             .modal-content {
@@ -761,12 +767,7 @@
     </div>
 
     <script src="software-data.js"></script>
-    <script src="performance-monitor.js"></script>
     <script>
-        // 创建性能监控实例
-        const perfMonitor = new PerformanceMonitor();
-        perfMonitor.start();
-
         let allCategories = ['全部'];
         let currentFilter = '全部';
         let searchTerm = '';
@@ -774,7 +775,6 @@
         const pageSize = 10;
         let allSoftwareData = [];
         let isLoading = false;
-        let dataLoadStartTime = 0;
 
         // 初始化页面
         async function init() {
@@ -782,32 +782,14 @@
                 // 显示加载状态
                 showLoadingState();
 
-                // 记录数据加载开始时间
-                dataLoadStartTime = performance.now();
-
                 // 异步加载数据
                 allSoftwareData = await dataManager.loadData();
                 allCategories = await dataManager.getCategories();
-
-                // 记录数据加载时间
-                const dataLoadTime = performance.now() - dataLoadStartTime;
-                const cacheHit = dataManager.getCachedData() !== null;
-                perfMonitor.recordDataLoad(dataLoadTime, cacheHit);
-
-                // 记录渲染开始时间
-                const renderStartTime = performance.now();
 
                 // 渲染页面
                 renderCategories();
                 await renderSoftware();
                 setupEventListeners();
-
-                // 记录渲染时间
-                const renderTime = performance.now() - renderStartTime;
-                perfMonitor.recordRenderTime(renderTime);
-
-                // 完成监控
-                perfMonitor.complete();
 
                 // 隐藏加载状态
                 hideLoadingState();
