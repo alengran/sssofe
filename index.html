@@ -1015,8 +1015,13 @@
 
         // 关闭弹窗
         function closeModal() {
-            document.getElementById('detailModal').classList.remove('active');
-            document.body.style.overflow = '';
+            const modal = document.getElementById('detailModal');
+            if (modal) {
+                // 同时重置样式和CSS类（Edge浏览器兼容性修复）
+                modal.style.display = 'none';
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
         }
 
         // 复制提取码
