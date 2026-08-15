@@ -547,7 +547,8 @@ class SoftwareDataManager {
         return allData.filter(item =>
             item.name.toLowerCase().includes(term) ||
             item.description.toLowerCase().includes(term) ||
-            item.category.toLowerCase().includes(term)
+            item.category.toLowerCase().includes(term) ||
+            item.id.toString() === query
         );
     }
 
