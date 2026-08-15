@@ -218,8 +218,8 @@ const softwareData = [
         id: "generated_014",
         name: "Windows 10 专业版",
         category: "操作系统",
-        description: "Win10专业版22H2",
-        icon: "🪟",
+        description: "Win10专业版22H2，适合办公和开发环境",
+        icon: "💻",
         downloadLinks: {
             xunlei: {
                 url: "https://pan.xunlei.com/s/VP-2hhhQ4mQzlkk3Eir0FpDrA1?pwd=jg5d",
@@ -232,8 +232,8 @@ const softwareData = [
         id: "generated_015",
         name: "Windows 10 家庭版",
         category: "操作系统",
-        description: "Win10家庭版22H2",
-        icon: "🪟",
+        description: "Win10家庭版22H2，适合日常使用",
+        icon: "💻",
         downloadLinks: {
             xunlei: {
                 url: "https://pan.xunlei.com/s/VP-2i2gP7IbH_A4mtQTqysSNA1?pwd=h5sc",
@@ -246,8 +246,8 @@ const softwareData = [
         id: "generated_016",
         name: "Windows 11 专业版",
         category: "操作系统",
-        description: "Win11专业版25H2",
-        icon: "🪟",
+        description: "Win11专业版25H2，最新专业系统",
+        icon: "💻",
         downloadLinks: {
             xunlei: {
                 url: "https://pan.xunlei.com/s/VP-2iWAHAqjXAzkP2dEz0tJxA1?pwd=6qyy",
@@ -260,8 +260,8 @@ const softwareData = [
         id: "generated_017",
         name: "Windows 11 家庭版",
         category: "操作系统",
-        description: "Win11家庭版25H2",
-        icon: "🪟",
+        description: "Win11家庭版25H2，最新家庭系统",
+        icon: "💻",
         downloadLinks: {
             xunlei: {
                 url: "https://pan.xunlei.com/s/VP-2ii9f05nq69AH1-6wMyeeA1?pwd=bqhj",
