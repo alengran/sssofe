@@ -426,6 +426,21 @@ const softwareData = [
                 code: "qcz2"
             }
         }
+    },
+
+    // 操作系统
+    {
+        id: 30,
+        name: "Windows 7 专业版",
+        category: "操作系统",
+        description: "经典Windows 7专业版系统镜像，稳定可靠的操作系统",
+        icon: "💻",
+        downloadLinks: {
+            xunlei: {
+                url: "https://pan.xunlei.com/s/VP-4qB_CWZXgKNS2qNL8PcDJA1?pwd=397x",
+                code: "397x"
+            }
+        }
     }
 ];
 
@@ -439,11 +454,11 @@ const dataStats = {
         "安全工具": 2,
         "硬件工具": 1,
         "网络工具": 4,
-        "操作系统": 4
+        "操作系统": 5
     },
     byPlatform: {
         "baidu": 24,
-        "xunlei": 4
+        "xunlei": 5
     }
 };
 
