@@ -411,6 +411,21 @@ const softwareData = [
                 code: "8c11"
             }
         }
+    },
+
+    // 硬件检测工具
+    {
+        id: 29,
+        name: "图吧工具箱",
+        category: "硬件检测",
+        description: "专业的电脑硬件检测工具箱，集成多种硬件信息查看功能",
+        icon: "🔬",
+        downloadLinks: {
+            baidu: {
+                url: "https://pan.baidu.com/s/1NC3_OAUe307UAUx-4z5nPA?pwd=qcz2",
+                code: "qcz2"
+            }
+        }
     }
 ];
 
@@ -420,14 +435,14 @@ const dataStats = {
     byCategory: {
         "办公软件": 1,
         "系统工具": 13,
-        "硬件检测": 3,
+        "硬件检测": 4,
         "安全工具": 2,
         "硬件工具": 1,
         "网络工具": 4,
         "操作系统": 4
     },
     byPlatform: {
-        "baidu": 23,
+        "baidu": 24,
         "xunlei": 4
     }
 };
