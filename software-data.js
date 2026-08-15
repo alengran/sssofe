@@ -455,8 +455,11 @@ class SoftwareDataManager {
             return cached;
         }
 
-        // 直接返回数据，移除不必要的延迟
-        const data = softwareData;
+        // 直接返回数据，为每个软件添加固定序号
+        const data = softwareData.map((item, index) => ({
+            ...item,
+            index: index + 1
+        }));
         this.setCachedData(data);
         return Promise.resolve(data);
     }

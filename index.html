@@ -897,12 +897,10 @@
             const hasMore = currentPage < totalPages;
 
             container.innerHTML = pageData.map((software) => {
-                // 在原始数组中查找该软件的全局序号
-                const globalIndex = allSoftwareData.findIndex(s => s.id === software.id);
-
+                // 直接使用软件对象中的固定序号
                 return `
                 <div class="software-card" onclick="showDetail('${software.id}')">
-                    <div class="software-number">${globalIndex + 1}</div>
+                    <div class="software-number">${software.index}</div>
                     <div class="card-content">
                         <div class="card-header">
                             <div class="app-icon">${software.icon || '📦'}</div>
