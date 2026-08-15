@@ -268,6 +268,149 @@ const softwareData = [
                 code: "bqhj"
             }
         }
+    },
+
+    // 新增软件
+    {
+        id: "generated_018",
+        name: "Intel RST VMD驱动",
+        category: "系统工具",
+        description: "一键安装注入Intel RST VMD快速存储驱动",
+        icon: "⚙️",
+        downloadLinks: {
+            baidu: {
+                url: "https://pan.baidu.com/s/1Qs0Onh8F3CSZejnLlhZv7w?pwd=4nuh",
+                code: "4nuh"
+            }
+        }
+    },
+
+    {
+        id: "generated_019",
+        name: "向日葵远程控制",
+        category: "网络工具",
+        description: "远程控制软件，支持多平台远程访问",
+        icon: "🌐",
+        downloadLinks: {
+            baidu: {
+                url: "https://pan.baidu.com/s/1ji63jQ2jc8CYW-jivMbapg?pwd=zvfi",
+                code: "zvfi"
+            }
+        }
+    },
+
+    {
+        id: "generated_020",
+        name: "驱动总裁",
+        category: "系统工具",
+        description: "硬件驱动安装和更新工具",
+        icon: "🔧",
+        downloadLinks: {
+            baidu: {
+                url: "https://pan.baidu.com/s/199L3zLP5yNtV6KVwICJ4Yw?pwd=ga5k",
+                code: "ga5k"
+            }
+        }
+    },
+
+    {
+        id: "generated_021",
+        name: "Windows系统安装工具",
+        category: "系统工具",
+        description: "微软官方Windows系统安装媒体创建工具",
+        icon: "🛠️",
+        downloadLinks: {
+            baidu: {
+                url: "https://pan.baidu.com/s/142tRqVork7Q2nJOW7eKShg?pwd=cdmc",
+                code: "cdmc"
+            }
+        }
+    },
+
+    {
+        id: "generated_022",
+        name: "Geek卸载工具新版",
+        category: "系统工具",
+        description: "强力软件卸载清理工具，新版本",
+        icon: "🗑️",
+        downloadLinks: {
+            baidu: {
+                url: "https://pan.baidu.com/s/1L9Fnc_QbSNroqr5DMdxS9Q?pwd=91ji",
+                code: "91ji"
+            }
+        }
+    },
+
+    {
+        id: "generated_023",
+        name: "DiskGenius分区工具",
+        category: "系统工具",
+        description: "专业磁盘分区管理和数据恢复工具",
+        icon: "💾",
+        downloadLinks: {
+            baidu: {
+                url: "https://pan.baidu.com/s/1KV8oFJJ2nA2LFDkrMNEMlw?pwd=78i6",
+                code: "78i6"
+            }
+        }
+    },
+
+    // 最新补充软件
+    {
+        id: "generated_024",
+        name: "FirPE工具箱",
+        category: "系统工具",
+        description: "FirPE-V2.1.1，专业Windows PE维护工具箱",
+        icon: "🛠️",
+        downloadLinks: {
+            baidu: {
+                url: "https://pan.baidu.com/s/18arfIJw3bsjfnRzwwJBmeQ?pwd=j4du",
+                code: "j4du"
+            }
+        }
+    },
+
+    {
+        id: "generated_025",
+        name: "极客狗装机大师",
+        category: "系统工具",
+        description: "一键装机软件，支持多种系统安装",
+        icon: "💿",
+        downloadLinks: {
+            baidu: {
+                url: "https://pan.baidu.com/s/1ER6sZxoZajztHQN0zbEE0A?pwd=p7qp",
+                code: "p7qp"
+            }
+        }
+    },
+
+    {
+        id: "generated_026",
+        name: "MemTest64内存检测",
+        category: "硬件检测",
+        description: "专业内存条检测软件，检测内存故障",
+        icon: "🔬",
+        downloadLinks: {
+            baidu: {
+                url: "https://pan.baidu.com/s/1Iv88Zm1P0zEQvhXieozpWQ?pwd=9ihp",
+                code: "9ihp"
+            }
+        }
+    },
+
+    // 最后一款补充软件
+    {
+        id: "generated_027",
+        name: "Watt Toolkit Steam++",
+        category: "网络工具",
+        description: "Steam平台加速工具，支持Steam、Epic等游戏平台",
+        icon: "🎮",
+        downloadLinks: {
+            baidu: {
+                url: "https://pan.baidu.com/s/1--Ot8a1jQvYUiHA--4p8nA?pwd=8c11",
+                code: "8c11"
+            }
+        }
     }
 ];
 
@@ -276,15 +419,15 @@ const dataStats = {
     total: softwareData.length,
     byCategory: {
         "办公软件": 1,
-        "系统工具": 6,
-        "硬件检测": 2,
+        "系统工具": 13,
+        "硬件检测": 3,
         "安全工具": 2,
         "硬件工具": 1,
-        "网络工具": 2,
+        "网络工具": 4,
         "操作系统": 4
     },
     byPlatform: {
-        "baidu": 14,
+        "baidu": 23,
         "xunlei": 4
     }
 };

@@ -74,3 +74,37 @@ win11 专业版  25H2
 
 win11家庭版 25H2 
 链接：https://pan.xunlei.com/s/VP-2ii9f05nq69AH1-6wMyeeA1?pwd=bqhj# 复制这段内容后打开「手机迅雷 App」即可获取。无需下载在线查看，视频原画享倍速播放
+
+
+
+
+通过网盘分享的文件：一键安装注入Intel RST VMD快速存储驱动
+链接: https://pan.baidu.com/s/1Qs0Onh8F3CSZejnLlhZv7w?pwd=4nuh 提取码: 4nuh 复制这段内容后打开百度网盘手机App，操作更方便哦
+
+
+通过网盘分享的文件： 向日葵远程控制
+链接: https://pan.baidu.com/s/1ji63jQ2jc8CYW-jivMbapg?pwd=zvfi 提取码: zvfi 复制这段内容后打开百度网盘手机App，操作更方便哦
+
+通过网盘分享的文件：驱动总裁
+链接: https://pan.baidu.com/s/199L3zLP5yNtV6KVwICJ4Yw?pwd=ga5k 提取码: ga5k 复制这段内容后打开百度网盘手机App，操作更方便哦
+
+
+通过网盘分享的文件：MediaCreationTool windows系统安装工具
+链接: https://pan.baidu.com/s/142tRqVork7Q2nJOW7eKShg?pwd=cdmc 提取码: cdmc 复制这段内容后打开百度网盘手机App，操作更方便哦
+
+
+通过网盘分享的文件：geek.卸载工具
+链接: https://pan.baidu.com/s/1L9Fnc_QbSNroqr5DMdxS9Q?pwd=91ji 提取码: 91ji 复制这段内容后打开百度网盘手机App，操作更方便哦
+
+通过网盘分享的文件：DiskGenius分区工具.zip
+链接: https://pan.baidu.com/s/1KV8oFJJ2nA2LFDkrMNEMlw?pwd=78i6 提取码: 78i6 复制这段内容后打开百度网盘手机App，操作更方便哦
+
+把 通过网盘分享的文件：FirPE-V2.1.1.exe  PE工具
+链接: https://pan.baidu.com/s/18arfIJw3bsjfnRzwwJBmeQ?pwd=j4du 提取码: j4du 复制这段内容后打开百度网盘手机App，操作更方便哦
+
+
+通过网盘分享的文件：极客狗装机大师_i_ISO.exe
+链接: https://pan.baidu.com/s/1ER6sZxoZajztHQN0zbEE0A?pwd=p7qp 提取码: p7qp 复制这段内容后打开百度网盘手机App，操作更方便哦
+
+通过网盘分享的文件：memtest64_内存条检测软件
+链接: https://pan.baidu.com/s/1Iv88Zm1P0zEQvhXieozpWQ?pwd=9ihp 提取码: 9ihp 复制这段内容后打开百度网盘手机App，操作更方便哦
