@@ -1,6 +1,13 @@
-// 从 software.md 分析生成的软件数据
-// 包含软件描述和对应的网盘链接
+/**
+ * 软件数据统一管理文件
+ * 数据来源：software.md
+ * 最后更新：2026-08-15
+ *
+ * 包含软件信息和对应的网盘下载链接
+ * 支持数据导出、缓存管理、分页加载等功能
+ */
 
+// 主数据数组
 const softwareData = [
     // 笔记软件
     {
@@ -282,7 +289,155 @@ const dataStats = {
     }
 };
 
-// 导出数据
+/**
+ * 软件数据管理器类
+ * 提供数据加载、缓存、分页、搜索等功能
+ */
+class SoftwareDataManager {
+    constructor() {
+        this.cacheKey = 'software_data_cache';
+        this.cacheExpiry = 24 * 60 * 60 * 1000; // 24小时缓存
+        this.pageSize = 20; // 每页显示数量
+        this.currentPage = 1;
+        this.loadedData = [];
+        this.isLoading = false;
+    }
+
+    // 异步加载数据（带缓存）
+    async loadData() {
+        // 检查缓存
+        const cached = this.getCachedData();
+        if (cached) {
+            console.log('使用缓存数据');
+            return cached;
+        }
+
+        // 模拟异步加载（实际项目中替换为API调用）
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const data = softwareData;
+                this.setCachedData(data);
+                resolve(data);
+            }, 100); // 模拟网络延迟
+        });
+    }
+
+    // 分页加载数据
+    async loadPage(page = 1, pageSize = this.pageSize) {
+        if (this.isLoading) return [];
+
+        this.isLoading = true;
+
+        try {
+            const allData = await this.loadData();
+            const start = (page - 1) * pageSize;
+            const end = start + pageSize;
+            const pageData = allData.slice(start, end);
+
+            this.currentPage = page;
+            return {
+                data: pageData,
+                total: allData.length,
+                hasMore: end < allData.length,
+                currentPage: page
+            };
+        } finally {
+            this.isLoading = false;
+        }
+    }
+
+    // 获取缓存数据
+    getCachedData() {
+        try {
+            const cached = localStorage.getItem(this.cacheKey);
+            if (!cached) return null;
+
+            const { data, timestamp } = JSON.parse(cached);
+            const isExpired = Date.now() - timestamp > this.cacheExpiry;
+
+            if (isExpired) {
+                localStorage.removeItem(this.cacheKey);
+                return null;
+            }
+
+            return data;
+        } catch (error) {
+            console.error('读取缓存失败:', error);
+            return null;
+        }
+    }
+
+    // 设置缓存数据
+    setCachedData(data) {
+        try {
+            const cacheData = {
+                data: data,
+                timestamp: Date.now()
+            };
+            localStorage.setItem(this.cacheKey, JSON.stringify(cacheData));
+        } catch (error) {
+            console.error('缓存数据失败:', error);
+        }
+    }
+
+    // 清除缓存
+    clearCache() {
+        localStorage.removeItem(this.cacheKey);
+    }
+
+    // 搜索功能
+    async search(query) {
+        const allData = await this.loadData();
+        const term = query.toLowerCase();
+
+        return allData.filter(item =>
+            item.name.toLowerCase().includes(term) ||
+            item.description.toLowerCase().includes(term) ||
+            item.category.toLowerCase().includes(term)
+        );
+    }
+
+    // 按分类获取数据
+    async getByCategory(category) {
+        const allData = await this.loadData();
+        if (category === '全部') return allData;
+        return allData.filter(item => item.category === category);
+    }
+
+    // 获取所有分类
+    async getCategories() {
+        const allData = await this.loadData();
+        const categories = new Set(allData.map(item => item.category));
+        return ['全部', ...Array.from(categories)];
+    }
+}
+
+// 创建数据管理器实例
+const dataManager = new SoftwareDataManager();
+
+// 导出数据和工具（支持多种模块系统）
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { softwareData, dataStats };
+    module.exports = {
+        softwareData,
+        dataStats,
+        SoftwareDataManager,
+        dataManager
+    };
+}
+
+// 浏览器环境支持
+if (typeof window !== 'undefined') {
+    // 直接暴露到全局作用域，方便HTML页面使用
+    window.softwareData = softwareData;
+    window.dataStats = dataStats;
+    window.dataManager = dataManager;
+    window.SoftwareDataManager = SoftwareDataManager;
+
+    // 同时也放在命名空间下
+    window.SoftwareData = {
+        data: softwareData,
+        stats: dataStats,
+        manager: dataManager,
+        Manager: SoftwareDataManager
+    };
 }
