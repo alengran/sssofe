@@ -141,12 +141,10 @@
             border-radius: 12px;
             padding: 20px 24px;
             border: 1px solid rgba(255,255,255,0.08);
-            transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             display: flex;
             align-items: center;
             gap: 24px;
@@ -653,14 +651,11 @@
         }
 
         /* Performance optimization: 硬件加速 */
-        .software-card,
         .filter-tab,
-        .download-btn,
-        .modal-content {
+        .download-btn {
             will-change: transform;
         }
 
-        .software-card:hover,
         .filter-tab:hover,
         .download-btn:hover {
             will-change: auto;
@@ -684,11 +679,11 @@
             background: rgba(255,255,255,0.3);
         }
 
-        /* Loading animation */
+        /* Loading animation - 优化性能 */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(10px);
             }
             to {
                 opacity: 1;
@@ -697,30 +692,16 @@
         }
 
         .software-card {
-            animation: fadeInUp 0.6s ease-out forwards;
+            animation: fadeInUp 0.3s ease-out forwards;
             opacity: 0;
         }
 
-        .software-card:nth-child(1) { animation-delay: 0.05s; }
-        .software-card:nth-child(2) { animation-delay: 0.1s; }
-        .software-card:nth-child(3) { animation-delay: 0.15s; }
-        .software-card:nth-child(4) { animation-delay: 0.2s; }
-        .software-card:nth-child(5) { animation-delay: 0.25s; }
-        .software-card:nth-child(6) { animation-delay: 0.3s; }
-        .software-card:nth-child(7) { animation-delay: 0.35s; }
-        .software-card:nth-child(8) { animation-delay: 0.4s; }
-        .software-card:nth-child(9) { animation-delay: 0.45s; }
-        .software-card:nth-child(10) { animation-delay: 0.5s; }
-        .software-card:nth-child(11) { animation-delay: 0.55s; }
-        .software-card:nth-child(12) { animation-delay: 0.6s; }
-        .software-card:nth-child(13) { animation-delay: 0.65s; }
-        .software-card:nth-child(14) { animation-delay: 0.7s; }
-        .software-card:nth-child(15) { animation-delay: 0.75s; }
-        .software-card:nth-child(16) { animation-delay: 0.8s; }
-        .software-card:nth-child(17) { animation-delay: 0.85s; }
-        .software-card:nth-child(18) { animation-delay: 0.9s; }
-        .software-card:nth-child(19) { animation-delay: 0.95s; }
-        .software-card:nth-child(20) { animation-delay: 1.0s; }
+        /* 分批动画，减少等待时间 */
+        .software-card:nth-child(n+1) { animation-delay: 0.05s; }
+        .software-card:nth-child(n+6) { animation-delay: 0.1s; }
+        .software-card:nth-child(n+11) { animation-delay: 0.15s; }
+        .software-card:nth-child(n+16) { animation-delay: 0.2s; }
+        .software-card:nth-child(n+21) { animation-delay: 0.25s; }
 
         /* Subtle glow effect */
         .software-card::after {

@@ -455,14 +455,10 @@ class SoftwareDataManager {
             return cached;
         }
 
-        // 模拟异步加载（实际项目中替换为API调用）
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                const data = softwareData;
-                this.setCachedData(data);
-                resolve(data);
-            }, 100); // 模拟网络延迟
-        });
+        // 直接返回数据，移除不必要的延迟
+        const data = softwareData;
+        this.setCachedData(data);
+        return Promise.resolve(data);
     }
 
     // 分页加载数据
