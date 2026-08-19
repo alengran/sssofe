@@ -18,8 +18,8 @@ const softwareData = [
         icon: "📝",
         downloadLinks: {
             baidu: {
-                url: "https://pan.baidu.com/s/1N2h3UR7-jZkIyKtlogBMcw?pwd=7h5x",
-                code: "7h5x"
+                url: "https://pan.baidu.com/s/1gNY40d50sujO7D9aB7bPPg?pwd=aftn",
+                code: "aftn"
             }
         }
     },
