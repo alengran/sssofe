@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 - 电脑小百科-软件精选</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 100%);
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .contact-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 16px;
+            letter-spacing: -0.03em;
+            text-shadow: 0 2px 20px rgba(255,255,255,0.1);
+        }
+
+        .contact-subtitle {
+            font-size: 21px;
+            color: #86868b;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .contact-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            padding: 40px 32px;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+            text-align: center;
+        }
+
+        .contact-card:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,255,255,0.15);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+
+        .contact-icon {
+            font-size: 56px;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .contact-card-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .contact-info {
+            font-size: 18px;
+            color: #d1d1d6;
+            margin-bottom: 20px;
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            background: rgba(255,255,255,0.1);
+            color: #ffffff;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.3);
+            transform: translateY(-1px);
+        }
+
+        .copy-btn.copied {
+            background: rgba(52, 199, 89, 0.2);
+            border-color: rgba(52, 199, 89, 0.4);
+            color: #34c759;
+        }
+
+        .social-section {
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .social-section-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 24px;
+            text-align: center;
+            letter-spacing: -0.02em;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.05);
+            color: #ffffff;
+            padding: 14px 24px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .social-link:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .social-icon {
+            font-size: 20px;
+        }
+
+        .info-section {
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .info-section-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .info-text {
+            font-size: 17px;
+            color: #d1d1d6;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .info-text:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight {
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .contact-container {
+                padding: 20px;
+            }
+
+            .contact-title {
+                font-size: 32px;
+            }
+
+            .contact-subtitle {
+                font-size: 16px;
+            }
+
+            .contact-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-card {
+                padding: 32px 24px;
+            }
+
+            .social-section,
+            .info-section {
+                padding: 28px;
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .social-link {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-item">软件下载</a>
+            <a href="jiuban-notes.html" class="nav-item">久伴笔记</a>
+            <a href="contact-us.html" class="nav-item active">联系我们</a>
+        </div>
+    </nav>
+
+    <div class="contact-container">
+        <div class="contact-header">
+            <h1 class="contact-title">📞 联系电脑小百科</h1>
+            <p class="contact-subtitle">有问题或建议？欢迎通过以下方式与我们联系</p>
+        </div>
+
+        <div class="contact-cards">
+            <!-- 邮箱卡片 -->
+            <div class="contact-card">
+                <span class="contact-icon">📧</span>
+                <h2 class="contact-card-title">电子邮箱</h2>
+                <p class="contact-info" id="emailInfo">2591735711@qq.com</p>
+                <button class="copy-btn" onclick="copyText('2591735711@qq.com', this)">
+                    <span>📋</span> 复制邮箱
+                </button>
+            </div>
+
+            <!-- QQ卡片 -->
+            <div class="contact-card">
+                <span class="contact-icon">🐧</span>
+                <h2 class="contact-card-title">QQ</h2>
+                <p class="contact-info" id="qqInfo">2591735711</p>
+                <button class="copy-btn" onclick="copyText('2591735711', this)">
+                    <span>📋</span> 复制QQ号
+                </button>
+            </div>
+
+            <!-- 微信卡片 -->
+            <div class="contact-card">
+                <span class="contact-icon">💬</span>
+                <h2 class="contact-card-title">微信</h2>
+                <p class="contact-info" id="wechatInfo">jiuban_note</p>
+                <button class="copy-btn" onclick="copyText('jiuban_note', this)">
+                    <span>📋</span> 复制微信号
+                </button>
+            </div>
+        </div>
+
+        <!-- 社交媒体链接 -->
+        <div class="social-section">
+            <h2 class="social-section-title">关注我们的社交媒体</h2>
+            <div class="social-links">
+                <a href="https://space.bilibili.com/595098830" target="_blank" class="social-link">
+                    <span class="social-icon">📺</span>
+                    <span>B站：电脑小百科</span>
+                </a>
+                <a href="#" class="social-link">
+                    <span class="social-icon">📱</span>
+                    <span>抖音：电脑小百科</span>
+                </a>
+                <a href="#" class="social-link">
+                    <span class="social-icon">🎯</span>
+                    <span>小红书：电脑小百科</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- 联系说明 -->
+        <div class="info-section">
+            <h2 class="info-section-title">💡 联系说明</h2>
+            <p class="info-text">
+                欢迎通过以上方式与我们取得联系，无论是<span class="highlight">软件推荐</span>、
+                <span class="highlight">功能建议</span>、<span class="highlight">问题反馈</span>还是
+                <span class="highlight">商务合作</span>，我们都乐意倾听。
+            </p>
+            <p class="info-text">
+                工作时间：<span class="highlight">周一至周五 9:00-18:00</span>，我们会尽快回复您的消息。
+            </p>
+            <p class="info-text">
+                注：为保护您的隐私和账号安全，请勿轻易分享个人敏感信息。
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p class="copyright-info">© 2026 <a href="https://space.bilibili.com/595098830" target="_blank" style="color: #ffffff; text-decoration: none;">@电脑小百科</a> （抖音/B站/小红书）技术支持QQ：2591735711 软件精选 · All Rights Reserved</p>
+    </footer>
+
+    <script>
+        function copyText(text, button) {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(() => {
+                    const originalHTML = button.innerHTML;
+                    const originalClass = button.className;
+
+                    button.innerHTML = '<span>✓</span> 已复制';
+                    button.classList.add('copied');
+
+                    setTimeout(() => {
+                        button.innerHTML = originalHTML;
+                        button.classList.remove('copied');
+                    }, 2000);
+                }).catch(err => {
+                    console.error('复制失败:', err);
+                    alert('复制失败，请手动复制');
+                });
+            } else {
+                // 降级方案
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                document.body.appendChild(textArea);
+                textArea.select();
+
+                try {
+                    document.execCommand('copy');
+                    button.innerHTML = '<span>✓</span> 已复制';
+                    button.classList.add('copied');
+
+                    setTimeout(() => {
+                        button.innerHTML = '<span>📋</span> 复制邮箱';
+                        button.classList.remove('copied');
+                    }, 2000);
+                } catch (err) {
+                    console.error('复制失败:', err);
+                    alert('复制失败，请手动复制');
+                }
+
+                document.body.removeChild(textArea);
+            }
+        }
+    </script>
+</body>
+</html>
