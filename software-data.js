@@ -316,20 +316,6 @@ const softwareData = [
 
     {
         id: 22,
-        name: "Geek卸载工具新版",
-        category: "系统工具",
-        description: "轻量级软件卸载工具，彻底清理注册表和残留文件",
-        icon: "🗑️",
-        downloadLinks: {
-            baidu: {
-                url: "https://pan.baidu.com/s/1L9Fnc_QbSNroqr5DMdxS9Q?pwd=91ji",
-                code: "91ji"
-            }
-        }
-    },
-
-    {
-        id: 23,
         name: "DiskGenius分区工具",
         category: "系统工具",
         description: "专业磁盘分区管理工具，支持数据恢复和备份",
@@ -496,7 +482,7 @@ const dataStats = {
     total: softwareData.length,
     byCategory: {
         "办公软件": 1,
-        "系统工具": 14,
+        "系统工具": 13,
         "硬件检测": 5,
         "安全工具": 1,
         "硬件工具": 1,
@@ -505,7 +491,7 @@ const dataStats = {
         "媒体工具": 1
     },
     byPlatform: {
-        "baidu": 27,
+        "baidu": 26,
         "xunlei": 5
     }
 };
