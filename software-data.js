@@ -14,7 +14,7 @@ const softwareData = [
         id: 1,
         name: "久伴笔记",
         category: "办公软件",
-        description: "免费绿色Markdown笔记软件",
+        description: "免费绿色Markdown笔记软件，支持富文本编辑和云同步",
         icon: "📝",
         downloadLinks: {
             baidu: {
@@ -29,7 +29,7 @@ const softwareData = [
         id: 2,
         name: "微软运行库合集",
         category: "系统工具",
-        description: "必备运行环境组件集合",
+        description: "包含VC++、.NET等Windows系统必备运行库组件集合",
         icon: "🔧",
         downloadLinks: {
             baidu: {
@@ -43,7 +43,7 @@ const softwareData = [
         id: 3,
         name: "DirectX修复工具",
         category: "系统工具",
-        description: "DirectX组件修复工具",
+        description: "修复DirectX组件，解决游戏和程序运行报错问题",
         icon: "🔧",
         downloadLinks: {
             baidu: {
@@ -57,7 +57,7 @@ const softwareData = [
         id: 4,
         name: "Geek卸载工具",
         category: "系统工具",
-        description: "强力软件卸载清理工具",
+        description: "轻量级软件卸载工具，彻底清理注册表和残留文件",
         icon: "🗑️",
         downloadLinks: {
             baidu: {
@@ -71,7 +71,7 @@ const softwareData = [
         id: 5,
         name: "微PE工具箱",
         category: "系统工具",
-        description: "Windows系统维护工具箱",
+        description: "Windows PE系统维护工具箱，支持分区引导修复",
         icon: "🛠️",
         downloadLinks: {
             baidu: {
@@ -85,7 +85,7 @@ const softwareData = [
         id: 6,
         name: "Win10更新禁用工具",
         category: "系统工具",
-        description: "禁用Windows10系统更新",
+        description: "Windows10系统更新禁用工具，阻止自动更新重启",
         icon: "🚫",
         downloadLinks: {
             baidu: {
@@ -100,7 +100,7 @@ const softwareData = [
         id: 7,
         name: "CrystalDiskInfo",
         category: "硬件检测",
-        description: "硬盘健康状态检测工具",
+        description: "硬盘健康检测工具，监控温度和SMART信息",
         icon: "💾",
         downloadLinks: {
             baidu: {
@@ -114,7 +114,7 @@ const softwareData = [
         id: 8,
         name: "AS SSD Benchmark",
         category: "硬件检测",
-        description: "SSD性能测试工具",
+        description: "SSD固态硬盘性能测试工具，检测读写速度",
         icon: "⚡",
         downloadLinks: {
             baidu: {
@@ -129,7 +129,7 @@ const softwareData = [
         id: 9,
         name: "麦克菲卸载工具",
         category: "安全工具",
-        description: "彻底卸载杀毒软件工具",
+        description: "麦克菲杀毒软件专用卸载工具，彻底清除残留",
         icon: "🛡️",
         downloadLinks: {
             baidu: {
@@ -139,27 +139,14 @@ const softwareData = [
         }
     },
 
-    // 备用链接 - 麦克菲卸载工具版本2
-    {
-        id: 10,
-        name: "麦克菲卸载工具V2",
-        category: "安全工具",
-        description: "麦克菲卸载工具备用版本",
-        icon: "🛡️",
-        downloadLinks: {
-            baidu: {
-                url: "https://pan.baidu.com/s/1OmG6h1mFYDueS1sGSM0rJQ?pwd=14sw",
-                code: "14sw"
-            }
-        }
-    },
+    // 备用链接 - 麦克菲卸载工具版本2（已删除，使用主版本即可）
 
     // 显卡工具
     {
-        id: 11,
+        id: 10,
         name: "MSI Afterburner",
         category: "硬件工具",
-        description: "显卡超频监控软件",
+        description: "显卡超频监控工具，支持温度频率和风扇调节",
         icon: "🎮",
         downloadLinks: {
             baidu: {
@@ -171,10 +158,10 @@ const softwareData = [
 
     // 下载工具
     {
-        id: 12,
+        id: 11,
         name: "NDM下载器",
         category: "网络工具",
-        description: "高速网络下载工具",
+        description: "轻量级网络下载管理器，支持多线程加速下载",
         icon: "📥",
         downloadLinks: {
             baidu: {
@@ -185,10 +172,10 @@ const softwareData = [
     },
 
     {
-        id: 13,
+        id: 12,
         name: "NeatDM下载器",
         category: "网络工具",
-        description: "简洁高效下载管理器",
+        description: "简洁高效的网络下载管理器，支持多线程和断点续传",
         icon: "📥",
         downloadLinks: {
             baidu: {
@@ -200,10 +187,10 @@ const softwareData = [
 
     // 磁盘工具
     {
-        id: 14,
+        id: 13,
         name: "WizTree",
         category: "系统工具",
-        description: "快速磁盘空间分析工具",
+        description: "磁盘空间分析工具，快速找出大文件和占用空间",
         icon: "📊",
         downloadLinks: {
             baidu: {
@@ -215,10 +202,10 @@ const softwareData = [
 
     // 操作系统
     {
-        id: 15,
+        id: 14,
         name: "Windows 10 专业版",
         category: "操作系统",
-        description: "Win10专业版22H2，适合办公和开发环境",
+        description: "Windows10专业版22H2，企业级办公开发系统",
         icon: "💻",
         downloadLinks: {
             xunlei: {
@@ -229,10 +216,10 @@ const softwareData = [
     },
 
     {
-        id: 16,
+        id: 15,
         name: "Windows 10 家庭版",
         category: "操作系统",
-        description: "Win10家庭版22H2，适合日常使用",
+        description: "Windows10家庭版22H2，适合个人日常使用",
         icon: "💻",
         downloadLinks: {
             xunlei: {
@@ -243,10 +230,10 @@ const softwareData = [
     },
 
     {
-        id: 17,
+        id: 16,
         name: "Windows 11 专业版",
         category: "操作系统",
-        description: "Win11专业版25H2，最新专业系统",
+        description: "Windows11专业版25H2，最新企业级办公系统",
         icon: "💻",
         downloadLinks: {
             xunlei: {
@@ -257,10 +244,10 @@ const softwareData = [
     },
 
     {
-        id: 18,
+        id: 17,
         name: "Windows 11 家庭版",
         category: "操作系统",
-        description: "Win11家庭版25H2，最新家庭系统",
+        description: "Windows11家庭版25H2，最新个人用户系统",
         icon: "💻",
         downloadLinks: {
             xunlei: {
@@ -272,10 +259,10 @@ const softwareData = [
 
     // 新增软件
     {
-        id: 19,
+        id: 18,
         name: "Intel RST VMD驱动",
         category: "系统工具",
-        description: "一键安装注入Intel RST VMD快速存储驱动",
+        description: "Intel快速存储技术驱动，支持VMD控制器",
         icon: "⚙️",
         downloadLinks: {
             baidu: {
@@ -286,10 +273,10 @@ const softwareData = [
     },
 
     {
-        id: 20,
+        id: 19,
         name: "向日葵远程控制",
         category: "网络工具",
-        description: "远程控制软件，支持多平台远程访问",
+        description: "远程桌面控制软件，支持文件传输和屏幕共享",
         icon: "🌐",
         downloadLinks: {
             baidu: {
@@ -300,10 +287,10 @@ const softwareData = [
     },
 
     {
-        id: 21,
+        id: 20,
         name: "驱动总裁",
         category: "系统工具",
-        description: "硬件驱动安装和更新工具",
+        description: "硬件驱动安装工具，自动检测安装更新驱动",
         icon: "🔧",
         downloadLinks: {
             baidu: {
@@ -314,10 +301,10 @@ const softwareData = [
     },
 
     {
-        id: 22,
+        id: 21,
         name: "Windows系统安装工具",
         category: "系统工具",
-        description: "微软官方Windows系统安装媒体创建工具",
+        description: "微软官方Windows系统安装/重装媒体创建工具",
         icon: "🛠️",
         downloadLinks: {
             baidu: {
@@ -328,10 +315,10 @@ const softwareData = [
     },
 
     {
-        id: 23,
+        id: 22,
         name: "Geek卸载工具新版",
         category: "系统工具",
-        description: "强力软件卸载清理工具，新版本",
+        description: "轻量级软件卸载工具，彻底清理注册表和残留文件",
         icon: "🗑️",
         downloadLinks: {
             baidu: {
@@ -342,10 +329,10 @@ const softwareData = [
     },
 
     {
-        id: 24,
+        id: 23,
         name: "DiskGenius分区工具",
         category: "系统工具",
-        description: "专业磁盘分区管理和数据恢复工具",
+        description: "专业磁盘分区管理工具，支持数据恢复和备份",
         icon: "💾",
         downloadLinks: {
             baidu: {
@@ -357,10 +344,10 @@ const softwareData = [
 
     // 最新补充软件
     {
-        id: 25,
+        id: 24,
         name: "FirPE工具箱",
         category: "系统工具",
-        description: "FirPE-V2.1.1，专业Windows PE维护工具箱",
+        description: "Windows PE系统维护工具箱，支持分区引导修复",
         icon: "🛠️",
         downloadLinks: {
             baidu: {
@@ -371,10 +358,10 @@ const softwareData = [
     },
 
     {
-        id: 26,
+        id: 25,
         name: "极客狗装机大师",
         category: "系统工具",
-        description: "一键装机软件，支持多种系统安装",
+        description: "一键系统装机工具，自动安装驱动和常用软件",
         icon: "💿",
         downloadLinks: {
             baidu: {
@@ -385,10 +372,10 @@ const softwareData = [
     },
 
     {
-        id: 27,
+        id: 26,
         name: "MemTest64内存检测",
         category: "硬件检测",
-        description: "专业内存条检测软件，检测内存故障",
+        description: "内存条故障检测工具，测试内存稳定性和错误",
         icon: "🔬",
         downloadLinks: {
             baidu: {
@@ -400,10 +387,10 @@ const softwareData = [
 
     // 最后一款补充软件
     {
-        id: 28,
+        id: 27,
         name: "Watt Toolkit Steam++",
         category: "网络工具",
-        description: "Steam平台加速工具，支持Steam、Epic等游戏平台",
+        description: "Steam平台加速工具，解决下载和联机游戏问题",
         icon: "🎮",
         downloadLinks: {
             baidu: {
@@ -415,10 +402,10 @@ const softwareData = [
 
     // 硬件检测工具
     {
-        id: 29,
+        id: 28,
         name: "图吧工具箱",
         category: "硬件检测",
-        description: "专业的电脑硬件检测工具箱，集成多种硬件信息查看功能",
+        description: "专业电脑硬件检测工具箱，集成多种硬件信息查看",
         icon: "🔬",
         downloadLinks: {
             baidu: {
@@ -430,10 +417,10 @@ const softwareData = [
 
     // 操作系统
     {
-        id: 30,
+        id: 29,
         name: "Windows 7 专业版",
         category: "操作系统",
-        description: "经典Windows 7专业版系统镜像，稳定可靠的操作系统",
+        description: "经典Windows7专业版系统镜像，稳定可靠的企业系统",
         icon: "💻",
         downloadLinks: {
             xunlei: {
@@ -445,10 +432,10 @@ const softwareData = [
 
     // 系统启动管理
     {
-        id: 31,
+        id: 30,
         name: "Autoruns",
         category: "系统工具",
-        description: "启动项管理软件，管理系统启动程序和服务",
+        description: "系统启动项管理工具，查看和禁用自动启动程序",
         icon: "🚀",
         downloadLinks: {
             baidu: {
@@ -464,15 +451,15 @@ const dataStats = {
     total: softwareData.length,
     byCategory: {
         "办公软件": 1,
-        "系统工具": 14,
+        "系统工具": 13,
         "硬件检测": 4,
-        "安全工具": 2,
+        "安全工具": 1,
         "硬件工具": 1,
         "网络工具": 4,
         "操作系统": 5
     },
     byPlatform: {
-        "baidu": 25,
+        "baidu": 24,
         "xunlei": 5
     }
 };
