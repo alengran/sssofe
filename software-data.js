@@ -443,6 +443,51 @@ const softwareData = [
                 code: "ny7e"
             }
         }
+    },
+
+    // 系统清理工具
+    {
+        id: 31,
+        name: "CCleaner Plus",
+        category: "系统工具",
+        description: "全盘清理工具，支持常规清理、大文件扫描、重复文件查找、应用强力卸载、定时任务",
+        icon: "🧹",
+        downloadLinks: {
+            baidu: {
+                url: "https://pan.baidu.com/s/1Wf2uSbF1DMyuzr7YcUfeCQ?pwd=2p9m",
+                code: "2p9m"
+            }
+        }
+    },
+
+    // CPU检测工具
+    {
+        id: 32,
+        name: "CPU-Z",
+        category: "硬件检测",
+        description: "CPU处理器信息检测工具，详细显示CPU、主板、内存等硬件信息",
+        icon: "🔬",
+        downloadLinks: {
+            baidu: {
+                url: "https://pan.baidu.com/s/18RTSHszie58f5IwWSp8-Cg?pwd=f156",
+                code: "f156"
+            }
+        }
+    },
+
+    // 屏幕录制工具
+    {
+        id: 33,
+        name: "Gif123",
+        category: "媒体工具",
+        description: "极简GIF录屏工具，一键录制，快速复制，直接粘贴到任何地方",
+        icon: "🎬",
+        downloadLinks: {
+            baidu: {
+                url: "https://pan.baidu.com/s/1uYLo38Z-7wVtMbbkfhEOzQ?pwd=mr95",
+                code: "mr95"
+            }
+        }
     }
 ];
 
@@ -451,15 +496,16 @@ const dataStats = {
     total: softwareData.length,
     byCategory: {
         "办公软件": 1,
-        "系统工具": 13,
-        "硬件检测": 4,
+        "系统工具": 14,
+        "硬件检测": 5,
         "安全工具": 1,
         "硬件工具": 1,
         "网络工具": 4,
-        "操作系统": 5
+        "操作系统": 5,
+        "媒体工具": 1
     },
     byPlatform: {
-        "baidu": 24,
+        "baidu": 27,
         "xunlei": 5
     }
 };
