@@ -441,6 +441,21 @@ const softwareData = [
                 code: "397x"
             }
         }
+    },
+
+    // 系统启动管理
+    {
+        id: 31,
+        name: "Autoruns",
+        category: "系统工具",
+        description: "启动项管理软件，管理系统启动程序和服务",
+        icon: "🚀",
+        downloadLinks: {
+            baidu: {
+                url: "https://pan.baidu.com/s/1iAgFiVla5-LBvUh0K-lXtw?pwd=ny7e",
+                code: "ny7e"
+            }
+        }
     }
 ];
 
@@ -449,7 +464,7 @@ const dataStats = {
     total: softwareData.length,
     byCategory: {
         "办公软件": 1,
-        "系统工具": 13,
+        "系统工具": 14,
         "硬件检测": 4,
         "安全工具": 2,
         "硬件工具": 1,
@@ -457,7 +472,7 @@ const dataStats = {
         "操作系统": 5
     },
     byPlatform: {
-        "baidu": 24,
+        "baidu": 25,
         "xunlei": 5
     }
 };
