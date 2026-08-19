@@ -448,7 +448,7 @@ const softwareData = [
     // 系统清理工具
     {
         id: 31,
-        name: "CCleaner Plus",
+        name: "Windows磁盘分析清理工具",
         category: "系统工具",
         description: "全盘清理工具，支持常规清理、大文件扫描、重复文件查找、应用强力卸载、定时任务",
         icon: "🧹",
