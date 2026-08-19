@@ -145,7 +145,7 @@ const softwareData = [
     {
         id: 10,
         name: "MSI Afterburner",
-        category: "硬件工具",
+        category: "硬件检测",
         description: "显卡超频监控工具，支持温度频率和风扇调节",
         icon: "🎮",
         downloadLinks: {
@@ -483,9 +483,8 @@ const dataStats = {
     byCategory: {
         "办公软件": 1,
         "系统工具": 13,
-        "硬件检测": 5,
+        "硬件检测": 6,
         "安全工具": 1,
-        "硬件工具": 1,
         "网络工具": 4,
         "操作系统": 5,
         "媒体工具": 1
