@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用帮助 - 久伴笔记使用指南</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .help-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+
+        .help-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 100%);
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .help-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 16px;
+            letter-spacing: -0.03em;
+            text-shadow: 0 2px 20px rgba(255,255,255,0.1);
+        }
+
+        .help-subtitle {
+            font-size: 21px;
+            color: #86868b;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+
+        .help-section {
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 32px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .help-section-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 24px;
+            letter-spacing: -0.03em;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            padding-bottom: 12px;
+        }
+
+        .help-subsection {
+            margin-bottom: 32px;
+        }
+
+        .help-subsection:last-child {
+            margin-bottom: 0;
+        }
+
+        .subsection-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .help-content {
+            font-size: 17px;
+            color: #d1d1d6;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .help-content code {
+            background: rgba(255,255,255,0.08);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .help-content pre {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            margin: 16px 0;
+            overflow-x: auto;
+        }
+
+        .help-content pre code {
+            background: transparent;
+            border: none;
+            padding: 0;
+        }
+
+        .shortcut-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .shortcut-table th {
+            text-align: left;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.08);
+            color: #ffffff;
+            font-weight: 600;
+            border-bottom: 2px solid rgba(255,255,255,0.15);
+        }
+
+        .shortcut-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: #d1d1d6;
+        }
+
+        .shortcut-table tr:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .shortcut-table code {
+            background: rgba(255,255,255,0.1);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            border: 1px solid rgba(255,255,255,0.15);
+            font-weight: 500;
+        }
+
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .template-item {
+            background: rgba(255,255,255,0.05);
+            padding: 16px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.2s;
+        }
+
+        .template-item:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .template-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .template-name {
+            font-size: 16px;
+            font-weight: 500;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .template-desc {
+            font-size: 14px;
+            color: #86868b;
+        }
+
+        .faq-item {
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .faq-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+
+        .faq-answer {
+            font-size: 16px;
+            color: #d1d1d6;
+            line-height: 1.7;
+        }
+
+        .nav-toc {
+            background: rgba(255,255,255,0.03);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .nav-toc-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+
+        .nav-toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-toc-list li {
+            margin-bottom: 8px;
+        }
+
+        .nav-toc-list a {
+            color: #d1d1d6;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.2s;
+        }
+
+        .nav-toc-list a:hover {
+            color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            .help-container {
+                padding: 20px;
+            }
+
+            .help-title {
+                font-size: 32px;
+            }
+
+            .help-subtitle {
+                font-size: 16px;
+            }
+
+            .help-section {
+                padding: 28px;
+            }
+
+            .help-section-title {
+                font-size: 24px;
+            }
+
+            .subsection-title {
+                font-size: 20px;
+            }
+
+            .template-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-item">软件下载</a>
+            <a href="jiuban-notes.html" class="nav-item">久伴笔记</a>
+            <a href="help.html" class="nav-item active">使用帮助</a>
+            <a href="contact-us.html" class="nav-item">联系我们</a>
+        </div>
+    </nav>
+
+    <div class="help-container">
+        <div class="help-header">
+            <h1 class="help-title">📚 久伴笔记使用帮助</h1>
+            <p class="help-subtitle">完整的Markdown语法说明和使用指南</p>
+        </div>
+
+        <!-- 导航目录 -->
+        <div class="nav-toc">
+            <h3 class="nav-toc-title">📋 目录导航</h3>
+            <ul class="nav-toc-list">
+                <li><a href="#basics">Markdown基础语法</a></li>
+                <li><a href="#text-formatting">文本格式化</a></li>
+                <li><a href="#lists">列表与清单</a></li>
+                <li><a href="#code">代码与语法高亮</a></li>
+                <li><a href="#links">链接与图片</a></li>
+                <li><a href="#tables">表格</a></li>
+                <li><a href="#shortcuts">快捷键速查</a></li>
+                <li><a href="#templates">模板系统</a></li>
+                <li><a href="#faq">常见问题</a></li>
+            </ul>
+        </div>
+
+        <!-- Markdown基础语法 -->
+        <div id="basics" class="help-section">
+            <h2 class="help-section-title">✍️ Markdown基础语法</h2>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">标题（Headings）</h3>
+                <div class="help-content">
+                    <p>使用 <code>#</code> 符号创建标题，支持1-6级标题：</p>
+                    <pre><code># 一级标题（最大）
+## 二级标题
+### 三级标题
+#### 四级标题
+##### 五级标题
+###### 六级标题（最小）</code></pre>
+                    <p><strong>快捷键</strong>：<code>Ctrl+1</code> 到 <code>Ctrl+6</code></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 文本格式化 -->
+        <div id="text-formatting" class="help-section">
+            <h2 class="help-section-title">🎨 文本格式化</h2>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">粗体（Bold）</h3>
+                <div class="help-content">
+                    <p>使用双星号或双下划线包裹文本：</p>
+                    <pre><code>**这是粗体文本**
+__这也是粗体文本__</code></pre>
+                    <p><strong>快捷键</strong>：<code>Ctrl+B</code></p>
+                </div>
+            </div>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">斜体（Italic）</h3>
+                <div class="help-content">
+                    <p>使用单星号或单下划线包裹文本：</p>
+                    <pre><code>*这是斜体文本*
+_这也是斜体文本_</code></pre>
+                    <p><strong>快捷键</strong>：<code>Ctrl+I</code></p>
+                </div>
+            </div>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">删除线（Strikethrough）</h3>
+                <div class="help-content">
+                    <p>使用双波浪线包裹文本：</p>
+                    <pre><code>~~这是删除线文本~~</code></pre>
+                    <p><strong>快捷键</strong>：<code>Ctrl+Shift+X</code></p>
+                </div>
+            </div>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">粗体斜体组合</h3>
+                <div class="help-content">
+                    <p>使用三颗星号同时实现粗体和斜体效果：</p>
+                    <pre><code>***这是粗体斜体文本***</code></pre>
+                </div>
+            </div>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">下划线与高亮</h3>
+                <div class="help-content">
+                    <p>• <strong>下划线</strong>：<code>Ctrl+U</code> 添加下划线</p>
+                    <p>• <strong>文本高亮</strong>：选中文字后点击工具栏"H"按钮设置背景颜色</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 列表与清单 -->
+        <div id="lists" class="help-section">
+            <h2 class="help-section-title">📝 列表与清单</h2>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">无序列表（Unordered List）</h3>
+                <div class="help-content">
+                    <p>使用 <code>-</code>、<code>+</code> 或 <code>*</code> 作为列表标记：</p>
+                    <pre><code>- 列表项1
+- 列表项2
+  - 嵌套列表项2.1
+  - 嵌套列表项2.2
+- 列表项3</code></pre>
+                    <p><strong>快捷键</strong>：<code>Ctrl+Shift+U</code></p>
+                </div>
+            </div>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">有序列表（Ordered List）</h3>
+                <div class="help-content">
+                    <p>使用数字加句点作为列表标记：</p>
+                    <pre><code>1. 第一项
+2. 第二项
+3. 第三项
+   1. 嵌套有序列表
+   2. 继续编号
+4. 第四项</code></pre>
+                    <p><strong>快捷键</strong>：<code>Ctrl+Shift+O</code></p>
+                </div>
+            </div>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">Todo清单（Todo List）</h3>
+                <div class="help-content">
+                    <p>久伴笔记特有的Unicode符号样式Todo清单，方便任务管理：</p>
+                    <pre><code>☐ 未完成的任务
+☑ 已完成的任务</code></pre>
+                    <p><strong>实际应用示例：</strong></p>
+                    <pre><code>☀️ 晨间例事
+☑ 已完成的晨练
+☐ 早餐准备
+
+📌 重点工作
+☐ 完成项目报告
+☐ 客户会议准备
+
+⏰ 午休
+☐ 休息30分钟</code></pre>
+
+                    <p><strong>Todo快捷键：</strong></p>
+                    <table class="shortcut-table">
+                        <tr>
+                            <th>快捷键</th>
+                            <th>功能</th>
+                        </tr>
+                        <tr>
+                            <td><code>Ctrl+Shift+D</code></td>
+                            <td>打开模板选择对话框</td>
+                        </tr>
+                        <tr>
+                            <td><code>Ctrl+Shift+U</code></td>
+                            <td>快速插入未完成任务</td>
+                        </tr>
+                        <tr>
+                            <td><code>Ctrl+Shift+I</code></td>
+                            <td>快速插入已完成任务</td>
+                        </tr>
+                        <tr>
+                            <td><code>Ctrl+Shift+T</code></td>
+                            <td>切换当前行完成状态</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 代码与语法高亮 -->
+        <div id="code" class="help-section">
+            <h2 class="help-section-title">💻 代码与语法高亮</h2>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">行内代码（Inline Code）</h3>
+                <div class="help-content">
+                    <p>使用反引号包裹代码，会在段落中显示为等宽字体：</p>
+                    <pre><code>在段落中插入`行内代码`示例
+使用`print()`函数输出内容</code></pre>
+                    <p><strong>快捷键</strong>：<code>Ctrl+Shift+K</code></p>
+                </div>
+            </div>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">代码块（Code Block）</h3>
+                <div class="help-content">
+                    <p>使用三个反引号包裹代码，可指定语言以启用语法高亮：</p>
+                    <pre><code>```python
+def hello_world():
+    print("Hello, World!")
+    return True
+```</code></pre>
+                    <p><strong>快捷键</strong>：<code>Ctrl+Shift+P</code></p>
+                </div>
+            </div>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">支持的编程语言</h3>
+                <div class="help-content">
+                    <table class="shortcut-table">
+                        <tr>
+                            <th>语言</th>
+                            <th>标识符</th>
+                            <th>语言</th>
+                            <th>标识符</th>
+                        </tr>
+                        <tr>
+                            <td>Python</td>
+                            <td><code>python</code> / <code>py</code></td>
+                            <td>JavaScript</td>
+                            <td><code>javascript</code> / <code>js</code></td>
+                        </tr>
+                        <tr>
+                            <td>Java</td>
+                            <td><code>java</code></td>
+                            <td>C++</td>
+                            <td><code>cpp</code> / <code>c++</code></td>
+                        </tr>
+                        <tr>
+                            <td>C</td>
+                            <td><code>c</code></td>
+                            <td>C#</td>
+                            <td><code>csharp</code> / <code>c#</code></td>
+                        </tr>
+                        <tr>
+                            <td>PHP</td>
+                            <td><code>php</code></td>
+                            <td>HTML</td>
+                            <td><code>html</code></td>
+                        </tr>
+                        <tr>
+                            <td>CSS</td>
+                            <td><code>css</code></td>
+                            <td>SQL</td>
+                            <td><code>sql</code></td>
+                        </tr>
+                        <tr>
+                            <td>Bash</td>
+                            <td><code>bash</code> / <code>shell</code></td>
+                            <td>JSON</td>
+                            <td><code>json</code></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 链接与图片 -->
+        <div id="links" class="help-section">
+            <h2 class="help-section-title">🔗 链接与图片</h2>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">链接（Links）</h3>
+                <div class="help-content">
+                    <p><strong>基本语法：</strong></p>
+                    <pre><code>[链接文本](链接地址)</code></pre>
+                    <p><strong>示例：</strong></p>
+                    <pre><code>[久伴笔记官网](https://jiuban.me)
+[GitHub项目](https://github.com/example/project)</code></pre>
+                    <p><strong>高级用法 - 带标题的链接：</strong></p>
+                    <pre><code>[链接文本](链接地址 "鼠标悬停提示")</code></pre>
+                    <p><strong>快捷键</strong>：<code>Ctrl+Shift+L</code></p>
+                </div>
+            </div>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">图片（Images）</h3>
+                <div class="help-content">
+                    <p><strong>基本语法：</strong></p>
+                    <pre><code>![图片描述](图片路径)</code></pre>
+                    <p><strong>示例：</strong></p>
+                    <pre><code>![久伴笔记logo](./files/logo.png)
+![截图](https://example.com/screenshot.png)</code></pre>
+                    <p><strong>快捷键</strong>：<code>Ctrl+Shift+I</code></p>
+                </div>
+            </div>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">图标（Icons）</h3>
+                <div class="help-content">
+                    <p>点击工具栏"图标"按钮，在图标选择对话框中浏览和选择图标插入到笔记中。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 表格 -->
+        <div id="tables" class="help-section">
+            <h2 class="help-section-title">📊 表格</h2>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">基本语法</h3>
+                <div class="help-content">
+                    <pre><code>| 表头1 | 表头2 | 表头3 |
+| ----- | ----- | ----- |
+| 内容1 | 内容2 | 内容3 |
+| 内容4 | 内容5 | 内容6 |</code></pre>
+                    <p><strong>快捷键</strong>：<code>Ctrl+T</code></p>
+                </div>
+            </div>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">对齐方式</h3>
+                <div class="help-content">
+                    <p>使用冒号控制列的对齐方式：</p>
+                    <pre><code>| 左对齐 | 居中对齐 | 右对齐 |
+| :----- | :------: | -----: |
+| 内容1  |  内容2   |  内容3 |
+| 内容4  |  内容5   |  内容6 |</code></pre>
+                    <p><strong>说明：</strong></p>
+                    <p>• <code>:-----</code> 左对齐</p>
+                    <p>• <code>:----:</code> 居中对齐</p>
+                    <p>• <code>-----:</code> 右对齐</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 引用与分隔线 -->
+        <div class="help-section">
+            <h2 class="help-section-title">💬 引用与分隔线</h2>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">引用（Blockquotes）</h3>
+                <div class="help-content">
+                    <p>使用 <code>></code> 符号创建引用块：</p>
+                    <pre><code>> 这是一段引用文本
+> 可以有多行</code></pre>
+                    <p><strong>嵌套引用：</strong></p>
+                    <pre><code>> 第一层引用
+>> 第二层引用
+>>> 第三层引用</code></pre>
+                    <p><strong>快捷键</strong>：<code>Ctrl+Shift+Q</code></p>
+                </div>
+            </div>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">水平分隔线（Horizontal Rule）</h3>
+                <div class="help-content">
+                    <p>使用三个或更多的连字符、星号或下划线创建水平分隔线：</p>
+                    <pre><code>---
+***
+___</code></pre>
+                    <p><strong>快捷键</strong>：<code>Ctrl+Shift+-</code></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 快捷键速查 -->
+        <div id="shortcuts" class="help-section">
+            <h2 class="help-section-title">⌨️ 快捷键速查表</h2>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">文件操作</h3>
+                <table class="shortcut-table">
+                    <tr>
+                        <th>快捷键</th>
+                        <th>功能</th>
+                    </tr>
+                    <tr>
+                        <td><code>Ctrl+N</code></td>
+                        <td>新建笔记</td>
+                    </tr>
+                    <tr>
+                        <td><code>Ctrl+S</code></td>
+                        <td>保存内容</td>
+                    </tr>
+                    <tr>
+                        <td><code>Ctrl+Shift+S</code></td>
+                        <td>另存为</td>
+                    </tr>
+                    <tr>
+                        <td><code>Ctrl+,</code></td>
+                        <td>打开设置</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">文本格式</h3>
+                <table class="shortcut-table">
+                    <tr>
+                        <th>快捷键</th>
+                        <th>功能</th>
+                    </tr>
+                    <tr>
+                        <td><code>Ctrl+B</code></td>
+                        <td>粗体</td>
+                    </tr>
+                    <tr>
+                        <td><code>Ctrl+I</code></td>
+                        <td>斜体</td>
+                    </tr>
+                    <tr>
+                        <td><code>Ctrl+U</code></td>
+                        <td>下划线</td>
+                    </tr>
+                    <tr>
+                        <td><code>Ctrl+Shift+X</code></td>
+                        <td>删除线</td>
+                    </tr>
+                    <tr>
+                        <td><code>Ctrl+Shift+K</code></td>
+                        <td>行内代码</td>
+                    </tr>
+                    <tr>
+                        <td><code>Ctrl+Shift+P</code></td>
+                        <td>代码块</td>
+                    </tr>
+                    <tr>
+                        <td><code>Ctrl+1-6</code></td>
+                        <td>标题（H1-H6）</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">列表与插入</h3>
+                <table class="shortcut-table">
+                    <tr>
+                        <th>快捷键</th>
+                        <th>功能</th>
+                    </tr>
+                    <tr>
+                        <td><code>Ctrl+Shift+U</code></td>
+                        <td>无序列表</td>
+                    </tr>
+                    <tr>
+                        <td><code>Ctrl+Shift+O</code></td>
+                        <td>有序列表</td>
+                    </tr>
+                    <tr>
+                        <td><code>Ctrl+Shift+L</code></td>
+                        <td>插入链接</td>
+                    </tr>
+                    <tr>
+                        <td><code>Ctrl+Shift+I</code></td>
+                        <td>插入图片</td>
+                    </tr>
+                    <tr>
+                        <td><code>Ctrl+T</code></td>
+                        <td>插入表格</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">其他功能</h3>
+                <table class="shortcut-table">
+                    <tr>
+                        <th>快捷键</th>
+                        <th>功能</th>
+                    </tr>
+                    <tr>
+                        <td><code>Ctrl+Shift+Q</code></td>
+                        <td>引用块</td>
+                    </tr>
+                    <tr>
+                        <td><code>Ctrl+Shift+-</code></td>
+                        <td>水平分隔线</td>
+                    </tr>
+                    <tr>
+                        <td><code>Ctrl+;</code></td>
+                        <td>插入当前时间</td>
+                    </tr>
+                    <tr>
+                        <td><code>Ctrl+F</code></td>
+                        <td>查找替换</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- 模板系统 -->
+        <div id="templates" class="help-section">
+            <h2 class="help-section-title">📋 模板系统</h2>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">内置模板</h3>
+                <div class="help-content">
+                    <p>点击工具栏"模板"按钮，快速使用预设模板创建笔记。内置模板包括：</p>
+                    <div class="template-grid">
+                        <div class="template-item">
+                            <div class="template-icon">📅</div>
+                            <div class="template-name">每日计划</div>
+                            <div class="template-desc">日常任务规划</div>
+                        </div>
+                        <div class="template-item">
+                            <div class="template-icon">📆</div>
+                            <div class="template-name">每周计划</div>
+                            <div class="template-desc">周任务安排</div>
+                        </div>
+                        <div class="template-item">
+                            <div class="template-icon">🎯</div>
+                            <div class="template-name">年度计划</div>
+                            <div class="template-desc">年度目标管理</div>
+                        </div>
+                        <div class="template-item">
+                            <div class="template-icon">👥</div>
+                            <div class="template-name">会议纪要</div>
+                            <div class="template-desc">会议记录模板</div>
+                        </div>
+                        <div class="template-item">
+                            <div class="template-icon">🎯</div>
+                            <div class="template-name">项目规划</div>
+                            <div class="template-desc">项目任务分解</div>
+                        </div>
+                        <div class="template-item">
+                            <div class="template-icon">📚</div>
+                            <div class="template-name">学习计划</div>
+                            <div class="template-desc">学习进度跟踪</div>
+                        </div>
+                        <div class="template-item">
+                            <div class="template-icon">🛒</div>
+                            <div class="template-name">购物清单</div>
+                            <div class="template-desc">购物备忘录</div>
+                        </div>
+                        <div class="template-item">
+                            <div class="template-icon">✈️</div>
+                            <div class="template-name">旅行准备</div>
+                            <div class="template-desc">旅行准备事项</div>
+                        </div>
+                        <div class="template-item">
+                            <div class="template-icon">💪</div>
+                            <div class="template-name">健康打卡</div>
+                            <div class="template-desc">健康习惯养成</div>
+                        </div>
+                        <div class="template-item">
+                            <div class="template-icon">📝</div>
+                            <div class="template-name">空白清单</div>
+                            <div class="template-desc">自定义清单</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">自定义模板</h3>
+                <div class="help-content">
+                    <p>您可以在软件的 <code>templates</code> 目录中创建自己的 <code>.md</code> 模板文件。模板文件会自动出现在模板选择对话框中。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 高级功能 -->
+        <div class="help-section">
+            <h2 class="help-section-title">🚀 高级功能</h2>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">时间戳插入</h3>
+                <div class="help-content">
+                    <p>点击工具栏"时间"按钮或按 <code>Ctrl+;</code> 快速插入当前时间：</p>
+                    <pre><code>2026-01-15 14:30:25</code></pre>
+                </div>
+            </div>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">批注功能</h3>
+                <div class="help-content">
+                    <p>为文本添加注释，在预览时鼠标悬停显示：</p>
+                    <pre><code>{文本内容}{注: 批注内容}</code></pre>
+                </div>
+            </div>
+
+            <div class="help-subsection">
+                <h3 class="subsection-title">最佳实践示例</h3>
+                <div class="help-content">
+                    <p><strong>文档结构：</strong></p>
+                    <pre><code># 文档标题
+
+> 简介：本文档的主要内容
+
+## 一、章节标题
+
+正文内容...
+
+### 1.1 小节标题
+
+更多内容...
+
+---
+
+## 二、总结
+
+总结内容...</code></pre>
+
+                    <p><strong>Todo任务管理：</strong></p>
+                    <pre><code>## 今日任务
+
+☐ **晨间例行**
+  ☐ 冥想10分钟
+  ☐ 晨练30分钟
+
+☐ **工作重点**
+  ☐ 完成项目报告
+  ☐ 团队会议</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- 常见问题 -->
+        <div id="faq" class="help-section">
+            <h2 class="help-section-title">❓ 常见问题</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">Q: 为什么我的代码没有高亮？</div>
+                <div class="faq-answer">
+                    A: 请确保在代码块的起始位置指定了正确的语言标识符，例如 <code>```python</code> 而不是 <code>```</code>。
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q: Todo清单的符号可以自定义吗？</div>
+                <div class="faq-answer">
+                    A: 当前版本使用固定的Unicode符号（☐ 和 ☑），未来版本可能会支持自定义符号。
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q: 图片上传后存储在哪里？</div>
+                <div class="faq-answer">
+                    A: 图片会自动复制到 <code>notes/files</code> 目录，路径会自动更新为本地相对路径。
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q: 如何导出笔记？</div>
+                <div class="faq-answer">
+                    A: 久伴笔记支持导出为HTML、PDF等格式，点击"文件"菜单中的"导出"选项即可。
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q: 支持云同步吗？</div>
+                <div class="faq-answer">
+                    A: 久伴笔记是本地存储软件，支持通过第三方云盘（如坚果云、Dropbox等）同步笔记文件夹实现云端备份。
+                </div>
+            </div>
+        </div>
+
+        <!-- 联系信息 -->
+        <div class="help-section">
+            <h2 class="help-section-title">📞 获取更多帮助</h2>
+
+            <div class="help-content">
+                <p>如果以上内容没有解决您的问题，欢迎通过以下方式联系我们：</p>
+
+                <table class="shortcut-table">
+                    <tr>
+                        <th>联系方式</th>
+                        <th>信息</th>
+                    </tr>
+                    <tr>
+                        <td>🌐 官网</td>
+                        <td><code>http://xiaobaike.dpdns.org</code></td>
+                    </tr>
+                    <tr>
+                        <td>📧 邮箱</td>
+                        <td><code>2591735711@qq.com</code></td>
+                    </tr>
+                    <tr>
+                        <td>🐧 QQ群</td>
+                        <td><code>762767028</code></td>
+                    </tr>
+                    <tr>
+                        <td>💬 微信</td>
+                        <td><code>jiuban_note</code></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p class="copyright-info">© 2026 <a href="https://space.bilibili.com/595098830" target="_blank" style="color: #ffffff; text-decoration: none;">@电脑小百科</a> （抖音/B站/小红书）技术支持QQ：2591735711 软件精选 · All Rights Reserved</p>
+        <p style="text-align: center; color: #86868b; font-size: 14px; margin-top: 16px;">深情，不如久伴！ 🌟</p>
+    </footer>
+</body>
+</html>
