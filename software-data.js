@@ -474,6 +474,21 @@ const softwareData = [
                 code: "mr95"
             }
         }
+    },
+
+    // 便签工具
+    {
+        id: 34,
+        name: "Papertodo",
+        category: "办公软件",
+        description: "开源便签软件，轻量级桌面便签工具，支持待办事项和提醒功能",
+        icon: "📋",
+        downloadLinks: {
+            baidu: {
+                url: "https://pan.baidu.com/s/1n7zH1oF-Sk-y14ZIbmPkzw?pwd=wb7m",
+                code: "wb7m"
+            }
+        }
     }
 ];
 
@@ -481,7 +496,7 @@ const softwareData = [
 const dataStats = {
     total: softwareData.length,
     byCategory: {
-        "办公软件": 1,
+        "办公软件": 2,
         "系统工具": 13,
         "硬件检测": 6,
         "安全工具": 1,
@@ -490,7 +505,7 @@ const dataStats = {
         "媒体工具": 1
     },
     byPlatform: {
-        "baidu": 26,
+        "baidu": 27,
         "xunlei": 5
     }
 };
