@@ -363,11 +363,22 @@
 
             // 更新关键词
             const keywords = `${software.name},${software.category},软件下载,绿色软件,免费软件,${software.name}下载`;
-            document.querySelector('meta[name="keywords"]').setAttribute('content', keywords);
+            const keywordsMeta = document.querySelector('meta[name="keywords"]');
+            if (keywordsMeta) {
+                keywordsMeta.setAttribute('content', keywords);
+            }
 
             // 更新描述
             const description = `${software.name} - ${software.description}。提供${software.name}免费下载，绿色安全无捆绑，来自电脑小百科软件精选。`;
-            document.querySelector('meta[name="description"]').setAttribute('content', description);
+            const descriptionMeta = document.querySelector('meta[name="description"]');
+            if (descriptionMeta) {
+                descriptionMeta.setAttribute('content', description);
+            }
+
+            // 调试输出
+            console.log('页面标题已更新:', document.title);
+            console.log('关键词已更新:', keywords);
+            console.log('描述已更新:', description);
         }
 
         // 渲染软件详情
@@ -485,6 +496,9 @@
                     showError('未找到指定的软件');
                     return;
                 }
+
+                // 立即设置页面meta信息（在渲染内容之前）
+                setPageMeta(software);
 
                 // 渲染软件详情
                 renderSoftwareDetail(software);
