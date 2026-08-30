@@ -203,7 +203,6 @@
             pageData.forEach((software) => {
                 const card = document.createElement('div');
                 card.className = 'software-card';
-                card.onclick = () => showDetail(software.id);
 
                 card.innerHTML = `
                     <div class="software-number">${software.index}</div>
@@ -218,12 +217,19 @@
                     </div>
                     <div class="download-buttons">
                         ${Object.keys(software.downloadLinks || {}).length > 0 ?
-                            `<button class="download-btn primary-btn" onclick="event.stopPropagation(); showDetail('${software.id}')">
+                            `<button class="download-btn primary-btn" onclick="event.stopPropagation(); location.href='download.html?id=${software.id}'">
                                 立即下载
                             </button>` : ''
                         }
                     </div>
                 `;
+
+                // 点击卡片主体也跳转到下载页面
+                card.onclick = (e) => {
+                    if (e.target.tagName !== 'BUTTON') {
+                        location.href = `download.html?id=${software.id}`;
+                    }
+                };
 
                 fragment.appendChild(card);
             });
