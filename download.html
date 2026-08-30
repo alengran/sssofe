@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>软件下载 - 电脑小百科-软件精选</title>
+    <meta name="keywords" content="电脑小百科,软件下载,绿色软件,免费软件,软件精选">
+    <meta name="description" content="电脑小百科软件精选，提供优质的绿色免费软件下载，安全无捆绑，提升工作效率。">
     <link rel="stylesheet" href="styles.css">
     <style>
         .download-container {
@@ -354,8 +356,25 @@
             }
         }
 
+        // 设置页面meta标签
+        function setPageMeta(software) {
+            // 更新页面标题
+            document.title = `${software.name} 下载 - 电脑小百科-软件精选`;
+
+            // 更新关键词
+            const keywords = `${software.name},${software.category},软件下载,绿色软件,免费软件,${software.name}下载`;
+            document.querySelector('meta[name="keywords"]').setAttribute('content', keywords);
+
+            // 更新描述
+            const description = `${software.name} - ${software.description}。提供${software.name}免费下载，绿色安全无捆绑，来自电脑小百科软件精选。`;
+            document.querySelector('meta[name="description"]').setAttribute('content', description);
+        }
+
         // 渲染软件详情
         function renderSoftwareDetail(software) {
+            // 设置页面meta信息
+            setPageMeta(software);
+
             const container = document.getElementById('softwareDetail');
 
             const platformIcons = {
