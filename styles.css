@@ -584,6 +584,27 @@ html { scroll-behavior: smooth; }
 .footer a { color: var(--primary); font-weight: 600; }
 .footer a:hover { text-decoration: underline; }
 
+/* 友情链接 */
+.friend-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  max-width: 640px;
+  margin: 0 auto 10px;
+  padding-top: 14px;
+  font-size: 12px;
+  color: #9fb0c2;
+}
+.friend-links .fl-label { font-weight: 600; color: #9fb0c2; }
+.friend-links a {
+  color: var(--gray-7);
+  font-weight: 500;
+  transition: color .2s var(--ease);
+}
+.friend-links a:hover { color: var(--primary); text-decoration: underline; }
+
 /* ---------- 联系页 ---------- */
 .contact-cards {
   display: grid;
