@@ -103,9 +103,26 @@ html { scroll-behavior: smooth; }
 .nav-group-title {
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 2px;
+  letter-spacing: 4px;
+  text-indent: 4px;    /* 抵消末字符字距，保证视觉居中 */
   color: rgba(255, 255, 255, .5);
-  padding: 6px 14px 10px;
+  margin-top: 8px;
+  padding: 10px 14px 12px;
+  text-align: center;
+}
+
+/* 侧栏分类导航：水平居中 + 加大间距 */
+.nav .cat-list { padding-bottom: 6px; }
+.nav .cat-list li { margin-bottom: 9px; }
+.nav .cat-list li a {
+  height: 40px; line-height: 40px;
+  text-align: center;
+  padding: 0 8px;
+  letter-spacing: 2px;
+  text-indent: 2px;    /* 抵消末字符字距，保证视觉居中 */
+}
+.nav .cat-list li a:hover {
+  padding-left: 8px;   /* 居中模式下悬停不左移 */
 }
 
 .side .copyright {
@@ -737,7 +754,8 @@ code {
 }
 .help-section .help-subsection:first-child { margin-top: 0; }
 .help-section > .help-subsection { padding: 0 20px; }
-.help-section > .help-subsection:first-child { padding-top: 18px; }
+.help-section > h2 + .help-subsection,
+.help-section > .help-subsection:first-of-type { padding-top: 18px; }
 .help-section > .help-subsection:last-child { padding-bottom: 18px; }
 
 .help-toc, .nav-toc {
