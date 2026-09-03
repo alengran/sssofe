@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{SOFTWARE_NAME}} 下载 - 电脑小百科-软件精选</title>
+    <meta name="keywords" content="{{SOFTWARE_NAME}},{{SOFTWARE_CATEGORY}},软件下载,绿色软件,免费软件,{{SOFTWARE_NAME}}下载">
+    <meta name="description" content="{{SOFTWARE_NAME}} - {{SOFTWARE_DESCRIPTION}}。提供{{SOFTWARE_NAME}}免费下载，绿色安全无捆绑，来自电脑小百科软件精选。">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<div class="layout">
+    <!-- 左侧固定导航栏 -->
+    <aside class="side">
+        <a class="logo" href="../index.html">
+            <svg width="34" height="34" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="30" height="30" rx="8" fill="rgba(255,255,255,.15)"/><path d="M9 12h16M9 17h16M9 22h10" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>
+            <span>
+                <span class="logo-name">电脑小百科</span>
+                <span class="logo-sub">SOFTWARE</span>
+            </span>
+        </a>
+        <nav class="nav">
+            <div class="nav-group-title">软件分类</div>
+            <ul class="cat-list" id="sideCats"></ul>
+        </nav>
+        <div class="copyright">© 2026 电脑小百科<br>软件精选 · 绿色安全</div>
+    </aside>
+
+    <div class="main">
+        <!-- 顶栏 -->
+        <div class="header">
+            <span class="menu-btn"></span>
+            <ul class="list">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="../jiuban-notes.html">久伴笔记</a></li>
+                <li class="hide-mobile"><a href="../help.html">使用帮助</a></li>
+                <li class="hide-mobile"><a href="../contact.html">联系我们</a></li>
+            </ul>
+        </div>
+
+        <div class="container">
+            <!-- 返回按钮 -->
+            <a href="../index.html" class="back-button">
+                <span>←</span> 返回软件列表
+            </a>
+
+            <!-- 软件详情区域 -->
+            <div id="softwareDetail">
+                <!-- 内容将通过JavaScript动态加载 -->
+            </div>
+        </div>
+
+        <div class="footer">© 2026 <a href="https://space.bilibili.com/595098830" target="_blank">@电脑小百科</a>（抖音/B站/小红书）技术支持QQ：2591735711 软件精选 · All Rights Reserved</div>
+    </div>
+</div>
+
+<script src="../site.js"></script>
+    <script src="../software-data.js"></script>
+    <script>
+        // 复制提取码
+        function copyCode(code, button) {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(code).then(() => {
+                    const originalText = button.textContent;
+                    button.textContent = '已复制';
+                    button.classList.add('copied');
+
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.classList.remove('copied');
+                    }, 2000);
+                });
+            } else {
+                // 降级方案
+                const textArea = document.createElement('textarea');
+                textArea.value = code;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                document.body.appendChild(textArea);
+                textArea.select();
+
+                try {
+                    document.execCommand('copy');
+                    button.textContent = '已复制';
+                    button.classList.add('copied');
+
+                    setTimeout(() => {
+                        button.textContent = '复制';
+                        button.classList.remove('copied');
+                    }, 2000);
+                } catch (err) {
+                    console.error('复制失败:', err);
+                    alert('复制失败，请手动复制');
+                }
+
+                document.body.removeChild(textArea);
+            }
+        }
+
+        // 初始化页面 - 加载对应软件的数据
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                const softwareId = {{SOFTWARE_ID}};
+                const data = await dataManager.loadData();
+                const software = data.find(s => s.id === softwareId);
+
+                if (!software) {
+                    document.getElementById('softwareDetail').innerHTML = `
+                        <div class="state-block">
+                            <div class="state-icon">⚠️</div>
+                            <div class="state-text">未找到软件</div>
+                            <div>无法找到ID为 ${softwareId} 的软件信息</div>
+                        </div>
+                    `;
+                    return;
+                }
+
+                const platformIcons = {
+                    'baidu': '☁️',
+                    'aliyun': '☁️',
+                    'lanzou': '🔗',
+                    'quark': '☁️',
+                    '123pan': '☁️',
+                    'xunlei': '⚡'
+                };
+
+                const platformNames = {
+                    'baidu': '百度网盘',
+                    'aliyun': '阿里云盘',
+                    'lanzou': '蓝奏云',
+                    'quark': '夸克网盘',
+                    '123pan': '123云盘',
+                    'xunlei': '迅雷网盘'
+                };
+
+                // 检查是否有下载链接
+                const hasDownloads = software.downloadLinks && Object.keys(software.downloadLinks).length > 0;
+
+                let downloadHTML = '';
+                if (hasDownloads) {
+                    Object.entries(software.downloadLinks).forEach(([platform, info]) => {
+                        downloadHTML += `
+                            <div class="download-card">
+                                <div class="platform-name">
+                                    <span class="platform-icon">${platformIcons[platform] || '🔗'}</span>
+                                    ${platformNames[platform] || platform}
+                                </div>
+                                <a href="${info.url}" target="_blank" class="download-link">
+                                    点击下载
+                                </a>
+                                ${info.code ? `
+                                    <div class="access-code">
+                                        <span class="code-text">提取码: <strong>${info.code}</strong></span>
+                                        <button class="copy-button" onclick="copyCode('${info.code}', this)">复制</button>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        `;
+                    });
+                } else {
+                    downloadHTML = `
+                        <div class="download-card" style="text-align: center; padding: 60px 40px;">
+                            <div style="color: var(--muted);">暂无下载链接，请联系管理员获取</div>
+                        </div>
+                    `;
+                }
+
+                document.getElementById('softwareDetail').innerHTML = `
+                    <div class="software-header">
+                        <span class="software-icon-large">${software.icon || '📦'}</span>
+                        <h1 class="software-title">${software.name}</h1>
+                        <div class="software-category">${software.category}</div>
+                        <p class="software-description">${software.description}</p>
+                    </div>
+
+                    <div class="download-section">
+                        <h2 class="section-title">📥 下载地址</h2>
+                        ${downloadHTML}
+                    </div>
+                `;
+
+            } catch (error) {
+                console.error('加载软件详情失败:', error);
+                document.getElementById('softwareDetail').innerHTML = `
+                    <div class="state-block">
+                        <div class="state-icon">⚠️</div>
+                        <div class="state-text">加载失败</div>
+                        <div>加载数据时发生错误，请稍后重试</div>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

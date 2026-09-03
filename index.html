@@ -9,38 +9,50 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- 顶部导航栏 -->
-    <nav class="main-nav">
-        <div class="nav-container">
-            <a href="index.html" class="nav-item active">软件下载</a>
-            <a href="jiuban-notes.html" class="nav-item">久伴笔记</a>
-            <a href="help.html" class="nav-item">使用帮助</a>
-            <a href="contact.html" class="nav-item">联系我们</a>
+<div class="layout">
+    <!-- 左侧固定导航栏 -->
+    <aside class="side">
+        <a class="logo" href="index.html">
+            <svg width="34" height="34" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="30" height="30" rx="8" fill="rgba(255,255,255,.15)"/><path d="M9 12h16M9 17h16M9 22h10" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>
+            <span>
+                <span class="logo-name">电脑小百科</span>
+                <span class="logo-sub">SOFTWARE</span>
+            </span>
+        </a>
+        <nav class="nav">
+            <div class="nav-group-title">软件分类</div>
+            <ul class="cat-list" id="sideCats"></ul>
+        </nav>
+        <div class="copyright">© 2026 电脑小百科<br>软件精选 · 绿色安全</div>
+    </aside>
+
+    <div class="main">
+        <!-- 顶栏 -->
+        <div class="header">
+            <span class="menu-btn"></span>
+            <ul class="list">
+                <li class="active"><a href="index.html">首页</a></li>
+                <li><a href="jiuban-notes.html">久伴笔记</a></li>
+                <li class="hide-mobile"><a href="help.html">使用帮助</a></li>
+                <li class="hide-mobile"><a href="contact.html">联系我们</a></li>
+            </ul>
         </div>
-    </nav>
 
-    <div class="container">
-        <header>
-            <div class="logo">电脑小百科-软件精选 </div>
-            <div class="tagline">绿色安全/无捆绑/ 提升工作效率</div>
-
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="输入 软件名称/ID序号/关键词等任意要素 按回车 搜索软件...">
+        <div class="container">
+            <div class="search-bar">
+                <input type="text" id="searchInput" class="search-input" placeholder="输入 软件名称/ID序号/关键词 搜索软件...">
                 <span class="search-icon">🔍</span>
             </div>
-            <div style="text-align: center; color: #86868b; font-size: 14px; margin-bottom: 40px; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 0, 0, 0.3);">
-                首次访问列表加载缓慢请稍后.....
-            </div>
-        </header>
+            <div class="list-stats" style="margin: 0 0 10px;">绿色安全 / 无捆绑 / 提升工作效率 · 首次访问列表加载缓慢请稍候</div>
 
-        <div class="filter-tabs" id="categoryFilters"></div>
+            <div class="filter-tabs" id="categoryFilters"></div>
 
-        <div class="software-list" id="softwareGrid"></div>
+            <div class="software-list" id="softwareGrid"></div>
+        </div>
 
-        <footer>
-            <p class="copyright-info">© 2026 <a href="https://space.bilibili.com/595098830" target="_blank" style="color: #ffffff; text-decoration: none;">@电脑小百科</a> （抖音/B站/小红书）技术支持QQ：2591735711 软件精选 · All Rights Reserved</p>
-        </footer>
+        <div class="footer">© 2026 <a href="https://space.bilibili.com/595098830" target="_blank">@电脑小百科</a>（抖音/B站/小红书）技术支持QQ：2591735711 软件精选 · All Rights Reserved</div>
     </div>
+</div>
 
     <!-- 详情弹窗 -->
     <div class="modal" id="detailModal">
@@ -58,6 +70,7 @@
         </div>
     </div>
 
+    <script src="site.js"></script>
     <script src="software-data.js"></script>
     <script>
         let allCategories = ['全部'];
@@ -92,10 +105,17 @@
                     allSoftwareData = data;
                     allCategories = ['全部', ...new Set(data.map(item => item.category))];
 
+                    // 读取侧栏分类导航带来的 ?cat= 参数
+                    const catParam = new URLSearchParams(location.search).get('cat');
+                    if (catParam && allCategories.includes(catParam)) {
+                        currentFilter = catParam;
+                    }
+
                     // 立即渲染
                     renderCategories();
                     renderSoftware();
                     setupEventListeners();
+                    setupSideCats();
                 });
             } catch (error) {
                 console.error('数据加载失败:', error);
@@ -120,9 +140,9 @@
         function showLoadingState() {
             const container = document.getElementById('softwareGrid');
             container.innerHTML = `
-                <div style="text-align: center; padding: 60px 20px; color: #86868b;">
-                    <div style="font-size: 48px; margin-bottom: 20px;">⏳</div>
-                    <div style="font-size: 18px;">数据正在加载，请稍后</div>
+                <div class="state-block">
+                    <div class="state-icon">⏳</div>
+                    <div class="state-text">数据正在加载，请稍后</div>
                 </div>
             `;
         }
@@ -136,12 +156,10 @@
         function showErrorState() {
             const container = document.getElementById('softwareGrid');
             container.innerHTML = `
-                <div style="text-align: center; padding: 60px 20px; color: #ff6b6b;">
-                    <div style="font-size: 48px; margin-bottom: 20px;">⚠️</div>
-                    <div style="font-size: 18px; margin-bottom: 20px;">数据加载失败</div>
-                    <button onclick="init()" style="padding: 12px 24px; background: #ffffff; color: #000000; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">
-                        重新加载
-                    </button>
+                <div class="state-block">
+                    <div class="state-icon">⚠️</div>
+                    <div class="state-text">数据加载失败</div>
+                    <button class="state-btn" onclick="init()">重新加载</button>
                 </div>
             `;
         }
@@ -153,9 +171,34 @@
 
             // 渲染标签
             container.innerHTML = allCategories.map(category =>
-                `<button class="filter-tab ${category === '全部' ? 'active' : ''}"
+                `<button class="filter-tab ${category === currentFilter ? 'active' : ''}"
                         onclick="filterByCategory('${category}')">${category}</button>`
             ).join('');
+        }
+
+        // 同步左侧边栏分类导航的选中态
+        function syncSideCats() {
+            document.querySelectorAll('#sideCats li').forEach(li => {
+                li.classList.toggle('active', li.dataset.cat === currentFilter);
+            });
+        }
+
+        // 左侧边栏分类导航：本页直接筛选，不跳转
+        function setupSideCats() {
+            syncSideCats();
+            const sideCats = document.getElementById('sideCats');
+            if (!sideCats) return;
+            sideCats.addEventListener('click', e => {
+                const a = e.target.closest('a');
+                if (!a) return;
+                const li = a.parentElement;
+                if (!li || !li.dataset.cat) return;
+                e.preventDefault();
+                filterByCategory(li.dataset.cat);
+                history.replaceState(null, '', li.dataset.cat === '全部'
+                    ? 'index.html'
+                    : 'index.html?cat=' + encodeURIComponent(li.dataset.cat));
+            });
         }
 
         // 渲染软件卡片（支持分页）
@@ -242,8 +285,8 @@
             // 添加"加载更多"按钮
             if (hasMore) {
                 container.innerHTML += `
-                    <div style="text-align: center; margin-top: 32px;">
-                        <button id="loadMoreBtn" onclick="loadMore()" style="padding: 14px 32px; background: rgba(255,255,255,0.08); color: #ffffff; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: 600; transition: all 0.3s;">
+                    <div class="load-more-wrap">
+                        <button id="loadMoreBtn" onclick="loadMore()">
                             加载更多 (${currentPage}/${totalPages}页)
                         </button>
                     </div>
@@ -252,7 +295,7 @@
 
             // 显示统计信息
             const statsInfo = document.createElement('div');
-            statsInfo.style.cssText = 'text-align: center; color: #86868b; font-size: 14px; margin-top: 24px;';
+            statsInfo.className = 'list-stats';
             statsInfo.textContent = `显示 ${start + 1}-${Math.min(end, filteredData.length)} 条，共 ${filteredData.length} 条`;
             container.appendChild(statsInfo);
         }
@@ -276,7 +319,13 @@
                 }
             });
 
+            // 同步左侧边栏选中态
+            syncSideCats();
+
             renderSoftware();
+
+            // 滚动回列表顶部，便于查看筛选结果
+            document.getElementById('softwareGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         // 显示详情
@@ -336,7 +385,7 @@
             }
 
             if (!html) {
-                html = '<div class="download-section"><p style="color: #86868b; text-align: center;">暂无下载链接</p></div>';
+                html = '<div class="download-section"><p style="color: var(--muted); text-align: center;">暂无下载链接</p></div>';
             }
 
             downloadsContainer.innerHTML = html;

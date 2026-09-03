@@ -6,308 +6,124 @@
     <title>软件下载 - 电脑小百科-软件精选</title>
     <meta name="keywords" content="电脑小百科,软件下载,绿色软件,免费软件,软件精选">
     <meta name="description" content="电脑小百科软件精选，提供优质的绿色免费软件下载，安全无捆绑，提升工作效率。">
+    <script>
+        // 立即执行的函数，在页面加载时就设置meta标签
+        (function() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var softwareId = urlParams.get('id');
+
+            if (softwareId) {
+                // 完整的软件元数据（用于立即设置meta标签）
+                var softwareMeta = {
+                    '1': { name: '久伴笔记', category: '办公软件', description: '免费绿色Markdown笔记软件，支持富文本编辑和云同步' },
+                    '2': { name: '微软运行库合集', category: '系统工具', description: '包含VC++、.NET等Windows系统必备运行库组件集合' },
+                    '3': { name: 'DirectX修复工具', category: '系统工具', description: '修复DirectX组件，解决游戏和程序运行报错问题' },
+                    '4': { name: 'Geek卸载工具', category: '系统工具', description: '轻量级软件卸载工具，彻底清理注册表和残留文件' },
+                    '5': { name: '微PE工具箱', category: '系统工具', description: 'Windows PE系统维护工具箱，支持分区引导修复' },
+                    '6': { name: 'Win10更新禁用工具', category: '系统工具', description: 'Windows10系统更新禁用工具，阻止自动更新重启' },
+                    '7': { name: 'CrystalDiskInfo', category: '硬件检测', description: '硬盘健康检测工具，监控温度和SMART信息' },
+                    '8': { name: 'AS SSD Benchmark', category: '硬件检测', description: 'SSD固态硬盘性能测试工具，检测读写速度' },
+                    '9': { name: '麦克菲卸载工具', category: '安全工具', description: '麦克菲杀毒软件专用卸载工具，彻底清除残留' },
+                    '10': { name: 'MSI Afterburner', category: '硬件检测', description: '显卡超频监控工具，支持温度频率和风扇调节' },
+                    '11': { name: 'NDM下载器', category: '网络工具', description: '轻量级网络下载管理器，支持多线程加速下载' },
+                    '12': { name: 'NeatDM下载器', category: '网络工具', description: '简洁高效的网络下载管理器，支持多线程和断点续传' },
+                    '13': { name: 'WizTree', category: '系统工具', description: '磁盘空间分析工具，快速找出大文件和占用空间' },
+                    '14': { name: 'Windows 10 专业版', category: '操作系统', description: 'Windows10专业版22H2，企业级办公开发系统' },
+                    '15': { name: 'Windows 10 家庭版', category: '操作系统', description: 'Windows10家庭版22H2，适合个人日常使用' },
+                    '16': { name: 'Windows 11 专业版', category: '操作系统', description: 'Windows11专业版25H2，最新企业级办公系统' },
+                    '17': { name: 'Windows 11 家庭版', category: '操作系统', description: 'Windows11家庭版25H2，最新个人用户系统' },
+                    '18': { name: 'Intel RST VMD驱动', category: '系统工具', description: 'Intel快速存储技术驱动，支持VMD控制器' },
+                    '19': { name: '向日葵远程控制', category: '网络工具', description: '远程桌面控制软件，支持文件传输和屏幕共享' },
+                    '20': { name: '驱动总裁', category: '系统工具', description: '硬件驱动安装工具，自动检测安装更新驱动' },
+                    '21': { name: 'Windows系统安装工具', category: '系统工具', description: '微软官方Windows系统安装/重装媒体创建工具' },
+                    '22': { name: 'DiskGenius分区工具', category: '系统工具', description: '专业磁盘分区管理工具，支持数据恢复和备份' },
+                    '23': { name: 'FirPE工具箱', category: '系统工具', description: 'Windows PE系统维护工具箱，支持分区引导修复' },
+                    '24': { name: '极客狗装机大师', category: '系统工具', description: '一键系统装机工具，自动安装驱动和常用软件' },
+                    '25': { name: 'MemTest64内存检测', category: '硬件检测', description: '内存条故障检测工具，测试内存稳定性和错误' },
+                    '26': { name: 'Watt Toolkit Steam++', category: '网络工具', description: 'Steam平台加速工具，解决下载和联机游戏问题' },
+                    '27': { name: '图吧工具箱', category: '硬件检测', description: '专业电脑硬件检测工具箱，集成多种硬件信息查看' },
+                    '28': { name: 'Windows 7 专业版', category: '操作系统', description: '经典Windows7专业版系统镜像，稳定可靠的企业系统' },
+                    '29': { name: 'Autoruns', category: '系统工具', description: '系统启动项管理工具，查看和禁用自动启动程序' },
+                    '30': { name: 'CCleaner Plus', category: '系统工具', description: '全盘清理工具，支持常规清理、大文件扫描、重复文件查找、应用强力卸载、定时任务' },
+                    '31': { name: 'CPU-Z', category: '硬件检测', description: 'CPU处理器信息检测工具，详细显示CPU、主板、内存等硬件信息' },
+                    '32': { name: 'Gif123', category: '媒体工具', description: '极简GIF录屏工具，一键录制，快速复制，直接粘贴到任何地方' },
+                    '33': { name: 'Papertodo', category: '办公软件', description: '开源便签软件，轻量级桌面便签工具，支持待办事项和提醒功能' }
+                };
+
+                var software = softwareMeta[softwareId];
+                if (software) {
+                    // 立即设置页面标题和meta标签
+                    document.title = software.name + ' 下载 - 电脑小百科-软件精选';
+
+                    var keywordsMeta = document.querySelector('meta[name="keywords"]');
+                    if (keywordsMeta) {
+                        keywordsMeta.setAttribute('content', software.name + ',' + software.category + ',软件下载,绿色软件,免费软件,' + software.name + '下载');
+                    }
+
+                    var descriptionMeta = document.querySelector('meta[name="description"]');
+                    if (descriptionMeta) {
+                        descriptionMeta.setAttribute('content', software.name + ' - ' + software.description + '。提供' + software.name + '免费下载，绿色安全无捆绑，来自电脑小百科软件精选。');
+                    }
+
+                    console.log('Meta标签已设置:', software.name);
+                    console.log('页面标题:', document.title);
+                    console.log('关键词:', keywordsMeta ? keywordsMeta.getAttribute('content') : '未找到');
+                    console.log('描述:', descriptionMeta ? descriptionMeta.getAttribute('content') : '未找到');
+                } else {
+                    console.warn('未找到软件ID ' + softwareId + ' 的元数据');
+                }
+            }
+        })();
+    </script>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .download-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 30px;
-        }
-
-        .software-header {
-            text-align: center;
-            padding: 16px 0;
-            background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 100%);
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.08);
-            margin-bottom: 24px;
-        }
-
-        .software-icon-large {
-            font-size: 48px;
-            margin-bottom: 12px;
-            display: block;
-        }
-
-        .software-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 8px;
-            letter-spacing: -0.03em;
-            text-shadow: 0 2px 20px rgba(255,255,255,0.1);
-        }
-
-        .software-category {
-            font-size: 16px;
-            color: #86868b;
-            font-weight: 500;
-            margin-bottom: 12px;
-        }
-
-        .software-description {
-            font-size: 16px;
-            color: #d1d1d6;
-            line-height: 1.5;
-            max-width: 600px;
-            margin: 0 auto 16px;
-            padding: 0 20px;
-        }
-
-        .download-section {
-            background: rgba(255,255,255,0.03);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 40px;
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .section-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 32px;
-            text-align: center;
-            letter-spacing: -0.03em;
-            border-bottom: 2px solid rgba(255,255,255,0.1);
-            padding-bottom: 16px;
-        }
-
-        .download-card {
-            background: rgba(255,255,255,0.05);
-            border-radius: 16px;
-            padding: 28px;
-            margin-bottom: 20px;
-            transition: all 0.3s;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .download-card:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(255,255,255,0.2);
-            transform: translateY(-2px);
-        }
-
-        .platform-name {
-            font-size: 22px;
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .platform-icon {
-            font-size: 28px;
-        }
-
-        .download-link {
-            display: block;
-            padding: 16px 32px;
-            background: #ffffff;
-            color: #000000;
-            text-decoration: none;
-            text-align: center;
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: 600;
-            transition: all 0.2s;
-            margin-bottom: 16px;
-        }
-
-        .download-link:hover {
-            background: rgba(255,255,255,0.9);
-            transform: translateY(-1px);
-        }
-
-        .access-code {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 14px 18px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 10px;
-            font-size: 16px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .code-text {
-            color: #d1d1d6;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .copy-button {
-            background: rgba(255,255,255,0.1);
-            color: #ffffff;
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 10px 18px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .copy-button:hover {
-            background: rgba(255,255,255,0.2);
-            border-color: rgba(255,255,255,0.3);
-        }
-
-        .copy-button.copied {
-            background: rgba(52, 199, 89, 0.2);
-            border-color: rgba(52, 199, 89, 0.4);
-            color: #34c759;
-        }
-
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            background: rgba(255,255,255,0.1);
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 500;
-            margin-bottom: 32px;
-            transition: all 0.3s;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .back-button:hover {
-            background: rgba(255,255,255,0.15);
-            border-color: rgba(255,255,255,0.3);
-            transform: translateX(-4px);
-        }
-
-        .loading-state {
-            text-align: center;
-            padding: 100px 40px;
-            color: #86868b;
-        }
-
-        .loading-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-            opacity: 0.6;
-        }
-
-        .error-state {
-            text-align: center;
-            padding: 100px 40px;
-            background: rgba(255,255,255,0.03);
-            border-radius: 24px;
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .error-icon {
-            font-size: 64px;
-            margin-bottom: 20px;
-            opacity: 0.6;
-        }
-
-        .error-title {
-            font-size: 24px;
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 16px;
-        }
-
-        .error-text {
-            font-size: 18px;
-            color: #86868b;
-            line-height: 1.6;
-        }
-
-        .no-downloads {
-            text-align: center;
-            padding: 60px 40px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .no-downloads-text {
-            font-size: 18px;
-            color: #86868b;
-        }
-
-        @media (max-width: 768px) {
-            .download-container {
-                padding: 20px;
-            }
-
-            .software-icon-large {
-                font-size: 60px;
-            }
-
-            .software-title {
-                font-size: 28px;
-            }
-
-            .software-category {
-                font-size: 16px;
-            }
-
-            .software-description {
-                font-size: 16px;
-            }
-
-            .download-section {
-                padding: 28px;
-            }
-
-            .section-title {
-                font-size: 22px;
-            }
-
-            .download-card {
-                padding: 24px;
-            }
-
-            .platform-name {
-                font-size: 18px;
-            }
-
-            .download-link {
-                padding: 14px 24px;
-                font-size: 16px;
-            }
-        }
-    </style>
 </head>
 <body>
-    <!-- 顶部导航栏 -->
-    <nav class="main-nav">
-        <div class="nav-container">
-            <a href="index.html" class="nav-item">软件下载</a>
-            <a href="jiuban-notes.html" class="nav-item">久伴笔记</a>
-            <a href="help.html" class="nav-item">使用帮助</a>
-            <a href="contact.html" class="nav-item">联系我们</a>
-        </div>
-    </nav>
-
-    <div class="download-container">
-        <!-- 返回按钮 -->
-        <a href="index.html" class="back-button">
-            <span>←</span> 返回软件列表
+<div class="layout">
+    <!-- 左侧固定导航栏 -->
+    <aside class="side">
+        <a class="logo" href="index.html">
+            <svg width="34" height="34" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="30" height="30" rx="8" fill="rgba(255,255,255,.15)"/><path d="M9 12h16M9 17h16M9 22h10" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>
+            <span>
+                <span class="logo-name">电脑小百科</span>
+                <span class="logo-sub">SOFTWARE</span>
+            </span>
         </a>
+        <nav class="nav">
+            <div class="nav-group-title">软件分类</div>
+            <ul class="cat-list" id="sideCats"></ul>
+        </nav>
+        <div class="copyright">© 2026 电脑小百科<br>软件精选 · 绿色安全</div>
+    </aside>
 
-        <!-- 软件详情区域 -->
-        <div id="softwareDetail">
-            <!-- 内容将通过JavaScript动态加载 -->
+    <div class="main">
+        <!-- 顶栏 -->
+        <div class="header">
+            <span class="menu-btn"></span>
+            <ul class="list">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="jiuban-notes.html">久伴笔记</a></li>
+                <li class="hide-mobile"><a href="help.html">使用帮助</a></li>
+                <li class="hide-mobile"><a href="contact.html">联系我们</a></li>
+            </ul>
         </div>
+
+        <div class="container">
+            <!-- 返回按钮 -->
+            <a href="index.html" class="back-button">
+                <span>←</span> 返回软件列表
+            </a>
+
+            <!-- 软件详情区域 -->
+            <div id="softwareDetail">
+                <!-- 内容将通过JavaScript动态加载 -->
+            </div>
+        </div>
+
+        <div class="footer">© 2026 <a href="https://space.bilibili.com/595098830" target="_blank">@电脑小百科</a>（抖音/B站/小红书）技术支持QQ：2591735711 软件精选 · All Rights Reserved</div>
     </div>
+</div>
 
-    <footer>
-        <p class="copyright-info">© 2026 <a href="https://space.bilibili.com/595098830" target="_blank" style="color: #ffffff; text-decoration: none;">@电脑小百科</a> （抖音/B站/小红书）技术支持QQ：2591735711 软件精选 · All Rights Reserved</p>
-    </footer>
-
+<script src="site.js"></script>
     <script src="software-data.js"></script>
     <script>
         // 获取URL参数
@@ -457,9 +273,9 @@
         function showLoading() {
             const container = document.getElementById('softwareDetail');
             container.innerHTML = `
-                <div class="loading-state">
-                    <div class="loading-icon">⏳</div>
-                    <div>正在加载软件信息...</div>
+                <div class="state-block">
+                    <div class="state-icon">⏳</div>
+                    <div class="state-text">正在加载软件信息...</div>
                 </div>
             `;
         }
@@ -468,10 +284,10 @@
         function showError(message) {
             const container = document.getElementById('softwareDetail');
             container.innerHTML = `
-                <div class="error-state">
-                    <div class="error-icon">⚠️</div>
-                    <div class="error-title">加载失败</div>
-                    <div class="error-text">${message}</div>
+                <div class="state-block">
+                    <div class="state-icon">⚠️</div>
+                    <div class="state-text">加载失败</div>
+                    <div>${message}</div>
                 </div>
             `;
         }
