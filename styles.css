@@ -854,9 +854,34 @@ code {
 
 .faq-item { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px dashed var(--gray-3); }
 .faq-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-.faq-question { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
-.faq-question::before { content: "Q "; color: var(--primary); font-weight: 700; }
-.faq-answer { font-size: 14px; color: var(--gray-7); line-height: 1.9; }
+.faq-question {
+  font-size: 14px; font-weight: 700; color: var(--ink);
+  margin-bottom: 8px;
+  position: relative;
+  padding-left: 32px;        /* 为 Q 标记预留空间 */
+  min-height: 23px;
+}
+.faq-question::before {
+  content: "Q";
+  position: absolute; left: 0; top: 0;
+  width: 22px; height: 22px; line-height: 22px;
+  border-radius: var(--r-sm);
+  background: var(--primary-light); color: var(--primary);
+  font-size: 13px; font-weight: 700; text-align: center;
+}
+.faq-answer {
+  font-size: 14px; color: var(--gray-7); line-height: 1.9;
+  position: relative;
+  padding-left: 32px;        /* 与问题缩进对齐 */
+}
+.faq-answer::before {
+  content: "A";
+  position: absolute; left: 0; top: 2px;
+  width: 22px; height: 22px; line-height: 22px;
+  border-radius: var(--r-sm);
+  background: var(--bg); border: 1px solid var(--line); color: var(--gray-7);
+  font-size: 13px; font-weight: 700; text-align: center;
+}
 
 /* ---------- 下载详情页 ---------- */
 .back-button {
