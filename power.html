@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电脑电源推荐瓦数计算器-电脑小百科</title>
+    <meta name="keywords" content="电源瓦数计算器,电脑电源推荐,电源功率计算,装机功率计算器,CPU功耗查询,显卡功耗查询,电脑小百科,实用工具">
+    <meta name="description" content="电脑小百科实用工具：电脑电源瓦数推荐计算器，根据CPU满载功耗与显卡TBP功耗快速估算整机功耗，一键推荐稳妥/最佳电源额定功率档位，装机选电源必备。">
+    <style>
+        /* ============================================================
+         *  电脑小百科 · 实用工具 —— 与主站统一的蓝白主题
+         *  主题：蓝白配色 · 浅圆角 · 轻动效（主蓝 #2378e3）
+         *  布局：左侧固定导航 + 右侧内容区（与主页一致）
+         * ============================================================ */
+        :root {
+            --primary: #2378e3;        /* 主蓝（侧栏/激活态/主按钮） */
+            --primary-dark: #1a63c4;   /* 深蓝（悬停加深） */
+            --primary-light: #edf4fd;  /* 浅蓝（提示底色） */
+            --ink: #223a52;            /* 深蓝灰（标题文字） */
+            --ink-2: #3d5878;
+            --gray-7: #5d6c80;
+            --gray-5: #8d99a9;
+            --gray-3: #c9d4e0;
+            --line: #e3eaf2;
+            --bg: #f2f6fb;             /* 页面底色（蓝调浅灰） */
+            --card: #ffffff;
+            --text: #2d3f53;
+            --muted: #7d8da0;
+            --side-w: 200px;
+            --r-lg: 14px;
+            --r-md: 10px;
+            --r-sm: 7px;
+            --shadow: 0 1px 2px rgba(30, 80, 160, .04), 0 4px 16px rgba(30, 80, 160, .06);
+            --shadow-hover: 0 2px 4px rgba(30, 80, 160, .05), 0 10px 26px rgba(30, 80, 160, .12);
+            --ease: cubic-bezier(.4, 0, .2, 1);
+        }
+
+        * { margin: 0; padding: 0; border: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, "Segoe UI", "Microsoft YaHei", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: var(--text);
+            background-color: var(--bg);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        ul, li { list-style: none; }
+        a { color: inherit; text-decoration: none; }
+        h1, h2, h3, h4 { font-weight: 600; }
+
+        ::selection { color: #fff; background: var(--primary); }
+
+        ::-webkit-scrollbar { width: 10px; height: 10px; }
+        ::-webkit-scrollbar-thumb { background: rgba(35, 100, 180, .22); border-radius: 5px; border: 2px solid var(--bg); }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(35, 100, 180, .38); }
+        ::-webkit-scrollbar-track { background: transparent; }
+
+        html { scroll-behavior: smooth; }
+
+        /* ---------- 布局骨架（与主站一致：左侧固定导航 + 右侧内容区） ---------- */
+        .layout { min-height: 100vh; min-width: 320px; padding-left: var(--side-w); }
+
+        .side {
+            width: var(--side-w);
+            position: fixed;
+            top: 0; left: 0; bottom: 0;
+            background: var(--primary);
+            color: #fff;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .logo { display: flex; align-items: center; gap: 10px; margin: 26px 18px 22px; color: #fff; }
+        .logo svg { flex: 0 0 auto; }
+        .logo .logo-name { display: block; font-size: 16px; font-weight: 700; line-height: 1.3; letter-spacing: 1px; }
+        .logo .logo-sub { display: block; font-size: 10px; font-weight: 400; opacity: .6; letter-spacing: 3px; margin-top: 2px; }
+
+        .nav { flex: 1; padding: 0 12px; }
+        .nav .cat-list { padding-bottom: 6px; }
+        .nav .cat-list li { margin-bottom: 9px; }
+        .nav .cat-list li a {
+            height: 40px; line-height: 40px;
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, .82);
+            padding: 0 8px;
+            display: block;
+            text-align: center;
+            letter-spacing: 2px;
+            text-indent: 2px;
+            border-radius: var(--r-md);
+            transition: background-color .2s var(--ease), color .2s var(--ease);
+        }
+        .nav .cat-list li a:hover { background: rgba(255, 255, 255, .16); color: #fff; }
+        .nav .cat-list li.active a { background: #fff; color: var(--primary); }
+
+        .nav-group-title {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-indent: 4px;
+            color: rgba(255, 255, 255, .5);
+            margin-top: 8px;
+            padding: 10px 14px 12px;
+            text-align: center;
+        }
+
+        .side .copyright {
+            margin: 16px 18px 20px;
+            font-size: 11px;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, .55);
+            border-top: 1px solid rgba(255, 255, 255, .18);
+            padding-top: 14px;
+        }
+
+        .main { overflow: hidden; }
+
+        /* 顶栏：浅底粘性 + 毛玻璃（与主站一致） */
+        .header {
+            height: 56px;
+            padding: 0 22px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            position: sticky;
+            top: 0;
+            z-index: 15;
+            background: rgba(242, 246, 251, .85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(35, 100, 180, .08);
+        }
+        .header .list { display: flex; font-size: 13px; font-weight: 500; }
+        .header .list li { margin-left: 6px; }
+        .header .list li a {
+            height: 34px; line-height: 34px;
+            padding: 0 14px;
+            display: block;
+            border-radius: 999px;
+            transition: background-color .2s var(--ease), color .2s var(--ease);
+        }
+        .header .list li a:hover { background: var(--primary); color: #fff; text-decoration: none; }
+        .header .list li.active a { background: var(--primary); color: #fff; }
+
+        .menu-btn { display: none; }
+
+        .container { margin: 22px; max-width: 1080px; }
+
+        /* ---------- 页头横幅（与主站内容页一致） ---------- */
+        .page-head {
+            margin-bottom: 18px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: var(--r-lg);
+            box-shadow: var(--shadow);
+            padding: 32px 24px;
+            text-align: center;
+        }
+        .page-head .ph-icon { font-size: 46px; line-height: 1; margin-bottom: 14px; display: block; }
+        .page-head .ph-title { font-size: 28px; font-weight: 700; color: var(--ink); margin-bottom: 8px; letter-spacing: -.02em; }
+        .page-head .ph-sub { font-size: 14px; color: var(--muted); }
+
+        /* ---------- 内容面板（白卡片 + 蓝点标题栏，与主站一致） ---------- */
+        .panel {
+            margin-bottom: 18px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: var(--r-lg);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        .panel-head {
+            min-height: 52px;
+            line-height: 52px;
+            border-bottom: 1px solid var(--line);
+            padding: 0 20px;
+            overflow: hidden;
+        }
+        .panel-head h2 { font-size: 15px; color: var(--ink); font-weight: 600; }
+        .panel-head h2::before {
+            content: "";
+            display: inline-block;
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--primary);
+            margin: 0 10px 2px 0;
+        }
+        .panel-body { padding: 18px 20px; font-size: 14px; }
+
+        /* ---------- 表单控件（白底描边圆角，与主站输入框统一） ---------- */
+        .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; }
+        .field label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+        .field select,
+        .field input[type="number"] {
+            width: 100%;
+            height: 40px;
+            padding: 0 12px;
+            font-size: 13px;
+            font-family: inherit;
+            color: var(--text);
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: var(--r-md);
+            outline: 0;
+            cursor: pointer;
+            transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+        }
+        .field select:hover,
+        .field input[type="number"]:hover { border-color: var(--gray-3); }
+        .field select:focus,
+        .field input[type="number"]:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(35, 120, 227, .13);
+        }
+        .field-tip { font-size: 12px; color: var(--muted); margin-top: 12px; }
+
+        /* ---------- 计算结果 ---------- */
+        .result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+        .result-item {
+            background: var(--bg);
+            border: 1px solid var(--line);
+            border-radius: var(--r-md);
+            padding: 20px 16px;
+            text-align: center;
+            transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+        }
+        .result-item:hover { border-color: var(--gray-3); box-shadow: var(--shadow); }
+        .result-label { font-size: 13px; font-weight: 600; color: var(--ink-2); margin-bottom: 10px; }
+        .result-value b { font-size: 30px; font-weight: 700; color: var(--primary); letter-spacing: -.02em; }
+        .result-value span { font-size: 12px; color: var(--muted); margin-left: 4px; }
+        .result-item.safe .result-value b { color: #1d9d4b; }   /* 与主站“已复制”绿一致 */
+        .result-item.best .result-value b { color: #d97706; }
+        .result-note { font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.7; }
+
+        .tip-text {
+            margin-top: 16px;
+            padding: 12px 16px;
+            background: var(--primary-light);
+            border: 1px solid #d8e7fa;
+            border-radius: var(--r-md);
+            font-size: 12px;
+            color: var(--ink-2);
+            line-height: 1.9;
+        }
+
+        /* ---------- 页脚（与主站一致） ---------- */
+        .footer {
+            text-align: center;
+            padding: 14px 0 30px;
+            color: #9fb0c2;
+            font-size: 12px;
+            line-height: 1.9;
+        }
+        .footer a { color: var(--primary); font-weight: 600; }
+        .footer a:hover { text-decoration: underline; }
+
+        .friend-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px 16px;
+            max-width: 640px;
+            margin: 0 auto 10px;
+            padding-top: 14px;
+            font-size: 12px;
+            color: #9fb0c2;
+        }
+        .friend-links .fl-label { font-weight: 600; color: #9fb0c2; }
+        .friend-links a { color: var(--gray-7); font-weight: 500; transition: color .2s var(--ease); }
+        .friend-links a:hover { color: var(--primary); text-decoration: underline; }
+
+        /* ---------- 移动端（与主站一致：隐藏侧栏 + 汉堡按钮） ---------- */
+        @media screen and (max-width: 767px) {
+            .layout { padding-left: 0; }
+            .side { display: none; width: 100%; z-index: 98; }
+            .side.open { display: block; }
+            .menu-btn {
+                display: block;
+                position: fixed;
+                top: 13px; left: 14px;
+                width: 30px; height: 30px;
+                cursor: pointer;
+                z-index: 101;
+            }
+            .menu-btn::before { content: "\2630"; font-size: 21px; color: var(--primary); }
+            .header { position: fixed; top: 0; left: 0; right: 0; justify-content: flex-end; }
+            .header .list li:first-child { margin-left: 0; }
+            .header .list li a { padding: 0 10px; }
+            .header .list li.hide-mobile { display: none; }
+            .container { margin: 68px 14px 14px; }
+            .page-head { padding: 24px 16px; }
+            .page-head .ph-title { font-size: 22px; }
+            .field-grid { grid-template-columns: 1fr; }
+            .result-grid { grid-template-columns: 1fr; }
+            .result-value b { font-size: 26px; }
+        }
+
+        @media screen and (max-width: 575px) {
+            .header .list li:nth-child(3) { display: none; }
+        }
+    </style>
+</head>
+<body>
+<div class="layout">
+    <!-- 左侧固定导航栏（与主站一致） -->
+    <aside class="side">
+        <a class="logo" href="index.html">
+            <svg width="34" height="34" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="30" height="30" rx="8" fill="rgba(255,255,255,.15)"/><path d="M9 12h16M9 17h16M9 22h10" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>
+            <span>
+                <span class="logo-name">电脑小百科</span>
+                <span class="logo-sub">TOOLS</span>
+            </span>
+        </a>
+        <nav class="nav">
+            <div class="nav-group-title">实用工具</div>
+            <ul class="cat-list">
+                <li class="active"><a href="power.html">电源瓦数计算器</a></li>
+            </ul>
+            <div class="nav-group-title">快捷入口</div>
+            <ul class="cat-list">
+                <li><a href="index.html">软件下载</a></li>
+                <li><a href="jiuban-notes.html">久伴笔记</a></li>
+                <li><a href="help.html">使用帮助</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">© 2026 电脑小百科<br>实用工具 · 绿色安全</div>
+    </aside>
+
+    <div class="main">
+        <!-- 顶栏（与主站一致的胶囊导航） -->
+        <div class="header">
+            <span class="menu-btn"></span>
+            <ul class="list">
+                <li><a href="index.html">首页</a></li>
+                <li class="active"><a href="power.html">电源计算</a></li>
+                <li class="hide-mobile"><a href="jiuban-notes.html">久伴笔记</a></li>
+                <li class="hide-mobile"><a href="help.html">使用帮助</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+        </div>
+
+        <div class="container">
+            <!-- 页头横幅 -->
+            <div class="page-head">
+                <span class="ph-icon">⚡</span>
+                <h1 class="ph-title">电脑电源瓦数推荐计算器</h1>
+                <p class="ph-sub">根据 CPU / 显卡功耗，快速推荐电源额定功率档位</p>
+            </div>
+
+            <!-- CPU 选择 -->
+            <div class="panel">
+                <div class="panel-head"><h2>🧩 CPU 型号选择</h2></div>
+                <div class="panel-body">
+                    <div class="field-grid">
+                        <div class="field">
+                            <label for="cpuBrandFilter">CPU品牌筛选</label>
+                            <select id="cpuBrandFilter">
+                                <option value="all">全部CPU</option>
+                                <option value="intel">Intel</option>
+                                <option value="amd">AMD</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="cpuSelect">选择CPU型号</label>
+                            <select id="cpuSelect"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 显卡选择 -->
+            <div class="panel">
+                <div class="panel-head"><h2>🎮 显卡型号选择</h2></div>
+                <div class="panel-body">
+                    <div class="field-grid">
+                        <div class="field">
+                            <label for="gpuBrandFilter">显卡品牌筛选</label>
+                            <select id="gpuBrandFilter">
+                                <option value="all">全部显卡</option>
+                                <option value="nvidia">N卡(NVIDIA)</option>
+                                <option value="amd">A卡(AMD)</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="gpuSelect">选择显卡型号</label>
+                            <select id="gpuSelect"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 手动输入功耗 -->
+            <div class="panel">
+                <div class="panel-head"><h2>✍️ 手动输入功耗（可选）</h2></div>
+                <div class="panel-body">
+                    <div class="field-grid">
+                        <div class="field">
+                            <label for="cpuManual">CPU满载功耗(W)</label>
+                            <input type="number" id="cpuManual" placeholder="留空使用下拉选择">
+                        </div>
+                        <div class="field">
+                            <label for="gpuManual">显卡TBP功耗(W)</label>
+                            <input type="number" id="gpuManual" placeholder="留空使用下拉选择">
+                        </div>
+                    </div>
+                    <p class="field-tip">手动输入后优先覆盖上方下拉选择，适合老平台、二手非公超频显卡等特殊配置。</p>
+                </div>
+            </div>
+
+            <!-- 计算结果 -->
+            <div class="panel">
+                <div class="panel-head"><h2>📊 计算结果</h2></div>
+                <div class="panel-body">
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <div class="result-label">整机估算满载功耗</div>
+                            <div class="result-value"><b id="totalW">0</b><span>W</span></div>
+                            <div class="result-note">CPU + 显卡 + 其他硬件（约80W）</div>
+                        </div>
+                        <div class="result-item safe">
+                            <div class="result-label">✅ 稳妥推荐</div>
+                            <div class="result-value"><b id="safeW">0</b><span>W 额定</span></div>
+                            <div class="result-note">×1.5倍余量，默认BIOS不超频</div>
+                        </div>
+                        <div class="result-item best">
+                            <div class="result-label">⭐ 最佳推荐</div>
+                            <div class="result-value"><b id="bestW">0</b><span>W 额定</span></div>
+                            <div class="result-note">×2倍余量，超频/PBO/非公显卡/后期升级</div>
+                        </div>
+                    </div>
+                    <div class="tip-text">
+💡提示：CPU为主板默认BIOS下长时间满载功耗，不是散热TDP；显卡为官方TBP典型板载功耗，老平台、二手非公超频显卡实际功耗会更高。稳妥档位适合默认设置；最佳适合超频、多硬盘、未来升级；输出为市面常见电源额定功率，优先铜牌/金牌电源。手动输入数值会优先覆盖下拉选择。老二手硬件建议尽量往高一档电源选择。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--友情链接-->
+        <div class="friend-links"><span class="fl-label">友情链接：</span><a href="https://xiaobaike.dpdns.org/" target="_blank" rel="noopener">电脑软件下载</a><a href="https://windows.ee.cd" target="_blank" rel="noopener">Windows系统下载站</a><a href="https://1000.vps.cd/" target="_blank" rel="noopener">国外十大VPS推荐</a></div>
+
+        <!--底部版权声明-->
+        <div class="footer">© 2026 <a href="https://space.bilibili.com/595098830" target="_blank">@电脑小百科</a>（抖音/B站/小红书）技术支持QQ：2591735711 软件精选 · All Rights Reserved</div>
+    </div>
+</div>
+
+<script>
+// 移动端侧边栏开关（与主站交互一致）
+(function () {
+    var btn = document.querySelector('.menu-btn');
+    var side = document.querySelector('.side');
+    if (!btn || !side) return;
+    btn.addEventListener('click', function () { side.classList.toggle('open'); });
+    side.addEventListener('click', function (e) {
+        if (e.target.closest('a')) side.classList.remove('open');
+    });
+})();
+</script>
+
+<script>
+//市面真实常见电源额定档位
+const powerLevels = [300,350,400,450,500,550,600,650,700,750,850,1000,1200,1300,1600];
+
+//向上匹配真实电源档位
+function getNearestPower(w){
+    for(let p of powerLevels){
+        if(p >= w) return p;
+    }
+    return 1600;
+}
+
+// ========= CPU数据库：主板默认BIOS，长时间满载Package功耗（电源选型用） =========
+const cpuDatabase = [
+    // Intel 6代 Skylake LGA1151
+    {brand:"intel",name:"i3‑6100",w:60},
+    {brand:"intel",name:"i5‑6400",w:80},
+    {brand:"intel",name:"i5‑6500",w:82},
+    {brand:"intel",name:"i5‑6600K",w:125},
+    {brand:"intel",name:"i7‑6700",w:90},
+    {brand:"intel",name:"i7‑6700K",w:150},
+
+    // Intel 7代 Kaby Lake
+    {brand:"intel",name:"i3‑7100",w:60},
+    {brand:"intel",name:"i5‑7400",w:82},
+    {brand:"intel",name:"i5‑7500",w:84},
+    {brand:"intel",name:"i5‑7600K",w:130},
+    {brand:"intel",name:"i7‑7700",w:92},
+    {brand:"intel",name:"i7‑7700K",w:155},
+
+    // Intel 8代 Coffee Lake
+    {brand:"intel",name:"i3‑8100",w:65},
+    {brand:"intel",name:"i5‑8400",w:100},
+    {brand:"intel",name:"i5‑8500",w:102},
+    {brand:"intel",name:"i5‑8600K",w:140},
+    {brand:"intel",name:"i7‑8700",w:110},
+    {brand:"intel",name:"i7‑8700K",w:160},
+
+    // Intel 9代 Coffee Lake‑S Refresh
+    {brand:"intel",name:"i3‑9100F",w:65},
+    {brand:"intel",name:"i5‑9400F",w:105},
+    {brand:"intel",name:"i5‑9600K",w:145},
+    {brand:"intel",name:"i7‑9700K",w:175},
+    {brand:"intel",name:"i9‑9900K",w:205},
+
+    // Intel 10代
+    {brand:"intel",name:"i3‑10100",w:65},
+    {brand:"intel",name:"i3‑10100F",w:65},
+    {brand:"intel",name:"i5‑10400",w:88},
+    {brand:"intel",name:"i5‑10400F",w:88},
+    {brand:"intel",name:"i5‑10600K",w:130},
+    {brand:"intel",name:"i7‑10700K",w:150},
+    {brand:"intel",name:"i9‑10900K",w:220},
+
+    // Intel 11代
+    {brand:"intel",name:"i5‑11400",w:95},
+    {brand:"intel",name:"i5‑11400F",w:95},
+    {brand:"intel",name:"i5‑11600K",w:130},
+    {brand:"intel",name:"i7‑11700K",w:210},
+    {brand:"intel",name:"i9‑11900K",w:240},
+
+    // Intel 12代 Alder Lake
+    {brand:"intel",name:"i3‑12100",w:60},
+    {brand:"intel",name:"i3‑12100F",w:60},
+    {brand:"intel",name:"i5‑12400",w:110},
+    {brand:"intel",name:"i5‑12400F",w:110},
+    {brand:"intel",name:"i5‑12600K",w:160},
+    {brand:"intel",name:"i7‑12700K",w:200},
+    {brand:"intel",name:"i9‑12900K",w:240},
+
+    // Intel 13代 Raptor Lake
+    {brand:"intel",name:"i3‑13100",w:60},
+    {brand:"intel",name:"i3‑13100F",w:60},
+    {brand:"intel",name:"i5‑13400",w:120},
+    {brand:"intel",name:"i5‑13400F",w:120},
+    {brand:"intel",name:"i5‑13600K",w:170},
+    {brand:"intel",name:"i7‑13700K",w:245},
+    {brand:"intel",name:"i9‑13900K",w:290},
+
+    // Intel 14代 Raptor Lake‑S Refresh
+    {brand:"intel",name:"i5‑14400",w:120},
+    {brand:"intel",name:"i5‑14400F",w:120},
+    {brand:"intel",name:"i5‑14600K",w:170},
+    {brand:"intel",name:"i7‑14700K",w:260},
+    {brand:"intel",name:"i9‑14900K",w:320},
+
+    // Intel Ultra 200系列 Arrow Lake‑S
+    {brand:"intel",name:"Ultra5 225F",w:120},
+    {brand:"intel",name:"Ultra5 235",w:120},
+    {brand:"intel",name:"Ultra5 245K",w:140},
+    {brand:"intel",name:"Ultra7 265K",w:250},
+    {brand:"intel",name:"Ultra7 270K Plus",w:250},
+    {brand:"intel",name:"Ultra9 285K",w:250},
+
+    // AMD FX 老AM3+ 家用
+    {brand:"amd",name:"FX‑8300",w:140},
+    {brand:"amd",name:"FX‑8350",w:160},
+
+    // AMD Ryzen 1000 Zen1 AM4
+    {brand:"amd",name:"R3‑1200",w:80},
+    {brand:"amd",name:"R5‑1400",w:95},
+    {brand:"amd",name:"R5‑1500X",w:105},
+    {brand:"amd",name:"R5‑1600",w:110},
+    {brand:"amd",name:"R5‑1600X",w:125},
+    {brand:"amd",name:"R7‑1700",w:130},
+    {brand:"amd",name:"R7‑1700X",w:150},
+    {brand:"amd",name:"R7‑1800X",w:170},
+
+    // AMD Ryzen 2000 Zen+ AM4
+    {brand:"amd",name:"R3‑2200G",w:65},
+    {brand:"amd",name:"R5‑2400G",w:65},
+    {brand:"amd",name:"R5‑2600",w:115},
+    {brand:"amd",name:"R5‑2600X",w:130},
+    {brand:"amd",name:"R7‑2700",w:140},
+    {brand:"amd",name:"R7‑2700X",w:160},
+
+    // AMD Ryzen3000 AM4
+    {brand:"amd",name:"R5‑3500X",w:95},
+    {brand:"amd",name:"R5‑3600",w:100},
+    {brand:"amd",name:"R7‑3700X",w:110},
+    {brand:"amd",name:"R7‑3800X",w:130},
+    {brand:"amd",name:"R9‑3900X",w:150},
+    {brand:"amd",name:"R9‑3950X",w:175},
+
+    // AMD Ryzen4000G APU
+    {brand:"amd",name:"R3‑4300G",w:65},
+    {brand:"amd",name:"R5‑4600G",w:65},
+
+    // AMD Ryzen5000 AM4
+    {brand:"amd",name:"R5‑5500",w:65},
+    {brand:"amd",name:"R5‑5600",w:95},
+    {brand:"amd",name:"R5‑5600X",w:110},
+    {brand:"amd",name:"R7‑5700X",w:105},
+    {brand:"amd",name:"R7‑5800X",w:125},
+    {brand:"amd",name:"R7‑5800X3D",w:120},
+    {brand:"amd",name:"R9‑5900X",w:140},
+    {brand:"amd",name:"R9‑5950X",w:165},
+
+    // AMD Ryzen7000 AM5 Zen4
+    {brand:"amd",name:"R5‑7500F",w:100},
+    {brand:"amd",name:"R5‑7600",w:105},
+    {brand:"amd",name:"R5‑7600X3D",w:90},
+    {brand:"amd",name:"R7‑7700X",w:130},
+    {brand:"amd",name:"R7‑7800X3D",w:125},
+    {brand:"amd",name:"R9‑7900X",w:170},
+    {brand:"amd",name:"R9‑7900X3D",w:170},
+    {brand:"amd",name:"R9‑7950X",w:230},
+
+    // AMD Ryzen9000 AM5 Zen5
+    {brand:"amd",name:"R5‑9600X",w:105},
+    {brand:"amd",name:"R7‑9700X",w:130},
+    {brand:"amd",name:"R7‑9800X3D",w:130},
+    {brand:"amd",name:"R9‑9900X",w:170},
+    {brand:"amd",name:"R9‑9950X",w:200}
+];
+
+// ========= GPU数据库：NVIDIA/AMD官方TGP/TBP典型板载功耗 =========
+const gpuDatabase = [
+    {brand:"none",name:"核显 / 无独立显卡",w:0},
+
+    //N卡 GTX700系列 Maxwell开普勒
+    {brand:"nvidia",name:"GTX750",w:55},
+    {brand:"nvidia",name:"GTX750Ti",w:60},
+    {brand:"nvidia",name:"GTX760",w:170},
+    {brand:"nvidia",name:"GTX770",w:230},
+    {brand:"nvidia",name:"GTX780",w:250},
+    {brand:"nvidia",name:"GTX780Ti",w:280},
+
+    //N卡 GTX900系列 Maxwell
+    {brand:"nvidia",name:"GTX950",w:110},
+    {brand:"nvidia",name:"GTX960",w:120},
+    {brand:"nvidia",name:"GTX970",w:170},
+    {brand:"nvidia",name:"GTX980",w:190},
+    {brand:"nvidia",name:"GTX980Ti",w:250},
+
+    //N卡 GTX 10系列
+    {brand:"nvidia",name:"GT1030",w:30},
+    {brand:"nvidia",name:"GTX1050",w:75},
+    {brand:"nvidia",name:"GTX1050Ti",w:75},
+    {brand:"nvidia",name:"GTX1060 6G",w:120},
+    {brand:"nvidia",name:"GTX1070",w:150},
+    {brand:"nvidia",name:"GTX1080",w:180},
+    {brand:"nvidia",name:"GTX1080Ti",w:250},
+
+    //N卡 GTX16系列
+    {brand:"nvidia",name:"GTX1630",w:75},
+    {brand:"nvidia",name:"GTX1650",w:75},
+    {brand:"nvidia",name:"GTX1660",w:120},
+    {brand:"nvidia",name:"GTX1660 Super",w:125},
+    {brand:"nvidia",name:"GTX1660Ti",w:120},
+
+    //N卡 RTX20系列
+    {brand:"nvidia",name:"RTX2060",w:160},
+    {brand:"nvidia",name:"RTX2060 Super",w:175},
+    {brand:"nvidia",name:"RTX2070",w:215},
+    {brand:"nvidia",name:"RTX2070 Super",w:215},
+    {brand:"nvidia",name:"RTX2080",w:250},
+    {brand:"nvidia",name:"RTX2080 Super",w:250},
+    {brand:"nvidia",name:"RTX2080Ti",w:300},
+
+    //N卡 RTX30系列
+    {brand:"nvidia",name:"RTX3050",w:130},
+    {brand:"nvidia",name:"RTX3060",w:170},
+    {brand:"nvidia",name:"RTX3060Ti",w:200},
+    {brand:"nvidia",name:"RTX3070",w:220},
+    {brand:"nvidia",name:"RTX3070Ti",w:250},
+    {brand:"nvidia",name:"RTX3080",w:320},
+    {brand:"nvidia",name:"RTX3080Ti",w:370},
+    {brand:"nvidia",name:"RTX3090",w:450},
+    {brand:"nvidia",name:"RTX3090Ti",w:450},
+
+    //N卡 RTX40系列 Ada
+    {brand:"nvidia",name:"RTX4060",w:115},
+    {brand:"nvidia",name:"RTX4060Ti",w:165},
+    {brand:"nvidia",name:"RTX4070",w:200},
+    {brand:"nvidia",name:"RTX4070 Super",w:220},
+    {brand:"nvidia",name:"RTX4070Ti",w:285},
+    {brand:"nvidia",name:"RTX4070Ti Super",w:285},
+    {brand:"nvidia",name:"RTX4080",w:320},
+    {brand:"nvidia",name:"RTX4080 Super",w:320},
+    {brand:"nvidia",name:"RTX4090",w:450},
+    {brand:"nvidia",name:"RTX4090D",w:450},
+
+    //N卡 RTX50系列 Blackwell
+    {brand:"nvidia",name:"RTX5050",w:130},
+    {brand:"nvidia",name:"RTX5060",w:145},
+    {brand:"nvidia",name:"RTX5060Ti",w:180},
+    {brand:"nvidia",name:"RTX5070",w:250},
+    {brand:"nvidia",name:"RTX5070Ti",w:300},
+    {brand:"nvidia",name:"RTX5080",w:360},
+    {brand:"nvidia",name:"RTX5090",w:575},
+    {brand:"nvidia",name:"RTX5090D",w:575},
+
+    //A卡 RX400系列 GCN
+    {brand:"amd",name:"RX460",w:110},
+    {brand:"amd",name:"RX470",w:145},
+    {brand:"amd",name:"RX480",w:185},
+
+    //A卡 RX500系列 GCN
+    {brand:"amd",name:"RX560",w:120},
+    {brand:"amd",name:"RX570",w:150},
+    {brand:"amd",name:"RX580",w:185},
+    {brand:"amd",name:"RX590",w:220},
+
+    //A卡 RX5000 RDNA1
+    {brand:"amd",name:"RX5600XT",w:150},
+    {brand:"amd",name:"RX5700",w:180},
+    {brand:"amd",name:"RX5700XT",w:225},
+
+    //A卡 RX6000 RDNA2
+    {brand:"amd",name:"RX6500XT",w:107},
+    {brand:"amd",name:"RX6600",w:132},
+    {brand:"amd",name:"RX6650XT",w:180},
+    {brand:"amd",name:"RX6700XT",w:230},
+    {brand:"amd",name:"RX6800",w:263},
+    {brand:"amd",name:"RX6800XT",w:300},
+    {brand:"amd",name:"RX6900XT",w:355},
+
+    //A卡 RX7000 RDNA3
+    {brand:"amd",name:"RX7400",w:55},
+    {brand:"amd",name:"RX7600",w:165},
+    {brand:"amd",name:"RX7700XT",w:245},
+    {brand:"amd",name:"RX7800XT",w:263},
+    {brand:"amd",name:"RX7900GRE",w:315},
+    {brand:"amd",name:"RX7900XT",w:315},
+    {brand:"amd",name:"RX7900XTX",w:355},
+
+    //A卡 RX9000 RDNA4
+    {brand:"amd",name:"RX9060XT",w:220},
+    {brand:"amd",name:"RX9070",w:220},
+    {brand:"amd",name:"RX9070XT",w:304}
+];
+
+//dom
+const cpuBrandFilter = document.getElementById('cpuBrandFilter');
+const cpuSelect = document.getElementById('cpuSelect');
+const gpuBrandFilter = document.getElementById('gpuBrandFilter');
+const gpuSelect = document.getElementById('gpuSelect');
+
+const cpuManual = document.getElementById('cpuManual');
+const gpuManual = document.getElementById('gpuManual');
+const totalWEl = document.getElementById('totalW');
+const safeWEl = document.getElementById('safeW');
+const bestWEl = document.getElementById('bestW');
+
+//渲染CPU下拉
+function renderCpuSelect(){
+    const filterVal = cpuBrandFilter.value;
+    cpuSelect.innerHTML = "";
+    let list;
+    if(filterVal === 'all'){
+        list = cpuDatabase;
+    }else{
+        list = cpuDatabase.filter(item=>item.brand === filterVal);
+    }
+    list.forEach(item=>{
+        const opt = document.createElement('option');
+        opt.value = item.w;
+        opt.textContent = `${item.name}（${item.w}W）`;
+        cpuSelect.appendChild(opt);
+    });
+    calcPower();
+}
+
+//渲染GPU下拉
+function renderGpuSelect(){
+    const filterVal = gpuBrandFilter.value;
+    gpuSelect.innerHTML = "";
+    let list;
+    if(filterVal === 'all'){
+        list = gpuDatabase;
+    }else if(filterVal === 'nvidia'){
+        list = gpuDatabase.filter(item=>item.brand === 'nvidia' || item.brand === 'none');
+    }else{
+        list = gpuDatabase.filter(item=>item.brand === 'amd' || item.brand === 'none');
+    }
+    list.forEach(item=>{
+        const opt = document.createElement('option');
+        opt.value = item.w;
+        opt.textContent = `${item.name}（${item.w}W）`;
+        gpuSelect.appendChild(opt);
+    });
+    calcPower();
+}
+
+//计算函数
+function calcPower(){
+    let cpuW = Number(cpuSelect.value);
+    let gpuW = Number(gpuSelect.value);
+
+    if(cpuManual.value !== '' && !isNaN(Number(cpuManual.value))){
+        cpuW = Number(cpuManual.value);
+    }
+    if(gpuManual.value !== '' && !isNaN(Number(gpuManual.value))){
+        gpuW = Number(gpuManual.value);
+    }
+
+    const otherW = 100; // 主板+内存+硬盘+散热风扇等其余硬件功耗
+    const totalLoad = cpuW + gpuW + otherW;
+
+    let safeRaw = totalLoad * 1.5;
+    let bestRaw = totalLoad * 2.0;
+
+    let safe = getNearestPower(safeRaw);
+    let best = getNearestPower(bestRaw);
+
+    //最低300W
+    if(safe < 300) safe = 300;
+    if(best < 300) best = 300;
+
+    //超高功耗显卡兜底：瞬时尖峰大，保底不低于1000/1200W（只抬高不降低）
+    if(gpuW >= 500){
+        if(safe < 1000) safe = 1000;
+        if(best < 1200) best = 1200;
+    }
+
+    totalWEl.innerText = totalLoad;
+    safeWEl.innerText = safe;
+    bestWEl.innerText = best;
+}
+
+//绑定事件
+cpuBrandFilter.addEventListener('change',renderCpuSelect);
+gpuBrandFilter.addEventListener('change',renderGpuSelect);
+cpuSelect.addEventListener('change',calcPower);
+gpuSelect.addEventListener('change',calcPower);
+cpuManual.addEventListener('input',calcPower);
+gpuManual.addEventListener('input',calcPower);
+
+//初始化渲染
+renderCpuSelect();
+renderGpuSelect();
+calcPower();
+</script>
+
+</body>
+</html>
