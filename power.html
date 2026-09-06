@@ -148,6 +148,91 @@
         .header .list li a:hover { background: var(--primary); color: #fff; text-decoration: none; }
         .header .list li.active a { background: var(--primary); color: #fff; }
 
+        /* 顶栏"常用网站"下拉菜单（与主站一致） */
+        .header .dd { position: relative; }
+        .header .dd-toggle {
+            height: 34px; line-height: 34px;
+            padding: 0 14px;
+            margin-left: 10px;
+            display: block;
+            border-radius: 999px;
+            cursor: pointer;
+            user-select: none;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary);
+            transition: background-color .2s var(--ease), color .2s var(--ease);
+        }
+        .header .dd-toggle:hover,
+        .header .dd.open .dd-toggle { background: var(--primary); color: #fff; }
+        .dd-caret {
+            display: inline-block;
+            width: 0; height: 0;
+            margin-left: 2px;
+            vertical-align: 2px;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 5px solid currentColor;
+            transition: transform .2s var(--ease);
+        }
+        .header .dd.open .dd-caret { transform: rotate(180deg); }
+
+        .header .dd-panel {
+            position: absolute;
+            right: 0; top: 44px;
+            width: 296px;
+            padding: 8px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: var(--r-lg);
+            box-shadow: var(--shadow-hover);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: opacity .2s var(--ease), transform .2s var(--ease), visibility .2s;
+            z-index: 60;
+        }
+        .header .dd.open .dd-panel { opacity: 1; visibility: visible; transform: none; }
+
+        .dd-item {
+            display: block;
+            padding: 9px 12px;
+            border-radius: var(--r-md);
+            transition: background-color .15s var(--ease);
+        }
+        .dd-item:hover { background: var(--primary-light); text-decoration: none; }
+        .dd-item b {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .dd-item span { display: block; font-size: 11px; color: var(--muted); margin-top: 2px; }
+        .dd-item.dd-more {
+            margin-top: 6px;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary);
+            border-top: 1px solid var(--line);
+        }
+        .dd-item.dd-more:hover { background: var(--primary); color: #fff; }
+        .dd-badge {
+            flex: 0 0 auto;
+            font-style: normal;
+            font-size: 10px;
+            font-weight: 500;
+            line-height: 1;
+            padding: 3px 6px;
+            color: #fff;
+            background: var(--primary);
+            border-radius: 999px;
+        }
+
         .menu-btn { display: none; }
 
         .container { margin: 22px; max-width: 1080px; }
@@ -300,6 +385,7 @@
             .header .list li:first-child { margin-left: 0; }
             .header .list li a { padding: 0 10px; }
             .header .list li.hide-mobile { display: none; }
+            .header .dd-panel { position: fixed; left: 12px; right: 12px; top: 62px; width: auto; }
             .container { margin: 68px 14px 14px; }
             .page-head { padding: 24px 16px; }
             .page-head .ph-title { font-size: 22px; }
@@ -309,7 +395,7 @@
         }
 
         @media screen and (max-width: 575px) {
-            .header .list li:nth-child(3) { display: none; }
+            .header .list li:nth-child(2) { display: none; }
         }
     </style>
 </head>
@@ -346,11 +432,16 @@
             <span class="menu-btn"></span>
             <ul class="list">
                 <li><a href="index.html">首页</a></li>
+                <li class="hide-mobile"><a href="https://diy.ee.cd/" target="_blank" rel="noopener">视频封面生成</a></li>
                 <li class="active"><a href="power.html">电源计算</a></li>
-                <li class="hide-mobile"><a href="jiuban-notes.html">久伴笔记</a></li>
-                <li class="hide-mobile"><a href="help.html">使用帮助</a></li>
-                <li><a href="contact.html">联系我们</a></li>
+                <li class="hide-mobile"><a href="https://windows.ee.cd/" target="_blank" rel="noopener">系统下载</a></li>
+                <li><a href="jiuban-notes.html">久伴笔记</a></li>
+                <li class="hide-mobile"><a href="contact.html">联系我们</a></li>
             </ul>
+            <div class="dd" id="favDD">
+                <span class="dd-toggle" id="ddToggle">常用网站 <i class="dd-caret"></i></span>
+                <div class="dd-panel"></div>
+            </div>
         </div>
 
         <div class="container">
@@ -457,6 +548,7 @@
     </div>
 </div>
 
+<script src="nav.js"></script>
 <script>
 // 移动端侧边栏开关（与主站交互一致）
 (function () {

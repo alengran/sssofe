@@ -163,6 +163,163 @@ html { scroll-behavior: smooth; }
 .header .list li a:hover { background: var(--primary); color: #fff; text-decoration: none; }
 .header .list li.active a { background: var(--primary); color: #fff; }
 
+/* ---------- 顶栏"常用网站"下拉菜单 ---------- */
+.header .dd { position: relative; }
+.header .dd-toggle {
+  height: 34px; line-height: 34px;
+  padding: 0 14px;
+  margin-left: 10px;
+  display: block;
+  border-radius: 999px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  transition: background-color .2s var(--ease), color .2s var(--ease);
+}
+.header .dd-toggle:hover,
+.header .dd.open .dd-toggle { background: var(--primary); color: #fff; }
+.dd-caret {
+  display: inline-block;
+  width: 0; height: 0;
+  margin-left: 2px;
+  vertical-align: 2px;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid currentColor;
+  transition: transform .2s var(--ease);
+}
+.header .dd.open .dd-caret { transform: rotate(180deg); }
+
+.header .dd-panel {
+  position: absolute;
+  right: 0; top: 44px;
+  width: 296px;
+  padding: 8px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-hover);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity .2s var(--ease), transform .2s var(--ease), visibility .2s;
+  z-index: 60;
+}
+.header .dd.open .dd-panel { opacity: 1; visibility: visible; transform: none; }
+
+.dd-item {
+  display: block;
+  padding: 9px 12px;
+  border-radius: var(--r-md);
+  transition: background-color .15s var(--ease);
+}
+.dd-item:hover { background: var(--primary-light); text-decoration: none; }
+.dd-item b {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.dd-item span { display: block; font-size: 11px; color: var(--muted); margin-top: 2px; }
+.dd-item.dd-more {
+  margin-top: 6px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  border-top: 1px solid var(--line);
+}
+.dd-item.dd-more:hover { background: var(--primary); color: #fff; }
+.dd-badge {
+  flex: 0 0 auto;
+  font-style: normal;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1;
+  padding: 3px 6px;
+  color: #fff;
+  background: var(--primary);
+  border-radius: 999px;
+}
+
+/* ---------- 网站导航页 ---------- */
+.link-cat {
+  margin-bottom: 20px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.link-cat > .title {
+  height: 52px; line-height: 52px;
+  border-bottom: 1px solid var(--line);
+}
+.link-cat > .title h1 {
+  font-size: 15px;
+  padding-left: 20px;
+  color: var(--ink);
+  font-weight: 600;
+}
+.link-cat > .title h1::before {
+  content: "";
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+  margin: 0 10px 2px 0;
+}
+.link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+  gap: 12px;
+  padding: 18px 20px 20px;
+}
+.link-card {
+  display: block;
+  padding: 14px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  transition: transform .18s var(--ease), box-shadow .18s var(--ease), border-color .18s var(--ease);
+}
+.link-card:hover {
+  text-decoration: none;
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+.link-card .lc-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.link-card .lc-desc { font-size: 12px; color: var(--muted); line-height: 1.7; margin-top: 5px; }
+.link-card .lc-url {
+  font-size: 11px;
+  color: var(--gray-5);
+  margin-top: 6px;
+  font-family: Consolas, Monaco, monospace;
+  word-break: break-all;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 767px) {
+  .header .dd-panel { position: fixed; left: 12px; right: 12px; top: 62px; width: auto; }
+  .link-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; padding: 14px; }
+}
+
 .menu-btn { display: none; }
 
 .container { margin: 22px; max-width: 1080px; }

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网站导航 - 电脑小百科 - 常用优质网站一站直达</title>
+    <meta name="keywords" content="网站导航,常用网站,软件下载站,微软官方下载,启动盘制作,硬件检测,驱动下载,电脑小百科">
+    <meta name="description" content="电脑小百科网站导航：常用工具、微软官方资源、启动盘制作工具、硬件检测校验、显卡驱动、社区资源等优质网站一站直达，点击即可在新窗口打开。">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="layout">
+    <!-- 左侧固定导航栏 -->
+    <aside class="side">
+        <a class="logo" href="index.html">
+            <svg width="34" height="34" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="30" height="30" rx="8" fill="rgba(255,255,255,.15)"/><path d="M9 12h16M9 17h16M9 22h10" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>
+            <span>
+                <span class="logo-name">电脑小百科</span>
+                <span class="logo-sub">SOFTWARE</span>
+            </span>
+        </a>
+        <nav class="nav">
+            <div class="nav-group-title">软件分类</div>
+            <ul class="cat-list" id="sideCats"></ul>
+        </nav>
+        <div class="copyright">© 2026 电脑小百科<br>软件精选 · 绿色安全</div>
+    </aside>
+
+    <div class="main">
+        <!-- 顶栏 -->
+        <div class="header">
+            <span class="menu-btn"></span>
+            <ul class="list">
+                <li><a href="index.html">首页</a></li>
+                <li class="hide-mobile"><a href="https://diy.ee.cd/" target="_blank" rel="noopener">视频封面生成</a></li>
+                <li><a href="power.html">电源计算</a></li>
+                <li class="hide-mobile"><a href="https://windows.ee.cd/" target="_blank" rel="noopener">系统下载</a></li>
+                <li><a href="jiuban-notes.html">久伴笔记</a></li>
+                <li class="hide-mobile"><a href="contact.html">联系我们</a></li>
+            </ul>
+            <div class="dd" id="favDD">
+                <span class="dd-toggle" id="ddToggle">常用网站 <i class="dd-caret"></i></span>
+                <div class="dd-panel"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="page-head">
+                <span class="ph-icon">🧭</span>
+                <h1 class="ph-title">网站导航</h1>
+                <p class="ph-sub">常用优质网站一站直达，以下站点均为官方或知名资源站，点击即可在新窗口打开</p>
+            </div>
+
+            <!-- 分类卡片由 nav.js 根据 NAV_SITES 渲染 -->
+            <div id="navGrid"></div>
+        </div>
+
+        <div class="friend-links"><span class="fl-label">友情链接：</span><a href="https://windows.ee.cd" target="_blank" rel="noopener">Windows系统下载站</a><a href="https://1000.vps.cd/" target="_blank" rel="noopener">国外十大VPS推荐</a></div>
+        <div class="footer">© 2026 <a href="https://space.bilibili.com/595098830" target="_blank">@电脑小百科</a>（抖音/B站/小红书）技术支持QQ：2591735711 软件精选 · All Rights Reserved</div>
+    </div>
+</div>
+
+<script src="site.js"></script>
+<script src="nav.js"></script>
+</body>
+</html>
