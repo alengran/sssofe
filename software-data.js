@@ -339,6 +339,9 @@ const softwareData = [
             baidu: {
                 url: "https://pan.baidu.com/s/18arfIJw3bsjfnRzwwJBmeQ?pwd=j4du",
                 code: "j4du"
+            },
+            cloudreve: {
+                url: "https://silver.yukaidi.com/home?path=cloudreve%3A%2F%2FZmh9%40share"
             }
         }
     },
