@@ -251,8 +251,9 @@
             const totalPages = Math.ceil(filteredData.length / pageSize);
             const hasMore = currentPage < totalPages;
 
-            // 使用DocumentFragment优化DOM操作
-            const fragment = document.createDocumentFragment();
+            // 所有卡片合并进单一区块，行间用分割线分隔
+            const block = document.createElement('div');
+            block.className = 'software-block';
 
             pageData.forEach((software) => {
                 const card = document.createElement('div');
@@ -285,21 +286,22 @@
                     }
                 };
 
-                fragment.appendChild(card);
+                block.appendChild(card);
             });
 
             container.innerHTML = '';
-            container.appendChild(fragment);
+            container.appendChild(block);
 
             // 添加"加载更多"按钮
             if (hasMore) {
-                container.innerHTML += `
-                    <div class="load-more-wrap">
-                        <button id="loadMoreBtn" onclick="loadMore()">
-                            加载更多 (${currentPage}/${totalPages}页)
-                        </button>
-                    </div>
+                const more = document.createElement('div');
+                more.className = 'load-more-wrap';
+                more.innerHTML = `
+                    <button id="loadMoreBtn" onclick="loadMore()">
+                        加载更多 (${currentPage}/${totalPages}页)
+                    </button>
                 `;
+                container.appendChild(more);
             }
 
             // 显示统计信息

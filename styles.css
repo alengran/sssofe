@@ -427,33 +427,36 @@ html { scroll-behavior: smooth; }
 .filter-tab.active,
 .filter-tab.active:hover { background: var(--primary); border-color: var(--primary); color: #fff; transform: none; }
 
-/* ---------- 软件卡片列表 ---------- */
+/* ---------- 软件卡片列表（合并为单一区块，分割线分隔） ---------- */
 .software-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
   margin: 18px 0 10px;
 }
 
-.software-card {
+.software-block {
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
   box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.software-card {
   padding: 18px 20px;
   cursor: pointer;
   position: relative;
   display: flex;
   align-items: center;
   gap: 16px;
-  transition: border-color .2s var(--ease), box-shadow .2s var(--ease), transform .2s var(--ease);
+  border-bottom: 1px solid var(--line);
+  transition: background-color .2s var(--ease);
   animation: fadeInUp .2s var(--ease) forwards;
   opacity: 0;
 }
+.software-card:last-child { border-bottom: none; }
 .software-card:hover {
-  border-color: var(--primary);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
+  background: var(--primary-light);
 }
 
 .software-number {
