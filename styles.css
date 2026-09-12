@@ -437,7 +437,7 @@ html { scroll-behavior: smooth; }
 .software-block {
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: var(--r-lg);
+  border-radius: 0;
   box-shadow: var(--shadow);
   overflow: hidden;
 }
@@ -454,9 +454,24 @@ html { scroll-behavior: smooth; }
   animation: fadeInUp .2s var(--ease) forwards;
   opacity: 0;
 }
+/* 左侧主题色指示条（层次感：默认隐藏，悬停浮现） */
+.software-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--primary);
+  transform: scaleY(0);
+  transition: transform .2s var(--ease);
+}
 .software-card:last-child { border-bottom: none; }
 .software-card:hover {
   background: var(--primary-light);
+}
+.software-card:hover::before { transform: scaleY(1); }
+.software-card:hover .software-number {
+  background: var(--primary);
+  color: #fff;
 }
 
 .software-number {
