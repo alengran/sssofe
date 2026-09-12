@@ -7,9 +7,9 @@ window.NAV_SITES = [
   {
     cat: "常用工具 · 站点推荐",
     sites: [
-      { name: "视频封面在线生成", url: "https://diy.ee.cd/", desc: "B站抖音等视频封面图片在线制作", badge: "推荐", quick: true },
-      { name: "笔记卡片生成", url: "https://diy.ee.cd/note.html", desc: "笔记卡片在线制作生成", badge: "推荐", quick: true },
-      { name: "常用软件下载", url: "https://xiaobaike.dpdns.org/", desc: "小百科电脑常用软件一站下载", badge: "推荐", quick: true },
+      { name: "视频封面在线生成", url: "https://Ps.weget.site/", desc: "B站抖音等视频封面图片在线制作", badge: "推荐", quick: true },
+      { name: "笔记卡片生成", url: "https://Ps.weget.site/note.html", desc: "笔记卡片在线制作生成", badge: "推荐", quick: true },
+      { name: "常用软件下载", url: "https://sofe.weget.site/", desc: "小百科电脑常用软件一站下载", badge: "推荐", quick: true },
       { name: "2026 海外 VPS 推荐", url: "https://1000.vps.cd/", desc: "海外 VPS 测评与推荐", badge: "推荐", quick: true }
     ]
   },
