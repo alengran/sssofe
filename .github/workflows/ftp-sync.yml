@@ -51,9 +51,12 @@ jobs:
           set net:max-retries 2
           set net:timeout 30
           set ftp:ssl-allow no
-          mirror --delete --no-perms --parallel=4 --verbose=1 "$FTP_DIR" mirror/
+          # 串行下载：并发会触发主机 FTP 连接数限制，导致目录列表错乱、文件下载后又被 --delete 误删
+          mirror --no-perms --verbose=1 "$FTP_DIR" mirror/
           bye
           EOF
+          echo "下载完成，镜像文件数: $(find mirror -type f | wc -l)"
+          echo "软件详情页数: $(find mirror/soft -maxdepth 1 -name '*.html' 2>/dev/null | wc -l)"
 
       # 失败时把 FTP 的具体错误打到运行页顶部 Summary，方便诊断（不含密码）
       - name: Diagnose FTP failure
