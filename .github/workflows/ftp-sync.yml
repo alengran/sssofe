@@ -46,13 +46,29 @@ jobs:
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq lftp
           mkdir mirror
-          lftp -u "$FTP_USER","$FTP_PASS" "$FTP_HOST" <<EOF
+          set -o pipefail
+          lftp -u "$FTP_USER","$FTP_PASS" "$FTP_HOST" <<EOF | tee /tmp/ftp.log
           set net:max-retries 2
           set net:timeout 30
           set ftp:ssl-allow no
           mirror --delete --no-perms --parallel=4 --verbose=1 "$FTP_DIR" mirror/
           bye
           EOF
+
+      # 失败时把 FTP 的具体错误打到运行页顶部 Summary，方便诊断（不含密码）
+      - name: Diagnose FTP failure
+        if: failure()
+        env:
+          FTP_USER: ${{ secrets.FTP_USER }}
+        run: |
+          {
+            echo "## 同步失败诊断"
+            echo "- FTP_HOST=\`$FTP_HOST\`  FTP_DIR=\`$FTP_DIR\`  FTP_USER=\`$FTP_USER\`"
+            echo "- 拉取日志关键行："
+            echo '```'
+            grep -iaE '530|login|550|421|425|timed? ?out|not found|failed|error|refused|denied|ssl|tls' /tmp/ftp.log | tail -20 || echo "(未匹配到常见错误关键词)"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
 
       # 安全阀：拉取结果为空说明 FTP 路径配错或连不上站点内容，
       # 此时绝不能继续（否则 rsync --delete 会把仓库清空推上去）
