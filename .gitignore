@@ -1,4 +1,16 @@
 software.md
 *.md
 _remote_site/
+
+# 本机 PHP 后台（图鱼工作台），含管理面板和配置，绝不能提交到公开仓库
+config.php
+admin/
+api/
+panel-kmuu1j0v/
+assets/
+
+# 电脑小百科 PHP 管理后台（含数据库配置），只同步它生成的前台静态数据
 ad34_min_dm4bjf34g/
+
+# 旧版归档（含后台冗余副本），不入库
+旧版本/

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微软运行库合集 软件下载 - 电脑小百科-软件精选</title>
+    <meta name="keywords" content="微软运行库合集,系统工具,软件下载,绿色软件,免费软件,微软运行库合集下载">
+    <meta name="description" content="包含VC++、.NET等Windows系统必备运行库组件集合。提供微软运行库合集免费下载，绿色安全无捆绑，来自电脑小百科-软件精选。">
+    <meta property="og:image" content="/uploads/screenshots/2/2_1.jpg">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* ===== 详情页增强（整体单卡 + 分割线分区，基于全局蓝色主题） ===== */
+        .software-detail { background: var(--card, #fff); border: 1px solid var(--line, #e3eaf2); border-radius: 16px; box-shadow: 0 2px 12px rgba(30,80,160,.06); overflow: hidden; }
+        .software-header { padding: 26px 24px; }
+        .soft-hero { display: flex; gap: 18px; align-items: flex-start; text-align: left; }
+        .soft-hero-info { flex: 1; min-width: 0; }
+        .software-icon-large { width: 64px; height: 64px; font-size: 34px; background: #fff; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(35,120,227,.12); border: 1px solid #d5e4f5; flex-shrink: 0; margin: 0; }
+        .software-title { margin: 0 0 8px; }
+        .soft-title-row { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; }
+        .soft-title-row .software-title { flex: 1; margin: 0; min-width: 0; }
+        .soft-title-row .back-button { margin: 0 0 0 auto; flex-shrink: 0; }
+        .software-category { display: inline-block; background: var(--primary-light, #edf4fd); color: var(--primary, #2378e3); font-size: 12px; font-weight: 600; padding: 3px 14px; border-radius: 20px; margin: 0 0 10px; }
+        .software-description { max-width: none; text-align: left; }
+        .soft-sec { padding: 22px 24px; border-top: 1px solid var(--line, #e3eaf2); }
+        .soft-sec-download { background: linear-gradient(180deg, #f8fbfe, #eef4fc); }
+        .section-title { font-size: 17px; margin: 0 0 14px; padding-left: 12px; border-left: 4px solid var(--primary, #2378e3); line-height: 1.3; color: var(--ink, #223a52); }
+        .screenshot-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+        .shot-item { border: 1px solid var(--line, #e3eaf2); border-radius: 12px; overflow: hidden; background: #fff; cursor: zoom-in; transition: transform .25s, box-shadow .25s; display: flex; align-items: center; justify-content: center; min-height: 120px; }
+        .shot-item:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(35,120,227,.12); }
+        .shot-item img { display: block; max-width: 100%; height: auto; }
+        .detail-body { line-height: 1.9; color: var(--text, #2d3f53); font-size: 15px; }
+        .detail-body p { margin: 0 0 12px; }
+        .detail-body p:last-child { margin-bottom: 0; }
+        /* 下载卡片：横排布局增强 */
+        .download-card { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 14px; padding: 14px 16px; border: 1px solid #d7e4f3; border-radius: 12px; margin-bottom: 12px; background: #fff; transition: border-color .2s, box-shadow .2s; }
+        .download-card:hover { border-color: #b8d4f2; box-shadow: 0 4px 14px rgba(35,120,227,.10); }
+        .platform-name { margin-bottom: 0; min-width: 100px; }
+        .download-link { margin-left: auto; margin-bottom: 0; padding: 9px 24px; border-radius: 24px; box-shadow: 0 3px 8px rgba(35,120,227,.25); }
+        .download-link:hover { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(35,120,227,.35); }
+        .access-code { display: flex; align-items: center; gap: 8px; background: var(--primary-light, #edf4fd); border: 1px dashed #b8d4f2; border-radius: 20px; padding: 4px 6px 4px 14px; }
+        .copy-button { border: 0; background: linear-gradient(135deg, #2b82e6, #1a63c4); color: #fff; font-weight: 700; border-radius: 16px; padding: 5px 14px; cursor: pointer; font-size: 13px; box-shadow: 0 2px 6px rgba(35,120,227,.35); transition: all .2s; }
+        .copy-button:hover { background: linear-gradient(135deg, #1a63c4, #144f9e); box-shadow: 0 4px 10px rgba(35,120,227,.45); }
+        .copy-button.copied { background: #5b9ad8; box-shadow: none; }
+        .no-downloads { background: rgba(255,255,255,.7); border: 2px dashed #c6d9ef; border-radius: 12px; padding: 24px; text-align: center; color: var(--muted, #7d8da0); }
+        @media (max-width: 720px) { .software-header { padding: 18px 16px; } .software-icon-large { width: 52px; height: 52px; font-size: 28px; } .software-title { font-size: 20px; } .soft-sec { padding: 18px 14px; } }
+        /* 截图灯箱 */
+        .lightbox { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(10,30,60,.92); align-items: center; justify-content: center; }
+        .lightbox.open { display: flex; }
+        .lb-stage { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
+        .lb-stage img { max-width: 92vw; max-height: 88vh; border-radius: 6px; box-shadow: 0 10px 50px rgba(0,0,0,.55); user-select: none; }
+        .lb-btn { position: absolute; border: 0; background: rgba(255,255,255,.14); color: #fff; cursor: pointer; border-radius: 50%; font-size: 30px; line-height: 1; padding: 0; width: 54px; height: 54px; transition: background .2s; }
+        .lb-btn:hover { background: rgba(255,255,255,.32); }
+        .lb-prev { left: 18px; top: 50%; transform: translateY(-50%); }
+        .lb-next { right: 18px; top: 50%; transform: translateY(-50%); }
+        .lb-close { top: 16px; right: 18px; font-size: 26px; }
+        .lb-count { position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); color: #fff; background: rgba(10,30,60,.6); padding: 4px 14px; border-radius: 20px; font-size: 14px; }
+        @media (max-width: 720px) { .lb-btn { width: 40px; height: 40px; font-size: 22px; } .lb-prev { left: 8px; } .lb-next { right: 8px; } .lb-close { top: 10px; right: 10px; } }
+    </style>
+</head>
+<body>
+<div class="layout">
+    <aside class="side">
+        <a class="logo" href="../index.html">
+            <svg width="34" height="34" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="30" height="30" rx="8" fill="rgba(255,255,255,.15)"/><path d="M9 12h16M9 17h16M9 22h10" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>
+            <span>
+                <span class="logo-name">电脑小百科</span>
+                <span class="logo-sub">SOFTWARE</span>
+            </span>
+        </a>
+        <nav class="nav">
+            <div class="nav-group-title">软件分类</div>
+            <ul class="cat-list" id="sideCats"><li data-cat="全部"><a href="../index.html">全部软件</a></li><li data-cat="系统工具"><a href="../index.html?cat=%E7%B3%BB%E7%BB%9F%E5%B7%A5%E5%85%B7">系统工具</a></li><li data-cat="硬件检测"><a href="../index.html?cat=%E7%A1%AC%E4%BB%B6%E6%A3%80%E6%B5%8B">硬件检测</a></li><li data-cat="操作系统"><a href="../index.html?cat=%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">操作系统</a></li><li data-cat="网络工具"><a href="../index.html?cat=%E7%BD%91%E7%BB%9C%E5%B7%A5%E5%85%B7">网络工具</a></li><li data-cat="办公软件"><a href="../index.html?cat=%E5%8A%9E%E5%85%AC%E8%BD%AF%E4%BB%B6">办公软件</a></li><li data-cat="媒体工具"><a href="../index.html?cat=%E5%AA%92%E4%BD%93%E5%B7%A5%E5%85%B7">媒体工具</a></li><li data-cat="安全工具"><a href="../index.html?cat=%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7">安全工具</a></li></ul>
+        </nav>
+        <div class="copyright">© 2026 电脑小百科<br>软件精选 · 绿色安全</div>
+    </aside>
+
+    <div class="main">
+        <div class="header">
+            <span class="menu-btn"></span>
+            <ul class="list" id="topMenu"><li><a href="../index.html">首页</a></li><li class="hide-mobile"><a href="https://weget.site/" target="_blank" rel="noopener">论坛</a></li><li class="hide-mobile"><a href="https://ps.weget.site/" target="_blank" rel="noopener">封面生成</a></li><li><a href="../power.html">电源计算</a></li><li class="hide-mobile"><a href="https://win.weget.site/" target="_blank" rel="noopener">系统下载</a></li><li><a href="../jiuban-notes.html">久伴笔记</a></li><li class="hide-mobile"><a href="../contact.html">联系</a></li></ul>
+            <div class="dd" id="favDD">
+                <span class="dd-toggle" id="ddToggle">常用网站 <i class="dd-caret"></i></span>
+                <div class="dd-panel"><a class="dd-item" href="https://Ps.weget.site/" target="_blank" rel="noopener"><b>视频封面在线生成 <i class="dd-badge">推荐</i></b><span>B站抖音等视频封面图片在线制作</span></a><a class="dd-item" href="https://Ps.weget.site/note.html" target="_blank" rel="noopener"><b>笔记卡片生成 <i class="dd-badge">推荐</i></b><span>笔记卡片在线制作生成</span></a><a class="dd-item" href="https://soft.weget.site/" target="_blank" rel="noopener"><b>常用软件下载 <i class="dd-badge">推荐</i></b><span>小百科电脑常用软件一站下载</span></a><a class="dd-item" href="https://vps.weget.site/" target="_blank" rel="noopener"><b>2026 海外 VPS 推荐 <i class="dd-badge">推荐</i></b><span>海外 VPS 测评与推荐</span></a><a class="dd-item dd-more" href="../nav.html">进入网站导航页 →</a></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="software-detail">
+                <div class="software-header">
+                    <div class="soft-hero">
+                        <span class="software-icon-large">🔧</span>
+                        <div class="soft-hero-info">
+                            <div class="soft-title-row">
+                                <h1 class="software-title">微软运行库合集</h1>
+                                <a href="../index.html" class="back-button">
+                                    <span>←</span> 返回软件列表
+                                </a>
+                            </div>
+                            <div class="software-category">系统工具</div>
+                            <p class="software-description">包含VC++、.NET等Windows系统必备运行库组件集合</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="soft-sec"><h2 class="section-title">📄 软件介绍</h2><div class="detail-body"><p>微软运行库合集是一款将Windows系统运行所需的各类基础组件打包集成的安装工具，主要解决因系统缺少Visual C++、.NET Framework、Visual Basic等运行库而导致的软件或游戏启动报错、提示丢失DLL文件等问题。它将微软官方发布的多个版本运行库集中在一个安装包中，免去用户逐个搜索、下载和安装的繁琐过程。</p><p>合集通常涵盖Visual Basic虚拟机、Microsoft C Runtime Library以及从VC++ 2005到VC++ 2022各版本的可再发行组件包，同时包含.NET Framework相关运行时。安装程序会自动检测当前系统版本和位数（32位/64位），智能匹配需要安装的组件，用户也可在组件选择界面中勾选或取消特定项目。</p><p>该工具为离线集成包，安装过程无需联网下载，适合新装系统、重装系统后快速补齐运行环境，以及解决老软件在新系统上的兼容性问题。安装完成后一般无需重启即可生效，对于因运行库缺失导致的0xc000007b等常见错误有较好的修复效果。</p><p>微软运行库合集免费使用，体积适中，适用于Windows全系列操作系统。普通用户在遇到程序提示缺少dll无法启动时，运行该合集即可快速恢复；建议从官方或可信渠道下载，以确保组件完整且无篡改。</p></div></div>
+                <div class="soft-sec"><h2 class="section-title">📷 软件截图（点击图片可放大左右切换）</h2><div class="screenshot-gallery"><div class="shot-item"><a href="/uploads/screenshots/2/2_1.jpg" class="shot-link" data-index="0" onclick="return lbOpen(this);" title="点击放大预览"><img src="/uploads/screenshots/2/2_1.jpg" alt="微软运行库合集 截图 1" loading="lazy"></a></div><div class="shot-item"><a href="/uploads/screenshots/2/2_2.jpg" class="shot-link" data-index="1" onclick="return lbOpen(this);" title="点击放大预览"><img src="/uploads/screenshots/2/2_2.jpg" alt="微软运行库合集 截图 2" loading="lazy"></a></div><div class="shot-item"><a href="/uploads/screenshots/2/2_3.jpg" class="shot-link" data-index="2" onclick="return lbOpen(this);" title="点击放大预览"><img src="/uploads/screenshots/2/2_3.jpg" alt="微软运行库合集 截图 3" loading="lazy"></a></div></div></div>
+
+                <div class="soft-sec soft-sec-download">
+                    <h2 class="section-title">📥 下载地址</h2>
+                    <div class="download-card"><div class="platform-name"><span class="platform-icon">☁️</span>百度网盘</div><a href="https://pan.baidu.com/s/1NNdXNKCXXQqAokAiI0EZ6w?pwd=rgq9" target="_blank" rel="noopener" class="download-link">点击下载</a><div class="access-code"><span class="code-text">提取码: <strong>rgq9</strong></span><button class="copy-button" data-code="rgq9" onclick="copyCode(this)">复制</button></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="friend-links"><span class="fl-label">友情链接：</span><a href="https://win.weget.site" target="_blank" rel="noopener">Windows系统下载站</a><a href="https://vps.weget.site/" target="_blank" rel="noopener">国外十大VPS推荐</a></div>
+        <div class="footer">© 2026 <a href="https://space.bilibili.com/595098830" target="_blank">@电脑小百科</a>（抖音/B站/小红书）技术支持QQ：2591735711 软件精选 · All Rights Reserved</div>
+    </div>
+</div>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lb-stage" id="lbStage"><img id="lbImg" alt=""></div>
+    <button type="button" class="lb-btn lb-prev" id="lbPrev" aria-label="上一张">‹</button>
+    <button type="button" class="lb-btn lb-next" id="lbNext" aria-label="下一张">›</button>
+    <button type="button" class="lb-btn lb-close" id="lbClose" aria-label="关闭">×</button>
+    <div class="lb-count" id="lbCount"></div>
+</div>
+
+<script>
+    // 复制提取码（从按钮 data-code 读取，避免 JS 字符串注入）
+    function copyCode(button) {
+        var code = (button && button.dataset && button.dataset.code) ? button.dataset.code : '';
+        if (!code) return;
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = button.textContent;
+                button.textContent = '已复制';
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        } else {
+            const textArea = document.createElement('textarea');
+            textArea.value = code;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                button.textContent = '已复制';
+                button.classList.add('copied');
+                setTimeout(() => { button.textContent = '复制'; button.classList.remove('copied'); }, 2000);
+            } catch (err) { alert('复制失败，请手动复制'); }
+            document.body.removeChild(textArea);
+        }
+    }
+
+    // ===== 截图灯箱：点击放大 + 左右滑动切换 =====
+    var lbImages = ["/uploads/screenshots/2/2_1.jpg","/uploads/screenshots/2/2_2.jpg","/uploads/screenshots/2/2_3.jpg"];
+    var lbIndex = 0;
+    var lbTouchX = 0;
+    var lightbox = document.getElementById('lightbox');
+
+    // 打开灯箱（返回 false 阻止 <a> 默认跳转）
+    function lbOpen(anchor) {
+        if (!lightbox || !lbImages.length) return true;
+        lbIndex = parseInt(anchor.getAttribute('data-index'), 10) || 0;
+        lbShow(lbIndex);
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        return false;
+    }
+
+    function lbClose() {
+        if (lightbox) {
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+    }
+
+    function lbShow(i) {
+        var img = document.getElementById('lbImg');
+        var count = document.getElementById('lbCount');
+        if (!img) return;
+        img.src = lbImages[i];
+        img.alt = '软件截图 ' + (i + 1);
+        if (count) count.textContent = (i + 1) + ' / ' + lbImages.length;
+    }
+
+    function lbPrev() {
+        if (!lbImages.length) return;
+        lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length;
+        lbShow(lbIndex);
+    }
+
+    function lbNext() {
+        if (!lbImages.length) return;
+        lbIndex = (lbIndex + 1) % lbImages.length;
+        lbShow(lbIndex);
+    }
+
+    if (lightbox) {
+        // 按钮控制
+        document.getElementById('lbClose').addEventListener('click', lbClose);
+        document.getElementById('lbPrev').addEventListener('click', function (e) { e.stopPropagation(); lbPrev(); });
+        document.getElementById('lbNext').addEventListener('click', function (e) { e.stopPropagation(); lbNext(); });
+        // 点击遮罩（非图片区域）关闭
+        lightbox.addEventListener('click', function (e) {
+            if (e.target === lightbox || e.target.id === 'lbStage') lbClose();
+        });
+        // 键盘：← → 切换，Esc 关闭
+        document.addEventListener('keydown', function (e) {
+            if (!lightbox.classList.contains('open')) return;
+            if (e.key === 'ArrowLeft') { lbPrev(); e.preventDefault(); }
+            else if (e.key === 'ArrowRight') { lbNext(); e.preventDefault(); }
+            else if (e.key === 'Escape') { lbClose(); }
+        });
+        // 触摸滑动切换（移动端）
+        lightbox.addEventListener('touchstart', function (e) {
+            lbTouchX = e.changedTouches[0].clientX;
+        }, { passive: true });
+        lightbox.addEventListener('touchend', function (e) {
+            var dx = e.changedTouches[0].clientX - lbTouchX;
+            if (dx > 40) lbPrev();
+            else if (dx < -40) lbNext();
+        }, { passive: true });
+    }
+</script>
+</body>
+</html>

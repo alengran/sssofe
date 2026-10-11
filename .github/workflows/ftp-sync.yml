@@ -1,0 +1,98 @@
+# 云端自动同步：GitHub 服务器定时从虚拟主机拉取网站内容并提交到本仓库
+#
+# 一次性配置（必须先做，否则本 workflow 会失败）：
+#   仓库页面 -> Settings -> Secrets and variables -> Actions -> New repository secret
+#   添加 4 个 secret（全部加密存储，不出现在代码里）：
+#     FTP_HOST  = 虚拟主机 FTP 地址（如 ftp.example.com）
+#     FTP_USER  = FTP 账号
+#     FTP_PASS  = FTP 密码
+#     FTP_DIR   = 网站根目录路径（以 / 开头结尾，如 /wwwroot/）
+#
+# 生效后：约每 30 分钟自动检查一次（GitHub 定时任务高峰期可能延后十几分钟），
+# 网站有变化才提交推送，推送后 static.yml 自动重新发布 GitHub Pages。
+# 也可以在 Actions 页面手动运行本 workflow 立即同步。
+
+name: Sync site from hosting
+
+on:
+  schedule:
+    - cron: "9,39 * * * *"   # 每小时第 9、39 分（UTC）
+  workflow_dispatch: {}
+
+# 防止上一次还没跑完就堆叠下一次
+concurrency:
+  group: ftp-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+env:
+  # 全部从 Secrets 读取，仓库里不出现任何服务器信息
+  FTP_HOST: ${{ secrets.FTP_HOST }}
+  FTP_DIR: ${{ secrets.FTP_DIR }}
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Pull site from hosting (FTP mirror)
+        env:
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+        run: |
+          mkdir mirror
+          lftp -u "$FTP_USER","$FTP_PASS" "$FTP_HOST" <<EOF
+          set net:max-retries 2
+          set net:timeout 30
+          set ftp:ssl-allow no
+          mirror --delete --no-perms --parallel=4 --verbose=1 "$FTP_DIR" mirror/
+          bye
+          EOF
+
+      # 安全阀：拉取结果为空说明 FTP 路径配错或连不上站点内容，
+      # 此时绝不能继续（否则 rsync --delete 会把仓库清空推上去）
+      - name: Verify mirror is not empty
+        run: |
+          if [ -z "$(ls -A mirror/)" ]; then
+            echo "::error::FTP 拉取结果为空：请检查 FTP_HOST / FTP_DIR / FTP 账号是否正确"
+            exit 1
+          fi
+          echo "拉取文件数: $(find mirror -type f | wc -l)"
+
+      # 白名单：只有静态网页和资源进入仓库；php、配置、备份等一律不同步。
+      # 第一个 exclude 是 PHP 管理后台目录（含 admin.css/js 与数据库配置），绝不能入库；
+      # 后两个是仓库专属文件，防止被 --delete 误删，可按需增删。
+      - name: Sync into repo (static whitelist only)
+        run: |
+          rsync -a --delete \
+            --exclude='ad34_min_dm4bjf34g' \
+            --exclude='generate-pages.js' --exclude='googlea8fb23f79120abdc.html' \
+            --include='*/' \
+            --include='*.html' --include='*.htm' --include='*.shtml' \
+            --include='*.css' --include='*.js' --include='*.mjs' --include='*.map' \
+            --include='*.json' --include='*.xml' --include='*.txt' \
+            --include='*.jpg' --include='*.jpeg' --include='*.png' --include='*.gif' \
+            --include='*.webp' --include='*.svg' --include='*.ico' --include='*.bmp' --include='*.avif' \
+            --include='*.woff' --include='*.woff2' --include='*.ttf' --include='*.otf' --include='*.eot' \
+            --include='*.mp4' --include='*.webm' --include='*.mp3' --include='*.ogg' --include='*.wav' --include='*.m4a' \
+            --include='*.pdf' --include='*.csv' \
+            --exclude='*' \
+            mirror/ ./
+          test -f index.html || { echo "::error::同步后仓库中没有 index.html，远程网站内容可能异常，已中止提交"; exit 1; }
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "网站内容与仓库一致，本次无需更新"
+          else
+            git commit -m "sync: 自动同步虚拟主机网站内容 $(TZ=Asia/Shanghai date +'%F %T')"
+            git push
+            echo "已推送，Pages 稍后自动重新发布"
+          fi

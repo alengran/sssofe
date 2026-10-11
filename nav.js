@@ -1,9 +1,11 @@
 /* ============================================================
  *  常用网站导航 —— 顶栏"常用网站"下拉菜单与"网站导航"页(nav.html)共用
  *  quick: true 的站点会同时出现在顶栏下拉菜单中
- *  增删站点只改 NAV_SITES 即可，页面无需改动
+ *  数据由后台生成的 site-data.js 提供（window.NAV_SITES）；
+ *  若 site-data.js 缺失，则使用下方内置数据兜底。
  * ============================================================ */
-window.NAV_SITES = [
+if (!window.NAV_SITES || !window.NAV_SITES.length) {
+    window.NAV_SITES = [
   {
     cat: "常用工具 · 站点推荐",
     sites: [
@@ -67,6 +69,7 @@ window.NAV_SITES = [
     ]
   }
 ];
+}
 
 (function () {
     // 当前站点根目录（nav.js 所在目录，兼容子目录页面）
@@ -76,6 +79,13 @@ window.NAV_SITES = [
             return s.substring(0, s.lastIndexOf('/'));
         } catch (e) { return '.'; }
     })();
+
+    // 完整 HTML 转义（用于 innerHTML 拼接的文本/属性值）
+    function escHtml(s) {
+        return String(s == null ? '' : s)
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
 
     // 渲染顶栏"常用网站"下拉菜单（页面顶栏存在 #favDD 时生效）
     function renderQuickMenu() {
@@ -88,11 +98,11 @@ window.NAV_SITES = [
             c.sites.forEach(function (s) { if (s.quick) quick.push(s); });
         });
         var html = quick.map(function (s) {
-            return '<a class="dd-item" href="' + s.url + '" target="_blank" rel="noopener">' +
-                '<b>' + s.name + (s.badge ? ' <i class="dd-badge">' + s.badge + '</i>' : '') + '</b>' +
-                '<span>' + s.desc + '</span></a>';
+            return '<a class="dd-item" href="' + escHtml(s.url) + '" target="_blank" rel="noopener">' +
+                '<b>' + escHtml(s.name) + (s.badge ? ' <i class="dd-badge">' + escHtml(s.badge) + '</i>' : '') + '</b>' +
+                '<span>' + escHtml(s.desc) + '</span></a>';
         }).join('');
-        html += '<a class="dd-item dd-more" href="' + SITE_ROOT + '/nav.html">进入网站导航页 →</a>';
+        html += '<a class="dd-item dd-more" href="' + escHtml(SITE_ROOT + '/nav.html') + '">进入网站导航页 →</a>';
         panel.innerHTML = html;
     }
 
@@ -102,14 +112,14 @@ window.NAV_SITES = [
         if (!grid) return;
         (window.NAV_SITES || []).forEach(function (cat) {
             var cards = cat.sites.map(function (s) {
-                return '<a class="link-card" href="' + s.url + '" target="_blank" rel="noopener">' +
-                    '<div class="lc-name">' + s.name + (s.badge ? ' <i class="dd-badge">' + s.badge + '</i>' : '') + '</div>' +
-                    '<div class="lc-desc">' + s.desc + '</div>' +
-                    '<div class="lc-url">' + String(s.url).replace(/^https?:\/\//, '').replace(/\/$/, '') + '</div></a>';
+                return '<a class="link-card" href="' + escHtml(s.url) + '" target="_blank" rel="noopener">' +
+                    '<div class="lc-name">' + escHtml(s.name) + (s.badge ? ' <i class="dd-badge">' + escHtml(s.badge) + '</i>' : '') + '</div>' +
+                    '<div class="lc-desc">' + escHtml(s.desc) + '</div>' +
+                    '<div class="lc-url">' + escHtml(String(s.url).replace(/^https?:\/\//, '').replace(/\/$/, '')) + '</div></a>';
             }).join('');
             var sec = document.createElement('div');
             sec.className = 'link-cat';
-            sec.innerHTML = '<div class="title"><h1>' + cat.cat + '</h1></div><div class="link-grid">' + cards + '</div>';
+            sec.innerHTML = '<div class="title"><h1>' + escHtml(cat.cat) + '</h1></div><div class="link-grid">' + cards + '</div>';
             grid.appendChild(sec);
         });
     }

@@ -3,78 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>软件下载 - 电脑小百科-软件精选</title>
-    <meta name="keywords" content="电脑小百科,软件下载,绿色软件,免费软件,软件精选">
-    <meta name="description" content="电脑小百科软件精选，提供优质的绿色免费软件下载，安全无捆绑，提升工作效率。">
-    <script>
-        // 立即执行的函数，在页面加载时就设置meta标签
-        (function() {
-            var urlParams = new URLSearchParams(window.location.search);
-            var softwareId = urlParams.get('id');
-
-            if (softwareId) {
-                // 完整的软件元数据（用于立即设置meta标签）
-                var softwareMeta = {
-                    '1': { name: '久伴笔记', category: '办公软件', description: '免费绿色Markdown笔记软件，支持富文本编辑和云同步' },
-                    '2': { name: '微软运行库合集', category: '系统工具', description: '包含VC++、.NET等Windows系统必备运行库组件集合' },
-                    '3': { name: 'DirectX修复工具', category: '系统工具', description: '修复DirectX组件，解决游戏和程序运行报错问题' },
-                    '4': { name: 'Geek卸载工具', category: '系统工具', description: '轻量级软件卸载工具，彻底清理注册表和残留文件' },
-                    '5': { name: '微PE工具箱', category: '系统工具', description: 'Windows PE系统维护工具箱，支持分区引导修复' },
-                    '6': { name: 'Win10更新禁用工具', category: '系统工具', description: 'Windows10系统更新禁用工具，阻止自动更新重启' },
-                    '7': { name: 'CrystalDiskInfo', category: '硬件检测', description: '硬盘健康检测工具，监控温度和SMART信息' },
-                    '8': { name: 'AS SSD Benchmark', category: '硬件检测', description: 'SSD固态硬盘性能测试工具，检测读写速度' },
-                    '9': { name: '麦克菲卸载工具', category: '安全工具', description: '麦克菲杀毒软件专用卸载工具，彻底清除残留' },
-                    '10': { name: 'MSI Afterburner', category: '硬件检测', description: '显卡超频监控工具，支持温度频率和风扇调节' },
-                    '11': { name: 'NDM下载器', category: '网络工具', description: '轻量级网络下载管理器，支持多线程加速下载' },
-                    '12': { name: 'NeatDM下载器', category: '网络工具', description: '简洁高效的网络下载管理器，支持多线程和断点续传' },
-                    '13': { name: 'WizTree', category: '系统工具', description: '磁盘空间分析工具，快速找出大文件和占用空间' },
-                    '14': { name: 'Windows 10 专业版', category: '操作系统', description: 'Windows10专业版22H2，企业级办公开发系统' },
-                    '15': { name: 'Windows 10 家庭版', category: '操作系统', description: 'Windows10家庭版22H2，适合个人日常使用' },
-                    '16': { name: 'Windows 11 专业版', category: '操作系统', description: 'Windows11专业版25H2，最新企业级办公系统' },
-                    '17': { name: 'Windows 11 家庭版', category: '操作系统', description: 'Windows11家庭版25H2，最新个人用户系统' },
-                    '18': { name: 'Intel RST VMD驱动', category: '系统工具', description: 'Intel快速存储技术驱动，支持VMD控制器' },
-                    '19': { name: '向日葵远程控制', category: '网络工具', description: '远程桌面控制软件，支持文件传输和屏幕共享' },
-                    '20': { name: '驱动总裁', category: '系统工具', description: '硬件驱动安装工具，自动检测安装更新驱动' },
-                    '21': { name: 'Windows系统安装工具', category: '系统工具', description: '微软官方Windows系统安装/重装媒体创建工具' },
-                    '22': { name: 'DiskGenius分区工具', category: '系统工具', description: '专业磁盘分区管理工具，支持数据恢复和备份' },
-                    '23': { name: 'FirPE工具箱', category: '系统工具', description: 'Windows PE系统维护工具箱，支持分区引导修复' },
-                    '24': { name: '极客狗装机大师', category: '系统工具', description: '一键系统装机工具，自动安装驱动和常用软件' },
-                    '25': { name: 'MemTest64内存检测', category: '硬件检测', description: '内存条故障检测工具，测试内存稳定性和错误' },
-                    '26': { name: 'Watt Toolkit Steam++', category: '网络工具', description: 'Steam平台加速工具，解决下载和联机游戏问题' },
-                    '27': { name: '图吧工具箱', category: '硬件检测', description: '专业电脑硬件检测工具箱，集成多种硬件信息查看' },
-                    '28': { name: 'Windows 7 专业版', category: '操作系统', description: '经典Windows7专业版系统镜像，稳定可靠的企业系统' },
-                    '29': { name: 'Autoruns', category: '系统工具', description: '系统启动项管理工具，查看和禁用自动启动程序' },
-                    '30': { name: 'CCleaner Plus', category: '系统工具', description: '全盘清理工具，支持常规清理、大文件扫描、重复文件查找、应用强力卸载、定时任务' },
-                    '31': { name: 'CPU-Z', category: '硬件检测', description: 'CPU处理器信息检测工具，详细显示CPU、主板、内存等硬件信息' },
-                    '32': { name: 'Gif123', category: '媒体工具', description: '极简GIF录屏工具，一键录制，快速复制，直接粘贴到任何地方' },
-                    '33': { name: 'Papertodo', category: '办公软件', description: '开源便签软件，轻量级桌面便签工具，支持待办事项和提醒功能' }
-                };
-
-                var software = softwareMeta[softwareId];
-                if (software) {
-                    // 立即设置页面标题和meta标签
-                    document.title = software.name + ' 下载 - 电脑小百科-软件精选';
-
-                    var keywordsMeta = document.querySelector('meta[name="keywords"]');
-                    if (keywordsMeta) {
-                        keywordsMeta.setAttribute('content', software.name + ',' + software.category + ',软件下载,绿色软件,免费软件,' + software.name + '下载');
-                    }
-
-                    var descriptionMeta = document.querySelector('meta[name="description"]');
-                    if (descriptionMeta) {
-                        descriptionMeta.setAttribute('content', software.name + ' - ' + software.description + '。提供' + software.name + '免费下载，绿色安全无捆绑，来自电脑小百科软件精选。');
-                    }
-
-                    console.log('Meta标签已设置:', software.name);
-                    console.log('页面标题:', document.title);
-                    console.log('关键词:', keywordsMeta ? keywordsMeta.getAttribute('content') : '未找到');
-                    console.log('描述:', descriptionMeta ? descriptionMeta.getAttribute('content') : '未找到');
-                } else {
-                    console.warn('未找到软件ID ' + softwareId + ' 的元数据');
-                }
-            }
-        })();
-    </script>
+    <title>电脑小百科-软件精选</title>
+    <meta name="keywords" content="电脑小百科,软件精选,绿色软件,免费软件,软件下载,电脑软件推荐,好用的软件,Windows软件,系统工具,办公软件,硬件检测">
+    <meta name="description" content="电脑小百科软件精选，提供优质绿色好用的电脑软件推荐下载。包含系统工具、办公软件、硬件检测、安全工具等多个分类的免费软件，安全无捆绑，提升工作效率。">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -90,7 +21,7 @@
         </a>
         <nav class="nav">
             <div class="nav-group-title">软件分类</div>
-            <ul class="cat-list" id="sideCats"></ul>
+            <ul class="cat-list" id="sideCats"><li data-cat="全部"><a href="index.html">全部软件</a></li><li data-cat="系统工具"><a href="index.html?cat=%E7%B3%BB%E7%BB%9F%E5%B7%A5%E5%85%B7">系统工具</a></li><li data-cat="硬件检测"><a href="index.html?cat=%E7%A1%AC%E4%BB%B6%E6%A3%80%E6%B5%8B">硬件检测</a></li><li data-cat="操作系统"><a href="index.html?cat=%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">操作系统</a></li><li data-cat="网络工具"><a href="index.html?cat=%E7%BD%91%E7%BB%9C%E5%B7%A5%E5%85%B7">网络工具</a></li><li data-cat="办公软件"><a href="index.html?cat=%E5%8A%9E%E5%85%AC%E8%BD%AF%E4%BB%B6">办公软件</a></li><li data-cat="媒体工具"><a href="index.html?cat=%E5%AA%92%E4%BD%93%E5%B7%A5%E5%85%B7">媒体工具</a></li><li data-cat="安全工具"><a href="index.html?cat=%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7">安全工具</a></li></ul>
         </nav>
         <div class="copyright">© 2026 电脑小百科<br>软件精选 · 绿色安全</div>
     </aside>
@@ -99,30 +30,62 @@
         <!-- 顶栏 -->
         <div class="header">
             <span class="menu-btn"></span>
-            <ul class="list">
-                <li><a href="index.html">首页</a></li>
-                <li class="hide-mobile"><a href="https://weget.site/" target="_blank" rel="noopener">论坛</a></li>
-                <li class="hide-mobile"><a href="https://ps.weget.site/" target="_blank" rel="noopener">封面生成</a></li>
-                <li><a href="power.html">电源计算</a></li>
-                <li class="hide-mobile"><a href="https://win.weget.site/" target="_blank" rel="noopener">系统下载</a></li>
-                <li><a href="jiuban-notes.html">久伴笔记</a></li>
-                <li class="hide-mobile"><a href="contact.html">联系</a></li>
-            </ul>
+            <ul class="list" id="topMenu"><li><a href="index.html">首页</a></li><li class="hide-mobile"><a href="https://weget.site/" target="_blank" rel="noopener">论坛</a></li><li class="hide-mobile"><a href="https://ps.weget.site/" target="_blank" rel="noopener">封面生成</a></li><li><a href="power.html">电源计算</a></li><li class="hide-mobile"><a href="https://win.weget.site/" target="_blank" rel="noopener">系统下载</a></li><li><a href="jiuban-notes.html">久伴笔记</a></li><li class="hide-mobile"><a href="contact.html">联系</a></li></ul>
             <div class="dd" id="favDD">
                 <span class="dd-toggle" id="ddToggle">常用网站 <i class="dd-caret"></i></span>
-                <div class="dd-panel"></div>
+                <div class="dd-panel"><a class="dd-item" href="https://Ps.weget.site/" target="_blank" rel="noopener"><b>视频封面在线生成 <i class="dd-badge">推荐</i></b><span>B站抖音等视频封面图片在线制作</span></a><a class="dd-item" href="https://Ps.weget.site/note.html" target="_blank" rel="noopener"><b>笔记卡片生成 <i class="dd-badge">推荐</i></b><span>笔记卡片在线制作生成</span></a><a class="dd-item" href="https://soft.weget.site/" target="_blank" rel="noopener"><b>常用软件下载 <i class="dd-badge">推荐</i></b><span>小百科电脑常用软件一站下载</span></a><a class="dd-item" href="https://vps.weget.site/" target="_blank" rel="noopener"><b>2026 海外 VPS 推荐 <i class="dd-badge">推荐</i></b><span>海外 VPS 测评与推荐</span></a><a class="dd-item dd-more" href="nav.html">进入网站导航页 →</a></div>
             </div>
         </div>
 
         <div class="container">
-            <!-- 返回按钮 -->
-            <a href="index.html" class="back-button">
-                <span>←</span> 返回软件列表
-            </a>
+            <div class="page-head">
+                <span class="ph-icon">📥</span>
+                <h1 class="ph-title">软件下载中心</h1>
+                <p class="ph-sub">全部软件一站下载，点击卡片进入对应软件的详情下载页</p>
+            </div>
 
-            <!-- 软件详情区域 -->
-            <div id="softwareDetail">
-                <!-- 内容将通过JavaScript动态加载 -->
+            <div class="software-list">
+                <div class="software-block">
+                    <div class="software-card" data-id="45" data-cat="系统工具" data-name="Windows优化助手Winlite2.0" data-desc="Windows优化助手（WinLite） —— 硬件信息、强制删除、右键菜单清理、软件卸载、系统更新修复、服务优化、开机启动项管理，七合一开源免费工具" onclick="location.href='soft/45.html'"><div class="software-number">45</div><div class="card-content"><div class="card-header"><div class="app-icon">📦</div><div class="app-info"><div class="app-name">Windows优化助手Winlite2.0</div></div></div><div class="app-description">Windows优化助手（WinLite） —— 硬件信息、强制删除、右键菜单清理、软件卸载、系统更新修复、服务优化、开机启动项管理，七合一开源免费工具</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/45.html">立即下载</a></div></div>
+                <div class="software-card" data-id="46" data-cat="系统工具" data-name="文件整理大师 v1.25" data-desc="一键整理大师是一款 Windows 桌面文件批量整理工具" onclick="location.href='soft/46.html'"><div class="software-number">46</div><div class="card-content"><div class="card-header"><div class="app-icon">🛠️</div><div class="app-info"><div class="app-name">文件整理大师 v1.25</div></div></div><div class="app-description">一键整理大师是一款 Windows 桌面文件批量整理工具</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/46.html">立即下载</a></div></div>
+                <div class="software-card" data-id="1" data-cat="办公软件" data-name="久伴笔记" data-desc="免费绿色Markdown笔记软件，支持富文本编辑和云同步" onclick="location.href='soft/1.html'"><div class="software-number">1</div><div class="card-content"><div class="card-header"><div class="app-icon">📝</div><div class="app-info"><div class="app-name">久伴笔记</div></div></div><div class="app-description">免费绿色Markdown笔记软件，支持富文本编辑和云同步</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/1.html">立即下载</a></div></div>
+                <div class="software-card" data-id="2" data-cat="系统工具" data-name="微软运行库合集" data-desc="包含VC++、.NET等Windows系统必备运行库组件集合" onclick="location.href='soft/2.html'"><div class="software-number">2</div><div class="card-content"><div class="card-header"><div class="app-icon">🔧</div><div class="app-info"><div class="app-name">微软运行库合集</div></div></div><div class="app-description">包含VC++、.NET等Windows系统必备运行库组件集合</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/2.html">立即下载</a></div></div>
+                <div class="software-card" data-id="3" data-cat="系统工具" data-name="DirectX修复工具" data-desc="修复DirectX组件，解决游戏和程序运行报错问题" onclick="location.href='soft/3.html'"><div class="software-number">3</div><div class="card-content"><div class="card-header"><div class="app-icon">🔧</div><div class="app-info"><div class="app-name">DirectX修复工具</div></div></div><div class="app-description">修复DirectX组件，解决游戏和程序运行报错问题</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/3.html">立即下载</a></div></div>
+                <div class="software-card" data-id="4" data-cat="系统工具" data-name="Geek卸载工具" data-desc="轻量级软件卸载工具，彻底清理注册表和残留文件" onclick="location.href='soft/4.html'"><div class="software-number">4</div><div class="card-content"><div class="card-header"><div class="app-icon">🗑️</div><div class="app-info"><div class="app-name">Geek卸载工具</div></div></div><div class="app-description">轻量级软件卸载工具，彻底清理注册表和残留文件</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/4.html">立即下载</a></div></div>
+                <div class="software-card" data-id="5" data-cat="系统工具" data-name="微PE工具箱" data-desc="Windows PE系统维护工具箱，支持分区引导修复" onclick="location.href='soft/5.html'"><div class="software-number">5</div><div class="card-content"><div class="card-header"><div class="app-icon">🛠️</div><div class="app-info"><div class="app-name">微PE工具箱</div></div></div><div class="app-description">Windows PE系统维护工具箱，支持分区引导修复</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/5.html">立即下载</a></div></div>
+                <div class="software-card" data-id="6" data-cat="系统工具" data-name="Win10更新禁用工具" data-desc="Windows10系统更新禁用工具，阻止自动更新重启" onclick="location.href='soft/6.html'"><div class="software-number">6</div><div class="card-content"><div class="card-header"><div class="app-icon">🚫</div><div class="app-info"><div class="app-name">Win10更新禁用工具</div></div></div><div class="app-description">Windows10系统更新禁用工具，阻止自动更新重启</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/6.html">立即下载</a></div></div>
+                <div class="software-card" data-id="7" data-cat="硬件检测" data-name="CrystalDiskInfo" data-desc="硬盘健康检测工具，监控温度和SMART信息" onclick="location.href='soft/7.html'"><div class="software-number">7</div><div class="card-content"><div class="card-header"><div class="app-icon">💾</div><div class="app-info"><div class="app-name">CrystalDiskInfo</div></div></div><div class="app-description">硬盘健康检测工具，监控温度和SMART信息</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/7.html">立即下载</a></div></div>
+                <div class="software-card" data-id="8" data-cat="硬件检测" data-name="AS SSD Benchmark" data-desc="SSD固态硬盘性能测试工具，检测读写速度" onclick="location.href='soft/8.html'"><div class="software-number">8</div><div class="card-content"><div class="card-header"><div class="app-icon">⚡</div><div class="app-info"><div class="app-name">AS SSD Benchmark</div></div></div><div class="app-description">SSD固态硬盘性能测试工具，检测读写速度</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/8.html">立即下载</a></div></div>
+                <div class="software-card" data-id="9" data-cat="安全工具" data-name="麦克菲卸载工具" data-desc="麦克菲杀毒软件专用卸载工具，彻底清除残留" onclick="location.href='soft/9.html'"><div class="software-number">9</div><div class="card-content"><div class="card-header"><div class="app-icon">🛡️</div><div class="app-info"><div class="app-name">麦克菲卸载工具</div></div></div><div class="app-description">麦克菲杀毒软件专用卸载工具，彻底清除残留</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/9.html">立即下载</a></div></div>
+                <div class="software-card" data-id="10" data-cat="硬件检测" data-name="MSI Afterburner" data-desc="显卡超频监控工具，支持温度频率和风扇调节" onclick="location.href='soft/10.html'"><div class="software-number">10</div><div class="card-content"><div class="card-header"><div class="app-icon">🎮</div><div class="app-info"><div class="app-name">MSI Afterburner</div></div></div><div class="app-description">显卡超频监控工具，支持温度频率和风扇调节</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/10.html">立即下载</a></div></div>
+                <div class="software-card" data-id="11" data-cat="网络工具" data-name="NDM下载器" data-desc="轻量级网络下载管理器，支持多线程加速下载" onclick="location.href='soft/11.html'"><div class="software-number">11</div><div class="card-content"><div class="card-header"><div class="app-icon">📥</div><div class="app-info"><div class="app-name">NDM下载器</div></div></div><div class="app-description">轻量级网络下载管理器，支持多线程加速下载</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/11.html">立即下载</a></div></div>
+                <div class="software-card" data-id="12" data-cat="网络工具" data-name="NeatDM下载器" data-desc="简洁高效的网络下载管理器，支持多线程和断点续传" onclick="location.href='soft/12.html'"><div class="software-number">12</div><div class="card-content"><div class="card-header"><div class="app-icon">📥</div><div class="app-info"><div class="app-name">NeatDM下载器</div></div></div><div class="app-description">简洁高效的网络下载管理器，支持多线程和断点续传</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/12.html">立即下载</a></div></div>
+                <div class="software-card" data-id="13" data-cat="系统工具" data-name="WizTree" data-desc="磁盘空间分析工具，快速找出大文件和占用空间" onclick="location.href='soft/13.html'"><div class="software-number">13</div><div class="card-content"><div class="card-header"><div class="app-icon">📊</div><div class="app-info"><div class="app-name">WizTree</div></div></div><div class="app-description">磁盘空间分析工具，快速找出大文件和占用空间</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/13.html">立即下载</a></div></div>
+                <div class="software-card" data-id="14" data-cat="操作系统" data-name="Windows 10 专业版" data-desc="Windows10专业版22H2，企业级办公开发系统" onclick="location.href='soft/14.html'"><div class="software-number">14</div><div class="card-content"><div class="card-header"><div class="app-icon">💻</div><div class="app-info"><div class="app-name">Windows 10 专业版</div></div></div><div class="app-description">Windows10专业版22H2，企业级办公开发系统</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/14.html">立即下载</a></div></div>
+                <div class="software-card" data-id="15" data-cat="操作系统" data-name="Windows 10 家庭版" data-desc="Windows10家庭版22H2，适合个人日常使用" onclick="location.href='soft/15.html'"><div class="software-number">15</div><div class="card-content"><div class="card-header"><div class="app-icon">💻</div><div class="app-info"><div class="app-name">Windows 10 家庭版</div></div></div><div class="app-description">Windows10家庭版22H2，适合个人日常使用</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/15.html">立即下载</a></div></div>
+                <div class="software-card" data-id="16" data-cat="操作系统" data-name="Windows 11 专业版" data-desc="Windows11专业版25H2，最新企业级办公系统" onclick="location.href='soft/16.html'"><div class="software-number">16</div><div class="card-content"><div class="card-header"><div class="app-icon">💻</div><div class="app-info"><div class="app-name">Windows 11 专业版</div></div></div><div class="app-description">Windows11专业版25H2，最新企业级办公系统</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/16.html">立即下载</a></div></div>
+                <div class="software-card" data-id="17" data-cat="操作系统" data-name="Windows 11 家庭版" data-desc="Windows11家庭版25H2，最新个人用户系统" onclick="location.href='soft/17.html'"><div class="software-number">17</div><div class="card-content"><div class="card-header"><div class="app-icon">💻</div><div class="app-info"><div class="app-name">Windows 11 家庭版</div></div></div><div class="app-description">Windows11家庭版25H2，最新个人用户系统</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/17.html">立即下载</a></div></div>
+                <div class="software-card" data-id="18" data-cat="系统工具" data-name="Intel RST VMD驱动" data-desc="Intel快速存储技术驱动，支持VMD控制器" onclick="location.href='soft/18.html'"><div class="software-number">18</div><div class="card-content"><div class="card-header"><div class="app-icon">⚙️</div><div class="app-info"><div class="app-name">Intel RST VMD驱动</div></div></div><div class="app-description">Intel快速存储技术驱动，支持VMD控制器</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/18.html">立即下载</a></div></div>
+                <div class="software-card" data-id="19" data-cat="网络工具" data-name="向日葵远程控制" data-desc="远程桌面控制软件，支持文件传输和屏幕共享" onclick="location.href='soft/19.html'"><div class="software-number">19</div><div class="card-content"><div class="card-header"><div class="app-icon">🌐</div><div class="app-info"><div class="app-name">向日葵远程控制</div></div></div><div class="app-description">远程桌面控制软件，支持文件传输和屏幕共享</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/19.html">立即下载</a></div></div>
+                <div class="software-card" data-id="20" data-cat="系统工具" data-name="驱动总裁" data-desc="硬件驱动安装工具，自动检测安装更新驱动" onclick="location.href='soft/20.html'"><div class="software-number">20</div><div class="card-content"><div class="card-header"><div class="app-icon">🔧</div><div class="app-info"><div class="app-name">驱动总裁</div></div></div><div class="app-description">硬件驱动安装工具，自动检测安装更新驱动</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/20.html">立即下载</a></div></div>
+                <div class="software-card" data-id="21" data-cat="系统工具" data-name="Windows系统安装工具" data-desc="微软官方Windows系统安装/重装媒体创建工具" onclick="location.href='soft/21.html'"><div class="software-number">21</div><div class="card-content"><div class="card-header"><div class="app-icon">🛠️</div><div class="app-info"><div class="app-name">Windows系统安装工具</div></div></div><div class="app-description">微软官方Windows系统安装/重装媒体创建工具</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/21.html">立即下载</a></div></div>
+                <div class="software-card" data-id="22" data-cat="系统工具" data-name="DiskGenius分区工具" data-desc="专业磁盘分区管理工具，支持数据恢复和备份" onclick="location.href='soft/22.html'"><div class="software-number">22</div><div class="card-content"><div class="card-header"><div class="app-icon">💾</div><div class="app-info"><div class="app-name">DiskGenius分区工具</div></div></div><div class="app-description">专业磁盘分区管理工具，支持数据恢复和备份</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/22.html">立即下载</a></div></div>
+                <div class="software-card" data-id="23" data-cat="系统工具" data-name="FirPE工具箱" data-desc="Windows PE系统维护工具箱，支持分区引导修复" onclick="location.href='soft/23.html'"><div class="software-number">23</div><div class="card-content"><div class="card-header"><div class="app-icon">🛠️</div><div class="app-info"><div class="app-name">FirPE工具箱</div></div></div><div class="app-description">Windows PE系统维护工具箱，支持分区引导修复</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/23.html">立即下载</a></div></div>
+                <div class="software-card" data-id="24" data-cat="系统工具" data-name="极客狗装机大师" data-desc="一键系统装机工具，自动安装驱动和常用软件" onclick="location.href='soft/24.html'"><div class="software-number">24</div><div class="card-content"><div class="card-header"><div class="app-icon">💿</div><div class="app-info"><div class="app-name">极客狗装机大师</div></div></div><div class="app-description">一键系统装机工具，自动安装驱动和常用软件</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/24.html">立即下载</a></div></div>
+                <div class="software-card" data-id="25" data-cat="硬件检测" data-name="MemTest64内存检测" data-desc="内存条故障检测工具，测试内存稳定性和错误" onclick="location.href='soft/25.html'"><div class="software-number">25</div><div class="card-content"><div class="card-header"><div class="app-icon">🔬</div><div class="app-info"><div class="app-name">MemTest64内存检测</div></div></div><div class="app-description">内存条故障检测工具，测试内存稳定性和错误</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/25.html">立即下载</a></div></div>
+                <div class="software-card" data-id="26" data-cat="网络工具" data-name="Watt Toolkit Steam++" data-desc="Steam平台加速工具，解决下载和联机游戏问题" onclick="location.href='soft/26.html'"><div class="software-number">26</div><div class="card-content"><div class="card-header"><div class="app-icon">🎮</div><div class="app-info"><div class="app-name">Watt Toolkit Steam++</div></div></div><div class="app-description">Steam平台加速工具，解决下载和联机游戏问题</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/26.html">立即下载</a></div></div>
+                <div class="software-card" data-id="27" data-cat="硬件检测" data-name="图吧工具箱" data-desc="专业电脑硬件检测工具箱，集成多种硬件信息查看" onclick="location.href='soft/27.html'"><div class="software-number">27</div><div class="card-content"><div class="card-header"><div class="app-icon">🔬</div><div class="app-info"><div class="app-name">图吧工具箱</div></div></div><div class="app-description">专业电脑硬件检测工具箱，集成多种硬件信息查看</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/27.html">立即下载</a></div></div>
+                <div class="software-card" data-id="28" data-cat="操作系统" data-name="Windows 7 专业版" data-desc="经典Windows7专业版系统镜像，稳定可靠的企业系统" onclick="location.href='soft/28.html'"><div class="software-number">28</div><div class="card-content"><div class="card-header"><div class="app-icon">💻</div><div class="app-info"><div class="app-name">Windows 7 专业版</div></div></div><div class="app-description">经典Windows7专业版系统镜像，稳定可靠的企业系统</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/28.html">立即下载</a></div></div>
+                <div class="software-card" data-id="29" data-cat="系统工具" data-name="Autoruns" data-desc="系统启动项管理工具，查看和禁用自动启动程序" onclick="location.href='soft/29.html'"><div class="software-number">29</div><div class="card-content"><div class="card-header"><div class="app-icon">🚀</div><div class="app-info"><div class="app-name">Autoruns</div></div></div><div class="app-description">系统启动项管理工具，查看和禁用自动启动程序</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/29.html">立即下载</a></div></div>
+                <div class="software-card" data-id="30" data-cat="系统工具" data-name="Windows磁盘分析清理工具" data-desc="全盘清理工具，支持常规清理、大文件扫描、重复文件查找、应用强力卸载、定时任务" onclick="location.href='soft/30.html'"><div class="software-number">30</div><div class="card-content"><div class="card-header"><div class="app-icon">🧹</div><div class="app-info"><div class="app-name">Windows磁盘分析清理工具</div></div></div><div class="app-description">全盘清理工具，支持常规清理、大文件扫描、重复文件查找、应用强力卸载、定时任务</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/30.html">立即下载</a></div></div>
+                <div class="software-card" data-id="31" data-cat="硬件检测" data-name="CPU-Z" data-desc="CPU处理器信息检测工具，详细显示CPU、主板、内存等硬件信息" onclick="location.href='soft/31.html'"><div class="software-number">31</div><div class="card-content"><div class="card-header"><div class="app-icon">🔬</div><div class="app-info"><div class="app-name">CPU-Z</div></div></div><div class="app-description">CPU处理器信息检测工具，详细显示CPU、主板、内存等硬件信息</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/31.html">立即下载</a></div></div>
+                <div class="software-card" data-id="32" data-cat="媒体工具" data-name="Gif123" data-desc="极简GIF录屏工具，一键录制，快速复制，直接粘贴到任何地方" onclick="location.href='soft/32.html'"><div class="software-number">32</div><div class="card-content"><div class="card-header"><div class="app-icon">🎬</div><div class="app-info"><div class="app-name">Gif123</div></div></div><div class="app-description">极简GIF录屏工具，一键录制，快速复制，直接粘贴到任何地方</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/32.html">立即下载</a></div></div>
+                <div class="software-card" data-id="33" data-cat="办公软件" data-name="Papertodo" data-desc="开源便签软件，轻量级桌面便签工具，支持待办事项和提醒功能" onclick="location.href='soft/33.html'"><div class="software-number">33</div><div class="card-content"><div class="card-header"><div class="app-icon">📋</div><div class="app-info"><div class="app-name">Papertodo</div></div></div><div class="app-description">开源便签软件，轻量级桌面便签工具，支持待办事项和提醒功能</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/33.html">立即下载</a></div></div>
+                <div class="software-card" data-id="43" data-cat="系统工具" data-name="软件删除助手 Windel" data-desc="删除助手 Windel —— Windows 上删不掉的文件、占用中的进程、杂乱的右键菜单、卸载不掉的软件，一个工具全部搞定。" onclick="location.href='soft/43.html'"><div class="software-number">43</div><div class="card-content"><div class="card-header"><div class="app-icon">📦</div><div class="app-info"><div class="app-name">软件删除助手 Windel</div></div></div><div class="app-description">删除助手 Windel —— Windows 上删不掉的文件、占用中的进程、杂乱的右键菜单、卸载不掉的软件，一个工具全部搞定。</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/43.html">立即下载</a></div></div>
+                <div class="software-card" data-id="44" data-cat="系统工具" data-name="windows更新修复和禁止更新" data-desc="windows更新修复和禁止更新" onclick="location.href='soft/44.html'"><div class="software-number">44</div><div class="card-content"><div class="card-header"><div class="app-icon">📦</div><div class="app-info"><div class="app-name">windows更新修复和禁止更新</div></div></div><div class="app-description">windows更新修复和禁止更新</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/44.html">立即下载</a></div></div>
+                <div class="software-card" data-id="42" data-cat="系统工具" data-name="Windows系统下载工具" data-desc="快速不限速的windows原版镜像" onclick="location.href='soft/42.html'"><div class="software-number">42</div><div class="card-content"><div class="card-header"><div class="app-icon">📦</div><div class="app-info"><div class="app-name">Windows系统下载工具</div></div></div><div class="app-description">快速不限速的windows原版镜像</div></div><div class="download-buttons"><a class="download-btn primary-btn" href="soft/42.html">立即下载</a></div></div>
+                
+                </div>
             </div>
         </div>
 
@@ -131,213 +94,14 @@
     </div>
 </div>
 
-<script src="site.js"></script>
-<script src="nav.js"></script>
-    <script src="software-data.js"></script>
-    <script>
-        // 获取URL参数
-        function getUrlParameter(name) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(name);
+<script>
+    // 旧版 ?id= 链接兼容：仅做 URL 跳转到静态详情页，不承载软件数据
+    (function () {
+        var id = new URLSearchParams(location.search).get('id');
+        if (id && /^\d+$/.test(id)) {
+            location.replace('soft/' + id + '.html');
         }
-
-        // 复制提取码
-        function copyCode(code, button) {
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(code).then(() => {
-                    const originalText = button.textContent;
-                    button.textContent = '已复制';
-                    button.classList.add('copied');
-
-                    setTimeout(() => {
-                        button.textContent = originalText;
-                        button.classList.remove('copied');
-                    }, 2000);
-                });
-            } else {
-                // 降级方案
-                const textArea = document.createElement('textarea');
-                textArea.value = code;
-                textArea.style.position = 'fixed';
-                textArea.style.left = '-999999px';
-                document.body.appendChild(textArea);
-                textArea.select();
-
-                try {
-                    document.execCommand('copy');
-                    button.textContent = '已复制';
-                    button.classList.add('copied');
-
-                    setTimeout(() => {
-                        button.textContent = '复制';
-                        button.classList.remove('copied');
-                    }, 2000);
-                } catch (err) {
-                    console.error('复制失败:', err);
-                    alert('复制失败，请手动复制');
-                }
-
-                document.body.removeChild(textArea);
-            }
-        }
-
-        // 设置页面meta标签
-        function setPageMeta(software) {
-            // 更新页面标题
-            document.title = `${software.name} 下载 - 电脑小百科-软件精选`;
-
-            // 更新关键词
-            const keywords = `${software.name},${software.category},软件下载,绿色软件,免费软件,${software.name}下载`;
-            const keywordsMeta = document.querySelector('meta[name="keywords"]');
-            if (keywordsMeta) {
-                keywordsMeta.setAttribute('content', keywords);
-            }
-
-            // 更新描述
-            const description = `${software.name} - ${software.description}。提供${software.name}免费下载，绿色安全无捆绑，来自电脑小百科软件精选。`;
-            const descriptionMeta = document.querySelector('meta[name="description"]');
-            if (descriptionMeta) {
-                descriptionMeta.setAttribute('content', description);
-            }
-
-            // 调试输出
-            console.log('页面标题已更新:', document.title);
-            console.log('关键词已更新:', keywords);
-            console.log('描述已更新:', description);
-        }
-
-        // 渲染软件详情
-        function renderSoftwareDetail(software) {
-            // 设置页面meta信息
-            setPageMeta(software);
-
-            const container = document.getElementById('softwareDetail');
-
-            const platformIcons = {
-                'baidu': '☁️',
-                'aliyun': '☁️',
-                'lanzou': '🔗',
-                'quark': '☁️',
-                '123pan': '☁️',
-                'xunlei': '⚡',
-                'cloudreve': '☁️'
-            };
-
-            const platformNames = {
-                'baidu': '百度网盘',
-                'aliyun': '阿里云盘',
-                'lanzou': '蓝奏云',
-                'quark': '夸克网盘',
-                '123pan': '123云盘',
-                'xunlei': '迅雷网盘',
-                'cloudreve': '云盘下载'
-            };
-
-            // 检查是否有下载链接
-            const hasDownloads = software.downloadLinks && Object.keys(software.downloadLinks).length > 0;
-
-            let downloadHTML = '';
-            if (hasDownloads) {
-                Object.entries(software.downloadLinks).forEach(([platform, info]) => {
-                    downloadHTML += `
-                        <div class="download-card">
-                            <div class="platform-name">
-                                <span class="platform-icon">${platformIcons[platform] || '🔗'}</span>
-                                ${platformNames[platform] || platform}
-                            </div>
-                            <a href="${info.url}" target="_blank" class="download-link">
-                                点击下载
-                            </a>
-                            ${info.code ? `
-                                <div class="access-code">
-                                    <span class="code-text">提取码: <strong>${info.code}</strong></span>
-                                    <button class="copy-button" onclick="copyCode('${info.code}', this)">复制</button>
-                                </div>
-                            ` : ''}
-                        </div>
-                    `;
-                });
-            } else {
-                downloadHTML = `
-                    <div class="no-downloads">
-                        <div class="no-downloads-text">暂无下载链接，请联系管理员获取</div>
-                    </div>
-                `;
-            }
-
-            container.innerHTML = `
-                <div class="software-header">
-                    <span class="software-icon-large">${software.icon || '📦'}</span>
-                    <h1 class="software-title">${software.name}</h1>
-                    <div class="software-category">${software.category}</div>
-                    <p class="software-description">${software.description}</p>
-                </div>
-
-                <div class="download-section">
-                    <h2 class="section-title">📥 下载地址</h2>
-                    ${downloadHTML}
-                </div>
-            `;
-        }
-
-        // 显示加载状态
-        function showLoading() {
-            const container = document.getElementById('softwareDetail');
-            container.innerHTML = `
-                <div class="state-block">
-                    <div class="state-icon">⏳</div>
-                    <div class="state-text">正在加载软件信息...</div>
-                </div>
-            `;
-        }
-
-        // 显示错误状态
-        function showError(message) {
-            const container = document.getElementById('softwareDetail');
-            container.innerHTML = `
-                <div class="state-block">
-                    <div class="state-icon">⚠️</div>
-                    <div class="state-text">加载失败</div>
-                    <div>${message}</div>
-                </div>
-            `;
-        }
-
-        // 初始化页面
-        async function init() {
-            try {
-                showLoading();
-
-                // 获取软件ID
-                const softwareId = getUrlParameter('id');
-                if (!softwareId) {
-                    showError('未指定软件ID');
-                    return;
-                }
-
-                // 加载数据
-                const data = await dataManager.loadData();
-                const software = data.find(s => s.id == softwareId);
-
-                if (!software) {
-                    showError('未找到指定的软件');
-                    return;
-                }
-
-                // 立即设置页面meta信息（在渲染内容之前）
-                setPageMeta(software);
-
-                // 渲染软件详情
-                renderSoftwareDetail(software);
-
-            } catch (error) {
-                console.error('加载软件详情失败:', error);
-                showError('加载数据时发生错误，请稍后重试');
-            }
-        }
-
-        // 页面加载完成后初始化
-        document.addEventListener('DOMContentLoaded', init);
-    </script>
+    })();
+</script>
 </body>
 </html>
