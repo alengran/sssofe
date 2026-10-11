@@ -1,5 +1,6 @@
 software.md
 *.md
+*.bat
 _remote_site/
 
 # 本机 PHP 后台（图鱼工作台），含管理面板和配置，绝不能提交到公开仓库
