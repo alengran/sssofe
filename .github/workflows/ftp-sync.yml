@@ -37,13 +37,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Pull site from hosting (FTP mirror)
         env:
           FTP_USER: ${{ secrets.FTP_USER }}
           FTP_PASS: ${{ secrets.FTP_PASS }}
         run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq lftp
           mkdir mirror
           lftp -u "$FTP_USER","$FTP_PASS" "$FTP_HOST" <<EOF
           set net:max-retries 2
