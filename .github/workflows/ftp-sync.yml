@@ -16,7 +16,7 @@ name: Sync site from hosting
 
 on:
   schedule:
-    - cron: "9,39 * * * *"   # 每小时第 9、39 分（UTC）
+    - cron: "29 * * * *"   # 每小时第 29 分（UTC）
   workflow_dispatch: {}
 
 # 防止上一次还没跑完就堆叠下一次
